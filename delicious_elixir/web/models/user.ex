@@ -4,6 +4,8 @@ defmodule DeliciousElixir.User do
   schema "users" do
     field :email, :string
 
+    has_many :owned_links, Link
+
     timestamps()
   end
 
