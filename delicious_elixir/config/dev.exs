@@ -11,8 +11,7 @@ config :delicious_elixir, DeliciousElixir.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../", __DIR__)]]
+  watchers: []
 
 
 # Watch static and templates for browser reloading.
@@ -38,6 +37,7 @@ config :delicious_elixir, DeliciousElixir.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "delicious_elixir_dev",
-  hostname: "localhost",
+  database: "postgres",
+  hostname: "192.168.99.100",
+  port: "5433",
   pool_size: 10

@@ -12,7 +12,7 @@ config :delicious_elixir,
 # Configures the endpoint
 config :delicious_elixir, DeliciousElixir.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "apSpgUcLV2rVDA5IZh/j9bH5z8Owy1FKt6o1O0aa09CRj+YGFuIZBowHpfY11nd3",
+  secret_key_base: "SD1mjBiRcQV0JmWiYibG2Iiy36bjOszOFPOBaQkmBt/MFKz3LTgBZtcjiE41KOQ/",
   render_errors: [view: DeliciousElixir.ErrorView, accepts: ~w(html json)],
   pubsub: [name: DeliciousElixir.PubSub,
            adapter: Phoenix.PubSub.PG2]

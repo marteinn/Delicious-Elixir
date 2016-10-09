@@ -36,7 +36,7 @@ defmodule DeliciousElixir.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_delicious_elixir_key",
-    signing_salt: "wTySoMw9"
+    signing_salt: "3Cv1nkKF"
 
   plug DeliciousElixir.Router
 end
