@@ -1,0 +1,6 @@
+/venv
+
+/docker/config/web.env
+/docker/config/db.env
+
+*.sql
