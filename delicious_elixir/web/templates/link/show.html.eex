@@ -3,8 +3,18 @@
 <ul>
 
   <li>
+    <strong>Title:</strong>
+    <%= @link.title %>
+  </li>
+
+  <li>
     <strong>Url:</strong>
     <%= @link.url %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @link.description %>
   </li>
 
 </ul>
