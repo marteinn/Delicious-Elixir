@@ -18,6 +18,7 @@ defmodule DeliciousElixir.Router do
 
     get "/", PageController, :index
     resources "/links", LinkController
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.

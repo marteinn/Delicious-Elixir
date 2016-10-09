@@ -1,10 +1,8 @@
-defmodule DeliciousElixir.Link do
+defmodule DeliciousElixir.User do
   use DeliciousElixir.Web, :model
 
-  schema "links" do
-    field :title, :string
-    field :url, :string
-    field :description, :text
+  schema "users" do
+    field :email, :string
 
     timestamps()
   end
@@ -14,7 +12,7 @@ defmodule DeliciousElixir.Link do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:url])
-    |> validate_required([:url])
+    |> cast(params, [:email])
+    |> validate_required([:email])
   end
 end

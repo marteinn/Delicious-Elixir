@@ -10,6 +10,21 @@
 
 ## Snippets
 
+- Create model
+
+    ```elixir
+    mix phoenix.gen.html Example examples field_name:field_type
+    mix ecto.migrate
+    ```
+
+- Create migration
+
+    ```elixir
+    mix ecto.gen.migration <description>
+    resources "/<model_name>", <Model>Controller
+    mix ecto.migrate
+    ```
+
 - Create table
     `mix ecto.create`
 
@@ -18,3 +33,13 @@
 
 - Run migration
     `mix ecto.migrate`
+
+- Generate model
+    `mix phoenix.gen.html Example examples field_name:field_type`
+
+
+
+## References
+
+- https://github.com/bigardone/phoenix-trello/
+
