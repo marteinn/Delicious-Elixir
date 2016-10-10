@@ -42,4 +42,3 @@
 ## References
 
 - https://github.com/bigardone/phoenix-trello/
-

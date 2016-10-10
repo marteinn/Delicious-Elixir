@@ -22,7 +22,9 @@ defmodule DeliciousElixir.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", DeliciousElixir do
-  #   pipe_through :api
-  # end
+  scope "/api", DeliciousElixir do
+     pipe_through :api
+
+     resources "/links", ApiLinkController
+  end
 end
