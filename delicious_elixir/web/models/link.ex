@@ -1,12 +1,14 @@
 defmodule DeliciousElixir.Link do
   use DeliciousElixir.Web, :model
+  import Ecto.Query
+
 
   schema "links" do
     field :title, :string
     field :url, :string
     field :description, :string
 
-    belongs_to :user, User
+    belongs_to :user, DeliciousElixir.User
 
     timestamps()
   end
