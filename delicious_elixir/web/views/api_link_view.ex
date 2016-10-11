@@ -13,7 +13,8 @@ defmodule DeliciousElixir.ApiLinkView do
     %{
       title: api_link.title,
       url: api_link.url,
-      description: api_link.description
+      description: api_link.description,
+      user: api_link.user.email
     }
   end
 
