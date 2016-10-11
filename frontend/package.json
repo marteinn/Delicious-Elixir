@@ -1,0 +1,18 @@
+{
+  "name": "delicious_elixir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Sandström <martin@marteinn.se> (http://marteinn.se)",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+      "phoenix": "file:../delicious_elixir/deps/phoenix",
+      "phoenix_html": "file:../delicious_elixir/deps/phoenix_html"
+  }
+}
