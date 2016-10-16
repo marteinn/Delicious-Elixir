@@ -16,4 +16,5 @@ config :delicious_elixir, DeliciousElixir.Repo,
   password: "postgres",
   database: "postgres_test",
   hostname: "192.168.99.100",
+  port: "5433",
   pool: Ecto.Adapters.SQL.Sandbox
