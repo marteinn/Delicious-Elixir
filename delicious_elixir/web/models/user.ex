@@ -1,6 +1,8 @@
 defmodule DeliciousElixir.User do
   use DeliciousElixir.Web, :model
 
+  @derive {Poison.Encoder, only: [:id, :first_name, :last_name, :email]}
+
   schema "users" do
     field :first_name, :string
     field :last_name, :string
@@ -26,6 +28,7 @@ defmodule DeliciousElixir.User do
     |> cast(params, @required_fields, @optional_fields)
     |> validate_length(:password, min: 5)
     |> validate_confirmation(:password, message: "Password does not match")
+    |> unique_constraint(:email, message: "Email already taken")
     |> generate_encrypted_password
   end
 

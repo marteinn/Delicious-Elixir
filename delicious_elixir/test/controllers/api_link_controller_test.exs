@@ -1,8 +1,7 @@
 defmodule DeliciousElixir.ApiLinkControllerTest do
   use DeliciousElixir.ConnCase
 
-  alias DeliciousElixir.Link
-  alias DeliciousElixir.User
+  alias DeliciousElixir.{Link, User}
 
   @valid_attrs %{url: "some content", title: "A"}
   @invalid_attrs %{}
