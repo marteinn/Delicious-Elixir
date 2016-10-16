@@ -13,7 +13,14 @@ defmodule DeliciousElixir.ApiLinkControllerTest do
   end
 
   test "lists all user links on index", %{conn: conn} do
-    user = Repo.insert!(%User{email: "m@m.se"})
+    changeset = User.changeset(%User{}, %{
+                        username: "marteinn",
+                        email: "m@m.se",
+                        first_name: "Martin",
+                        last_name: "Sandström",
+                        password: "password",
+                      })
+    user = Repo.insert!(changeset)
     link = Repo.insert!(%Link{
                         url: "a",
                         title: "Title",
@@ -28,7 +35,14 @@ defmodule DeliciousElixir.ApiLinkControllerTest do
 
 
   test "lists user links on index", %{conn: conn} do
-    user = Repo.insert!(%User{email: "m@m.se"})
+    changeset = User.changeset(%User{}, %{
+                        username: "marteinn",
+                        email: "m@m.se",
+                        first_name: "Martin",
+                        last_name: "Sandström",
+                        password: "password",
+                      })
+    user = Repo.insert!(changeset)
     Repo.insert!(%Link{
                  url: "a",
                  title: "Title",

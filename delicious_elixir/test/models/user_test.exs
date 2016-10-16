@@ -3,7 +3,13 @@ defmodule DeliciousElixir.UserTest do
 
   alias DeliciousElixir.User
 
-  @valid_attrs %{email: "some content"}
+  @valid_attrs %{
+    email: "some content",
+    username: "marteinn",
+    password: "password",
+    first_name: "Martin",
+    last_name: "Sandström",
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
