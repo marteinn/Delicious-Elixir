@@ -4,7 +4,7 @@ defmodule DeliciousElixir.UserTest do
   alias DeliciousElixir.User
 
   @valid_attrs %{
-    email: "some content",
+    email: "m@m.se",
     username: "marteinn",
     password: "password",
     first_name: "Martin",
