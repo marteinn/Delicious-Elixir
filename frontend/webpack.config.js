@@ -2,7 +2,6 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let webpack = require('webpack');
 let path = require('path');
 
-let outDir = __dirname + '/../delicious_elixir/priv/';
 
 module.exports = [{
     name: 'js',
@@ -13,7 +12,7 @@ module.exports = [{
         ]
     },
     output: {
-        path: outDir + '/static/js',
+        path: __dirname + '/../delicious_elixir/priv/static/js',
         filename: 'index.js'
     },
     module: {
@@ -49,7 +48,7 @@ module.exports = [{
             __dirname + '/app/scss/index.scss'
         ]
     }, output: {
-        path: outDir + '/static/css',
+        path: __dirname + '/../delicious_elixir/priv/static/css',
         filename: 'index.css'
     },
     module: {
