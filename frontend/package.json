@@ -20,9 +20,14 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
-      "phoenix": "file:../delicious_elixir/deps/phoenix",
-      "phoenix_html": "file:../delicious_elixir/deps/phoenix_html",
-      "react": "^0.14.5",
-      "react-dom": "^0.14.5"
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.10.1",
+    "phoenix": "file:../delicious_elixir/deps/phoenix",
+    "phoenix_html": "file:../delicious_elixir/deps/phoenix_html",
+    "postcss-loader": "^1.0.0",
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1"
   }
 }

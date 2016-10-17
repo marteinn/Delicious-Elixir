@@ -1,63 +1,82 @@
-'use strict';
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let webpack = require('webpack');
+let path = require('path');
 
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
+let outDir = __dirname + '/../delicious_elixir/priv/';
 
-function join(dest) {
-    return path.resolve(__dirname, dest);
-}
-
-function web(dest) {
-    return join('web/static/' + dest);
-}
-
-var config = {
+module.exports = [{
+    name: 'js',
     devtool: 'source-map',
-
-    entry: {
-        application: [
-            //web('css/application.sass'),
-            join('app/index.js'),
-        ],
+    entry:  {
+        main: [
+            __dirname + '/app/index.js'
+        ]
     },
-
     output: {
-        path: join('priv/static'),
-        filename: 'app/index.js',
+        path: outDir + '/static/js',
+        filename: 'index.js'
     },
-
-    resolve: {
-        extensions: ['', '.js', '.sass'],
-        modulesDirectories: ['node_modules'],
-    },
-
     module: {
         loaders: [
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                cacheDirectory: true,
-                plugins: ['transform-decorators-legacy'],
-                presets: ['react', 'es2015', 'stage-2', 'stage-0'],
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015', 'react', 'stage-0'],
+                    plugins: ["transform-class-properties", "transform-decorators-legacy"]
+
+                }
             },
-        },
-        {
-            test: /\.sass$/,
-            loader: ExtractTextPlugin.extract('style', 'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'),
-        },
-        ],
+            {
+                test: /\.json$/,
+                loader: 'json'
+            }
+        ]
     },
-
-    // what plugins we'll be using - in this case, just our ExtractTextPlugin.
-    // we'll also tell the plugin where the final CSS file should be generated
-    // (relative to config.output.path)
+    resolveLoader: {
+        fallback: path.resolve(__dirname, './node_modules')
+    },
+    watchOptions: {
+        poll: true
+    }
+},
+{
+    name: 'style',
+    devtool: 'source-map',
+    entry: {
+        styles: [
+            __dirname + '/app/scss/index.scss'
+        ]
+    }, output: {
+        path: outDir + '/static/css',
+        filename: 'index.css'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract(
+                    'style-loader',
+                    'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
+                )
+            },
+            {
+                test: /\.(svg|png|jpe?g|gif)$/,
+                loader: 'file?name=img/[name].[ext]'
+            },
+            {
+                test: /\.(woff2?|ttf|eot|otf)$/,
+                loader: 'file?name=fonts/[name].[ext]'
+            }
+        ]
+    },
     plugins: [
-        new ExtractTextPlugin('css/application.css'),
+        new ExtractTextPlugin('index.css', {
+            allChunks: true
+        })
     ],
-};
-
-
-module.exports = config;
+    watchOptions: {
+        poll: true
+    },
+}]
