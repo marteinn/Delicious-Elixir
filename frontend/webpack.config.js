@@ -1,6 +1,7 @@
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let webpack = require('webpack');
-let path = require('path');
+let autoprefixer = require('autoprefixer');
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = [{
@@ -70,6 +71,7 @@ module.exports = [{
             }
         ]
     },
+    postcss: [autoprefixer({ browsers: ['last 3 versions'] })],
     plugins: [
         new ExtractTextPlugin('index.css', {
             allChunks: true

@@ -41,3 +41,14 @@ config :delicious_elixir, DeliciousElixir.Repo,
   hostname: "192.168.99.100",
   port: "5433",
   pool_size: 10
+
+
+config :delicious_elixir, DeliciousElixir.Endpoint,
+  http: [port: 4000],
+  debug_errors: true,
+  code_reloader: true,
+  cache_static_lookup: false,
+  check_origin: false,
+  watchers: [
+    node: ["node_modules/webpack/bin/webpack.js", "--watch", "--color", cd: Path.expand("../../frontend/", __DIR__)]
+  ]

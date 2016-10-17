@@ -21,12 +21,13 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.10.1",
-    "webpack": "^1.13.2",
     "postcss-loader": "^1.0.0",
     "sass-loader": "^4.0.2",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
   },
   "dependencies": {
+    "autoprefixer": "^6.5.1",
     "phoenix": "file:../delicious_elixir/deps/phoenix",
     "phoenix_html": "file:../delicious_elixir/deps/phoenix_html",
     "react": "^0.14.5",
