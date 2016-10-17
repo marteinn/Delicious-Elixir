@@ -10,3 +10,5 @@ class Placeholder extends React.Component {
         );
     }
 }
+
+export default Placeholder;

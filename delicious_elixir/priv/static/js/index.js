@@ -75,7 +75,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _configureStore2.default)(_reactRouter.browserHistory);
+	var store = (0, _configureStore2.default)();
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 	
 	var target = document.getElementById('main_container');
@@ -25803,6 +25803,10 @@
 	
 	var _redux = __webpack_require__(229);
 	
+	var _reactRouterRedux = __webpack_require__(223);
+	
+	var _reactRouter = __webpack_require__(160);
+	
 	var _reduxThunk = __webpack_require__(244);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
@@ -25813,15 +25817,16 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	//import {persistStore, autoRehydrate} from 'redux-persist';
 	var configureStore = function configureStore(initialState) {
+	    var reduxRouterMiddleware = (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory);
+	
 	    var store = (0, _redux.createStore)(_index2.default, initialState, (0, _redux.compose)(
 	    //autoRehydrate(),
-	    (0, _redux.applyMiddleware)(_reduxThunk2.default)));
+	    (0, _redux.applyMiddleware)(reduxRouterMiddleware, _reduxThunk2.default)));
 	
 	    return store;
 	};
-	
+	//import {persistStore, autoRehydrate} from 'redux-persist';
 	exports.default = configureStore;
 
 /***/ },
@@ -26750,6 +26755,8 @@
 	
 	var _redux = __webpack_require__(229);
 	
+	var _reactRouterRedux = __webpack_require__(223);
+	
 	var _session = __webpack_require__(246);
 	
 	var _session2 = _interopRequireDefault(_session);
@@ -26757,6 +26764,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
+	    routing: _reactRouterRedux.routerReducer,
 	    session: _session2.default
 	});
 	
@@ -26771,11 +26779,15 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var initialState = {};
+	var initialState = {
+	    currentUser: null,
+	    socket: null,
+	    error: null
+	};
 	
 	var session = function session() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-	    var action = arguments[1];
+	    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	
 	    return state;
 	};
@@ -26806,6 +26818,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var propTypes = {
+	    routerHistory: _react.PropTypes.object.isRequired,
+	    store: _react.PropTypes.object.isRequired
+	};
+	
 	var Root = function Root(_ref) {
 	    var routerHistory = _ref.routerHistory;
 	    var store = _ref.store;
@@ -26820,6 +26837,8 @@
 	        )
 	    );
 	};
+	
+	Root.propTypes = propTypes;
 	
 	exports.default = Root;
 
@@ -27447,11 +27466,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _react2.default.createElement(
-	    _reactRouter.Route,
-	    { component: _MainLayout2.default },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Placeholder2.default })
-	);
+	var configRoutes = function configRoutes(store) {
+	    return _react2.default.createElement(
+	        _reactRouter.Route,
+	        { component: _MainLayout2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Placeholder2.default })
+	    );
+	};
+	
+	exports.default = configRoutes;
 
 /***/ },
 /* 256 */
@@ -27511,6 +27534,10 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(2);
@@ -27551,6 +27578,8 @@
 	
 	    return Placeholder;
 	}(_react2.default.Component);
+	
+	exports.default = Placeholder;
 
 /***/ }
 /******/ ]);

@@ -1,7 +1,12 @@
-import React, { PropTypes }         from 'react';
-import { Provider }                 from 'react-redux';
-import { Router, RoutingContext }   from 'react-router';
-import configRoutes                 from '../routes';
+import React, { PropTypes } from 'react';
+import { Provider } from 'react-redux';
+import { Router, RoutingContext } from 'react-router';
+import configRoutes from '../routes';
+
+const propTypes = {
+    routerHistory: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired
+};
 
 const Root = ({ routerHistory, store }) => {
     return (
@@ -12,5 +17,7 @@ const Root = ({ routerHistory, store }) => {
         </Provider>
     );
 };
+
+Root.propTypes = propTypes;
 
 export default Root;
