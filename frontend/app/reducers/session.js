@@ -4,9 +4,14 @@ const initialState = {
     error: null,
 };
 
-const session = (state=initialState, action = {}) => {
-    return state;
-}
 
+const session = (state = initialState, action = { }) => {
+    switch (action.type) {
+    case 'RANDOM':
+        return state;
+    default:
+        return state;
+    }
+};
 
 export default session;

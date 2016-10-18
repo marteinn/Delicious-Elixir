@@ -1,22 +1,21 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router, RoutingContext } from 'react-router';
+import { Router } from 'react-router';
+
 import configRoutes from '../routes';
 
 const propTypes = {
     routerHistory: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
 };
 
-const Root = ({ routerHistory, store }) => {
-    return (
-        <Provider store={store}>
-            <Router history={routerHistory}>
-                {configRoutes(store)}
-            </Router>
-        </Provider>
-    );
-};
+const Root = ({ routerHistory, store }) => (
+    <Provider store={store}>
+        <Router history={routerHistory}>
+            {configRoutes(store)}
+        </Router>
+    </Provider>
+);
 
 Root.propTypes = propTypes;
 

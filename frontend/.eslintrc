@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "mocha": true
+  },
+  "extends": "airbnb",
+  "globals": {
+    "React": false,
+    "Modernizr": true
+  },
+  "rules": {
+    "indent": [
+      "error",
+      4
+    ],
+    "react/jsx-indent": 0,
+    "react/jsx-filename-extension": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/forbid-prop-types": 0
+  }
+}

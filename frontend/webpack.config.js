@@ -17,6 +17,13 @@ module.exports = [{
         filename: 'index.js'
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/
+            }
+        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -24,8 +31,10 @@ module.exports = [{
                 loader: 'babel',
                 query: {
                     presets: ['es2015', 'react', 'stage-0'],
-                    plugins: ["transform-class-properties", "transform-decorators-legacy"]
-
+                    plugins: [
+                        "transform-class-properties",
+                        "transform-decorators-legacy"
+                    ]
                 }
             },
             {

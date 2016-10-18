@@ -1,14 +1,10 @@
-import React, {PropTypes}   from 'react';
-import { connect }          from 'react-redux';
-import { Link }             from 'react-router';
+import React from 'react';
+// import { connect } from 'react-redux';
+// import { Link } from 'react-router';
 
 
-class Placeholder extends React.Component {
-    render() {
-        return (
-            <h1>Hello</h1>
-        );
-    }
-}
+const Placeholder = () => (
+    <h1>Hello 1</h1>
+);
 
 export default Placeholder;

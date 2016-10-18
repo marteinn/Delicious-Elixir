@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 
-export default class MainLayout extends React.Component {
-    constructor() {
-        super();
-    }
+const MainLayout = ({ children }) => (
+    <div>
+        {children}
+    </div>
+);
 
-    render() {
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        );
-    }
-}
+MainLayout.propTypes = {
+    children: React.PropTypes.array,
+};
+
+export default MainLayout;
