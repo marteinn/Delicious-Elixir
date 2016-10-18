@@ -25817,9 +25817,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var configureStore = function configureStore(_ref) {
-	    var initialState = _ref.initialState;
-	
+	var configureStore = function configureStore(initialState) {
 	    var reduxRouterMiddleware = (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory);
 	
 	    var store = (0, _redux.createStore)(_index2.default, initialState, (0, _redux.compose)(
@@ -27466,17 +27464,28 @@
 	
 	var _MainLayout2 = _interopRequireDefault(_MainLayout);
 	
-	var _Placeholder = __webpack_require__(257);
+	var _Auth = __webpack_require__(260);
 	
-	var _Placeholder2 = _interopRequireDefault(_Placeholder);
+	var _Auth2 = _interopRequireDefault(_Auth);
+	
+	var _SignUp = __webpack_require__(258);
+	
+	var _SignUp2 = _interopRequireDefault(_SignUp);
+	
+	var _SignIn = __webpack_require__(259);
+	
+	var _SignIn2 = _interopRequireDefault(_SignIn);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import Placeholder from '../views/Placeholder';
 	var configRoutes = function configRoutes(store) {
 	    return _react2.default.createElement(
 	        _reactRouter.Route,
 	        { component: _MainLayout2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: '/', store: store, component: _Placeholder2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/sign-up', store: store, component: _SignUp2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/sign-in', store: store, component: _SignIn2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/', store: store, component: _Auth2.default })
 	    );
 	};
 	
@@ -27510,13 +27519,14 @@
 	};
 	
 	MainLayout.propTypes = {
-	    children: _react2.default.PropTypes.array
+	    children: _react2.default.PropTypes.object
 	};
 	
 	exports.default = MainLayout;
 
 /***/ },
-/* 257 */
+/* 257 */,
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27531,19 +27541,111 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import { connect } from 'react-redux';
-	// import { Link } from 'react-router';
-	
-	
-	var Placeholder = function Placeholder() {
+	var SignUp = function SignUp() {
 	    return _react2.default.createElement(
-	        'h1',
+	        'h2',
 	        null,
-	        'Hello 1'
+	        'Sign up!'
 	    );
 	};
 	
-	exports.default = Placeholder;
+	exports.default = SignUp;
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SignIn = function SignIn() {
+	    return _react2.default.createElement(
+	        'h2',
+	        null,
+	        'Sign in!'
+	    );
+	};
+	
+	exports.default = SignIn;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(248);
+	
+	var _reactRouterRedux = __webpack_require__(223);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Auth = function (_React$Component) {
+	    _inherits(Auth, _React$Component);
+	
+	    function Auth() {
+	        _classCallCheck(this, Auth);
+	
+	        return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
+	    }
+	
+	    _createClass(Auth, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _props = this.props;
+	            var dispatch = _props.dispatch;
+	            var currentUser = _props.currentUser;
+	
+	
+	            dispatch(_reactRouterRedux.routeActions.push('/sign-up'));
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {}
+	    }]);
+	
+	    return Auth;
+	}(_react2.default.Component);
+	
+	Auth.propTypes = {
+	    dispatch: _react2.default.PropTypes.func.isRequired,
+	    currentUser: _react2.default.PropTypes.object.isRequired
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        currentUser: state.session.currentUser
+	    };
+	};
+	
+	Auth = (0, _reactRedux.connect)(mapStateToProps)(Auth);
+	
+	exports.default = Auth;
 
 /***/ }
 /******/ ]);

@@ -8,7 +8,7 @@ const MainLayout = ({ children }) => (
 );
 
 MainLayout.propTypes = {
-    children: React.PropTypes.array,
+    children: React.PropTypes.object,
 };
 
 export default MainLayout;

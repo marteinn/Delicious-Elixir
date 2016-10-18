@@ -13,14 +13,6 @@ defmodule DeliciousElixir.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", DeliciousElixir do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-    resources "/links", LinkController
-    resources "/users", UserController
-  end
-
   # Other scopes may use custom stacks.
   scope "/api", DeliciousElixir do
     pipe_through :api
@@ -30,4 +22,13 @@ defmodule DeliciousElixir.Router do
       post "/registrations", RegistrationController, :create
     end
   end
-end
+
+  scope "/", DeliciousElixir do
+    pipe_through :browser # Use the default browser stack
+
+    resources "/links", LinkController
+    resources "/users", UserController
+    get "/*path", PageController, :index
+  end
+
+  end
