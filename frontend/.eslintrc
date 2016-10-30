@@ -19,6 +19,8 @@
     "react/jsx-filename-extension": 0,
     "import/no-extraneous-dependencies": 0,
     "react/forbid-prop-types": 0,
-    "no-class-assign": 0
+    "no-class-assign": 0,
+    "spaced-comment": 0,
+    "no-underscore-dangle": 0
   }
 }

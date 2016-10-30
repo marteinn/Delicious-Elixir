@@ -4,22 +4,41 @@ import { polyfill } from 'es6-promise';
 const parseJSON = response => response.json();
 
 const buildHeaders = () => ({
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
 });
 
-const checkStatus = response => {
+const checkStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response;
-    } else {
-        let error = new Error(response.statusText);
-        error.response = response;
-        throw error;
     }
-}
 
-const httpGet = url => {
-    return fetch(url, {
-        headers: buildHeaders()
-    }
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+};
+
+
+const httpGet = (url) => (
+    fetch(url, {
+        headers: buildHeaders(),
+    })
     .then(checkStatus)
-    .then(parseJSON);
-}
+    .then(parseJSON)
+);
+
+const httpPost = (url, data) => (
+    fetch(url, {
+        method: 'post',
+        headers: buildHeaders(),
+        body: JSON.stringify(data),
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+);
+
+export {
+    httpGet,
+    httpPost,
+};
+
