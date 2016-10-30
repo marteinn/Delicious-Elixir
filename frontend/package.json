@@ -35,6 +35,8 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
+    "es6-promise": "^4.0.5",
+    "isomorphic-fetch": "^2.2.1",
     "phoenix": "file:../delicious_elixir/deps/phoenix",
     "phoenix_html": "file:../delicious_elixir/deps/phoenix_html",
     "react": "^0.14.5",
