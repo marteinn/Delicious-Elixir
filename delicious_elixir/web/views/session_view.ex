@@ -7,4 +7,8 @@ defmodule DeliciousElixir.SessionView do
       user: user,
     }
   end
+
+  def render("forbidden.json", %{error: error}) do
+    %{error: error}
+  end
 end

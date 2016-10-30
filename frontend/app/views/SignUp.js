@@ -16,7 +16,7 @@ class SignUp extends React.Component {
 
         const { dispatch } = this.props;
 
-        let data = {
+        const data = {
             username: this.username.value,
             email: this.email.value,
             first_name: this.firstName.value,
@@ -65,7 +65,7 @@ class SignUp extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     errors: null,
 });
 

@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
 class Auth extends React.Component {
     componentDidMount() {
-        console.log('AUTH?');
-        const { dispatch, currentUser } = this.props;
+        //const { dispatch } = this.props;
         // dispatch(push('/sign-up'));
     }
 
     render() {
-        // if (!this.props.currentUser) return null;
+        const { currentUser } = this.props;
+
         return (
-            <h1>Logged in!</h1>
+            <div className="main-container">
+                {this.props.children}
+            </div>
         );
     }
 }
@@ -27,5 +28,3 @@ export default connect(mapStateToProps)(Auth);
     //dispatch: React.PropTypes.func.isRequired,
     //currentUser: React.PropTypes.object.isRequired,
 /*};*/
-
-//export default Auth;

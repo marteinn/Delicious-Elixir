@@ -11,6 +11,8 @@ defmodule DeliciousElixir.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.LoadResource
   end
 
   # Other scopes may use custom stacks.
@@ -20,6 +22,7 @@ defmodule DeliciousElixir.Router do
     scope "/v1" do
       resources "/links", ApiLinkController
       post "/registrations", RegistrationController, :create
+      get "/current-user", CurrentUserController, :show
     end
   end
 

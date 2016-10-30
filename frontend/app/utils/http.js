@@ -3,10 +3,18 @@ import { polyfill } from 'es6-promise';
 
 const parseJSON = response => response.json();
 
-const buildHeaders = () => ({
+const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-});
+};
+
+const buildHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
+        ...defaultHeaders,
+        Authorization: token,
+    };
+};
 
 const checkStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
