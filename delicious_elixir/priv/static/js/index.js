@@ -26811,7 +26811,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.currentUser = exports.setCurrentUser = exports.CURRENT_USER = undefined;
+	exports.signIn = exports.currentUser = exports.setCurrentUser = exports.CURRENT_USER = undefined;
+	
+	var _reactRouterRedux = __webpack_require__(223);
 	
 	var _http = __webpack_require__(248);
 	
@@ -26825,8 +26827,6 @@
 	};
 	
 	var currentUser = function currentUser() {
-	    // const token = localStorage.getItem('token');
-	
 	    return function (dispatch) {
 	        (0, _http.httpGet)('/api/v1/current-user').then(function (data) {
 	            setCurrentUser(dispatch, data);
@@ -26836,9 +26836,20 @@
 	    };
 	};
 	
+	var signIn = function signIn(sessionData) {
+	    return function (dispatch) {
+	        (0, _http.httpPost)('/api/v1/sessions', { session: sessionData }).then(function (data) {
+	            localStorage.setItem('token', data.jwt);
+	            setCurrentUser(dispatch, data.user);
+	            dispatch((0, _reactRouterRedux.push)('/'));
+	        });
+	    };
+	};
+	
 	exports.CURRENT_USER = CURRENT_USER;
 	exports.setCurrentUser = setCurrentUser;
 	exports.currentUser = currentUser;
+	exports.signIn = signIn;
 
 /***/ },
 /* 248 */
@@ -29550,21 +29561,113 @@
 	    value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRedux = __webpack_require__(254);
+	
+	var _session = __webpack_require__(247);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var SignIn = function SignIn() {
-	    return _react2.default.createElement(
-	        'h2',
-	        null,
-	        'Sign in!'
-	    );
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SignIn = function (_React$Component) {
+	    _inherits(SignIn, _React$Component);
+	
+	    function SignIn(props) {
+	        _classCallCheck(this, SignIn);
+	
+	        var _this = _possibleConstructorReturn(this, (SignIn.__proto__ || Object.getPrototypeOf(SignIn)).call(this, props));
+	
+	        _this._handleSubmit = _this._handleSubmit.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(SignIn, [{
+	        key: '_handleSubmit',
+	        value: function _handleSubmit(e) {
+	            e.preventDefault();
+	
+	            var dispatch = this.props.dispatch;
+	
+	
+	            var data = {
+	                email: this.email.value,
+	                password: this.password.value
+	            };
+	
+	            console.log('handle submit');
+	
+	            dispatch((0, _session.signIn)(data));
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Sign in!'
+	                ),
+	                _react2.default.createElement(
+	                    'form',
+	                    { method: 'post', onSubmit: this._handleSubmit },
+	                    _react2.default.createElement(
+	                        'fieldset',
+	                        null,
+	                        _react2.default.createElement(
+	                            'label',
+	                            { htmlFor: 'email' },
+	                            'email'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(c) {
+	                                _this2.email = c;
+	                            }, id: 'email', name: 'email' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'fieldset',
+	                        null,
+	                        _react2.default.createElement(
+	                            'label',
+	                            { htmlFor: 'password' },
+	                            'Password'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(c) {
+	                                _this2.password = c;
+	                            }, id: 'password', name: 'password' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        null,
+	                        'Sign in'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return SignIn;
+	}(_react2.default.Component);
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        errors: null
+	    };
 	};
 	
-	exports.default = SignIn;
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SignIn);
 
 /***/ },
 /* 267 */
@@ -29584,7 +29687,7 @@
 	
 	var Home = function Home() {
 	    return _react2.default.createElement(
-	        'h1',
+	        'h2',
 	        null,
 	        'Home.js'
 	    );

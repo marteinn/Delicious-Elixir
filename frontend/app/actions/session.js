@@ -1,4 +1,5 @@
-import { httpGet } from '../utils/http';
+import { push } from 'react-router-redux';
+import { httpGet, httpPost } from '../utils/http';
 
 const CURRENT_USER = 'CURRENT_USER';
 
@@ -10,8 +11,6 @@ const setCurrentUser = (dispatch, user) => {
 };
 
 const currentUser = () => {
-    // const token = localStorage.getItem('token');
-
     return dispatch => {
         httpGet('/api/v1/current-user')
         .then((data) => {
@@ -22,8 +21,20 @@ const currentUser = () => {
     };
 };
 
+const signIn = (sessionData) => {
+    return dispatch => {
+        httpPost('/api/v1/sessions', { session: sessionData })
+        .then((data) => {
+            localStorage.setItem('token', data.jwt);
+            setCurrentUser(dispatch, data.user);
+            dispatch(push('/'));
+        });
+    }
+}
+
 export {
     CURRENT_USER,
     setCurrentUser,
     currentUser,
+    signIn,
 };

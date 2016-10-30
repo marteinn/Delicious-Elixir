@@ -28,6 +28,7 @@ const configRoutes = store => {
         <Route component={MainLayout}>
             <Route path="/sign-up" component={SignUp} />
             <Route path="/sign-in" component={SignIn} />
+
             <Route path="/" component={Auth} onEnter={checkAuth}>
                 <IndexRoute component={Home} />
             </Route>
