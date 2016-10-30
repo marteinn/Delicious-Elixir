@@ -27,7 +27,7 @@ const checkStatus = (response) => {
 };
 
 
-const httpGet = (url) => (
+const httpGet = url => (
     fetch(url, {
         headers: buildHeaders(),
     })
