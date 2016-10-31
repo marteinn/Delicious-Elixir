@@ -6,3 +6,5 @@
 *.sql
 
 node_modules
+
+/tmp

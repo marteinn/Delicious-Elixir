@@ -1,0 +1,26 @@
+.Toolbar {
+    background-color: #0B79E5;
+
+    &__List {
+    }
+
+    &__Item {
+        font-size: 1.3rem;
+    }
+
+    &__Search {
+        width: 100%;
+        background-color: #0056A9;
+        border: 0;
+        text-indent: 20px;
+        padding: 10px 20px 10px 0;
+        color: white;
+    }
+
+    &__Link {
+        display: block;
+        color: white;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+    }
+}

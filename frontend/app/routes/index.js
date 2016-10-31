@@ -3,7 +3,7 @@ import React from 'react';
 
 import { currentUser } from '../actions/session';
 import MainLayout from '../layouts/MainLayout';
-import Auth from '../containers/Auth';
+import Auth from '../containers/Auth/Auth';
 // import Placeholder from '../views/Placeholder';
 import SignUp from '../views/SignUp';
 import SignIn from '../views/SignIn';

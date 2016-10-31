@@ -1,2 +1,275 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+  table html,
+  table body,
+  table div,
+  table span,
+  table applet,
+  table object,
+  table iframe,
+  table h1,
+  table h2,
+  table h3,
+  table h4,
+  table h5,
+  table h6,
+  table p,
+  table blockquote,
+  table pre,
+  table a,
+  table abbr,
+  table acronym,
+  table address,
+  table big,
+  table cite,
+  table code,
+  table del,
+  table dfn,
+  table em,
+  table img,
+  table ins,
+  table kbd,
+  table q,
+  table s,
+  table samp,
+  table small,
+  table strike,
+  table strong,
+  table sub,
+  table sup,
+  table tt,
+  table var,
+  table b,
+  table u,
+  table i,
+  table center,
+  table dl,
+  table dt,
+  table dd,
+  table ol,
+  table ul,
+  table li,
+  table fieldset,
+  table form,
+  table label,
+  table legend,
+  table table,
+  table caption,
+  table tbody,
+  table tfoot,
+  table thead,
+  table tr,
+  table th,
+  table td,
+  table article,
+  table aside,
+  table canvas,
+  table details,
+  table embed,
+  table figure,
+  table figcaption,
+  table footer,
+  table header,
+  table hgroup,
+  table menu,
+  table nav,
+  table output,
+  table ruby,
+  table section,
+  table summary,
+  table time,
+  table mark,
+  table audio,
+  table video {
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline; }
+  table article,
+  table aside,
+  table details,
+  table figcaption,
+  table figure,
+  table footer,
+  table header,
+  table hgroup,
+  table menu,
+  table nav,
+  table section {
+    display: block; }
+  table body {
+    line-height: 1; }
+  table ol,
+  table ul {
+    list-style: none; }
+  table blockquote,
+  table q {
+    quotes: none; }
+  table blockquote:before,
+  table blockquote:after,
+  table q:before,
+  table q:after {
+    content: none; }
+  table table {
+    border-collapse: collapse;
+    border-spacing: 0; }
+
+* {
+  box-sizing: border-box; }
+
+html {
+  font-family: arial;
+  font-size: 62.5%; }
+
+body {
+  background-color: #FFFFFF;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; }
+
+.Auth {
+  display: -ms-flexbox;
+  display: flex; }
+  .Auth__Toolbar {
+    min-width: 240px;
+    height: 100vh; }
+
+.Toolbar {
+  background-color: #0B79E5; }
+  .Toolbar__Item {
+    font-size: 1.3rem; }
+  .Toolbar__Search {
+    width: 100%;
+    background-color: #0056A9;
+    border: 0;
+    text-indent: 20px;
+    padding: 10px 20px 10px 0;
+    color: white; }
+  .Toolbar__Link {
+    display: block;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none; }
 
 /*# sourceMappingURL=index.css.map*/
