@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { registerUser } from '../actions/register';
+import ErrorList from '../components/ErrorList/ErrorList';
 
 
 class SignUp extends React.Component {
@@ -32,6 +33,8 @@ class SignUp extends React.Component {
             <div>
                 <h2>Sign up!</h2>
                 <form method="post" onSubmit={this._handleSubmit}>
+                    <ErrorList errors={this.props.errors} />
+
                     <fieldset>
                         <label htmlFor="username">Username</label>
                         <input ref={(c) => { this.username = c; }} id="username" name="username" />
@@ -65,8 +68,24 @@ class SignUp extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    errors: null,
-});
+const mapStateToProps = state => {
+    let errors = state.register.errors;
+
+    errors = errors.map((error) => {
+        const key = Object.keys(error)[0];
+        const msg = error[key];
+        return `${key}: ${msg}`;
+    });
+
+    return {
+        errors,
+    };
+};
+
+
+SignUp.propTypes = {
+    errors: React.PropTypes.array,
+    dispatch: React.PropTypes.func,
+};
 
 export default connect(mapStateToProps)(SignUp);

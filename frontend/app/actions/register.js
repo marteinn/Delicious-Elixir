@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 import { httpPost } from '../utils/http';
 
 const REGISTER_USER = 'REGIST_USER';
+const REGISTER_ERROR = 'REGISTER_ERROR';
 
 const registerUser = (userData) => {
     return (dispatch) => {
@@ -11,12 +12,18 @@ const registerUser = (userData) => {
 
             dispatch(push('/'));
         }).catch((error) => {
-            //console.log(error);
+            error.response.json().then((errorJson) => {
+                dispatch({
+                    type: REGISTER_ERROR,
+                    error: errorJson,
+                });
+            });
         });
     };
 };
 
 export {
     REGISTER_USER,
+    REGISTER_ERROR,
     registerUser,
 };

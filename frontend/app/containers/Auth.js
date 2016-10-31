@@ -22,6 +22,12 @@ const mapStateToProps = state => ({
     currentUser: state.session.currentUser,
 });
 
+
+Auth.propTypes = {
+    currentUser: React.PropTypes.object,
+    children: React.PropTypes.array,
+};
+
 export default connect(mapStateToProps)(Auth);
 
 /*Auth.propTypes = {*/

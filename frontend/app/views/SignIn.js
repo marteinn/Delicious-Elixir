@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../actions/session';
+import ErrorList from '../components/ErrorList/ErrorList';
 
 
 class SignIn extends React.Component {
@@ -18,9 +19,7 @@ class SignIn extends React.Component {
         const data = {
             email: this.email.value,
             password: this.password.value,
-        }
-
-        console.log('handle submit');
+        };
 
         dispatch(signIn(data));
     }
@@ -30,6 +29,7 @@ class SignIn extends React.Component {
             <div>
                 <h2>Sign in!</h2>
                 <form method="post" onSubmit={this._handleSubmit}>
+                    <ErrorList errors={this.props.errors} />
                     <fieldset>
                         <label htmlFor="email">email</label>
                         <input ref={(c) => { this.email = c; }} id="email" name="email" />
@@ -44,8 +44,16 @@ class SignIn extends React.Component {
         );
     }
 }
-const mapStateToProps = state => ({
-    errors: null,
-});
+
+const mapStateToProps = state => {
+    return {
+        errors: state.session.errors,
+    };
+};
+
+SignIn.propTypes = {
+    errors: React.PropTypes.array,
+    dispatch: React.PropTypes.func,
+};
 
 export default connect(mapStateToProps)(SignIn);

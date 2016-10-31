@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 import { httpGet, httpPost } from '../utils/http';
 
 const CURRENT_USER = 'CURRENT_USER';
+const SESSION_ERROR = 'SESSION_ERROR';
 
 const setCurrentUser = (dispatch, user) => {
     dispatch({
@@ -16,7 +17,12 @@ const currentUser = () => {
         .then((data) => {
             setCurrentUser(dispatch, data);
         }).catch((error) => {
-            console.log(error);
+            error.response.json().then((errorJson) => {
+                dispatch({
+                    type: SESSION_ERROR,
+                    error: errorJson,
+                });
+            });
         });
     };
 };
@@ -28,12 +34,20 @@ const signIn = (sessionData) => {
             localStorage.setItem('token', data.jwt);
             setCurrentUser(dispatch, data.user);
             dispatch(push('/'));
+        }).catch((error) => {
+            error.response.json().then((errorJson) => {
+                dispatch({
+                    type: SESSION_ERROR,
+                    error: errorJson,
+                });
+            });
         });
-    }
-}
+    };
+};
 
 export {
     CURRENT_USER,
+    SESSION_ERROR,
     setCurrentUser,
     currentUser,
     signIn,
