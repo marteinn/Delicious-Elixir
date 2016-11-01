@@ -18,7 +18,7 @@ class Toolbar extends React.Component {
                     </li>
 
                     <li className="Toolbar__Item">
-                        <input type="" className="Toolbar__Search" placeholder="Search" />>
+                        <input type="" className="Toolbar__Search" placeholder="Search" />
                     </li>
 
                     {currentUser ?
