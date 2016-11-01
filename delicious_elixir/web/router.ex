@@ -32,8 +32,8 @@ defmodule DeliciousElixir.Router do
   scope "/", DeliciousElixir do
     pipe_through :browser # Use the default browser stack
 
-    resources "/links", LinkController
-    resources "/users", UserController
+    resources "/admin/links", LinkController
+    resources "/admin/users", UserController
     get "/*path", PageController, :index
   end
 
