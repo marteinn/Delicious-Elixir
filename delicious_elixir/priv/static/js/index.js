@@ -26765,12 +26765,16 @@
 	
 	var _session2 = _interopRequireDefault(_session);
 	
+	var _link = __webpack_require__(274);
+	
+	var _link2 = _interopRequireDefault(_link);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
 	    routing: _reactRouterRedux.routerReducer,
 	    session: _session2.default,
-	    register: _register2.default
+	    link: _link2.default
 	});
 	
 	exports.default = rootReducer;
@@ -30087,6 +30091,8 @@
 	
 	var _reactRedux = __webpack_require__(256);
 	
+	var _link = __webpack_require__(275);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30105,15 +30111,44 @@
 	    }
 	
 	    _createClass(UserDetail, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var dispatch = this.props.dispatch;
+	
+	
+	            dispatch((0, _link.fetchLinks)());
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var currentUser = this.props.currentUser;
+	            var _props = this.props;
+	            var currentUser = _props.currentUser;
+	            var links = _props.links;
 	
+	
+	            links.map(function (link) {
+	                return console.log(link);
+	            });
 	
 	            return _react2.default.createElement(
-	                'h1',
+	                'div',
 	                null,
-	                'Hello'
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    '1 Hello'
+	                ),
+	                links.map(function (link, index) {
+	                    return _react2.default.createElement(
+	                        'li',
+	                        { key: index },
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: link.url },
+	                            link.title
+	                        )
+	                    );
+	                })
 	            );
 	        }
 	    }]);
@@ -30123,11 +30158,81 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	    return {
-	        currentUser: state.session.currentUser
+	        currentUser: state.session.currentUser,
+	        links: state.link.links
 	    };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(UserDetail);
+
+/***/ },
+/* 273 */,
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _link = __webpack_require__(275);
+	
+	var initialState = {
+	    links: []
+	};
+	
+	var link = function link() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	
+	    switch (action.type) {
+	        case _link.LINKS_RECEIVED:
+	            return _extends({}, state, { links: action.links });
+	        default:
+	            return state;
+	    }
+	};
+	
+	exports.default = link;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.fetchLinks = exports.LINKS_RECEIVED = undefined;
+	
+	var _http = __webpack_require__(248);
+	
+	var LINKS_RECEIVED = 'LINKS_RECEIVED';
+	
+	var fetchLinks = function fetchLinks() {
+	    return function (dispatch) {
+	        (0, _http.httpGet)('/api/v1/links').then(function (data) {
+	            dispatch({
+	                type: LINKS_RECEIVED,
+	                links: data
+	            });
+	        }).catch(function (error) {
+	            /*error.response.json().then((errorJson) => {*/
+	            //dispatch({
+	            //type: SESSION_ERROR,
+	            //error: errorJson,
+	            //});
+	            /*});*/
+	        });
+	    };
+	};
+	
+	exports.LINKS_RECEIVED = LINKS_RECEIVED;
+	exports.fetchLinks = fetchLinks;
 
 /***/ }
 /******/ ]);
