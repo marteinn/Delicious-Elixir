@@ -20,11 +20,9 @@ defmodule DeliciousElixir.Router do
     pipe_through :api
 
     scope "/v1" do
-      # resources "/links", ApiLinkController
+      resources "/links", LinkController
       post "/registrations", RegistrationController, :create
-
       post "/sessions", SessionController, :create
-
       get "/current-user", CurrentUserController, :show
     end
   end
@@ -32,7 +30,7 @@ defmodule DeliciousElixir.Router do
   scope "/", DeliciousElixir do
     pipe_through :browser # Use the default browser stack
 
-    resources "/admin/links", LinkController
+    resources "/admin/links", AdminLinkController
     resources "/admin/users", UserController
     get "/*path", PageController, :index
   end

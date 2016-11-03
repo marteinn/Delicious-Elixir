@@ -25,6 +25,8 @@ class SignIn extends React.Component {
     }
 
     render() {
+        const { currentUser } = this.props;
+
         return (
             <div>
                 <h2>Sign in!</h2>
@@ -48,6 +50,7 @@ class SignIn extends React.Component {
 const mapStateToProps = state => {
     return {
         errors: state.session.errors,
+        currentUser: state.session.currentUser,
     };
 };
 

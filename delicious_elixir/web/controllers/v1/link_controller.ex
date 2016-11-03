@@ -1,4 +1,4 @@
-defmodule DeliciousElixir.ApiLinkController do
+defmodule DeliciousElixir.LinkController do
   use DeliciousElixir.Web, :controller
   alias DeliciousElixir.Repo
   alias DeliciousElixir.Link
@@ -13,11 +13,11 @@ defmodule DeliciousElixir.ApiLinkController do
       |> Map.fetch!(:changes)
       |> Map.to_list
 
-    api_links = Link
+    links = Link
                 |> where(^filters)
                 |> Repo.all()
                 |> Repo.preload(:user)
 
-    render conn, api_links: api_links
+    render conn, links: links
   end
 end

@@ -1,0 +1,32 @@
+<h2>Listing links</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Link</th>
+      <th>Description</th>
+      <th>User</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for link <- @links do %>
+    <tr>
+      <td><%= link.title %></td>
+      <td><%= link.url %></td>
+      <td><%= link.description %></td>
+      <td><%= link.user_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: admin_link_path(@conn, :show, link), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: admin_link_path(@conn, :edit, link), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: admin_link_path(@conn, :delete, link), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New link", to: admin_link_path(@conn, :new) %>

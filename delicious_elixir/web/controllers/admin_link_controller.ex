@@ -1,7 +1,9 @@
-defmodule DeliciousElixir.LinkController do
+defmodule DeliciousElixir.AdminLinkController do
   use DeliciousElixir.Web, :controller
 
   alias DeliciousElixir.Link
+
+  #plug :put_view, DeliciousElixir.AdminLinkView
 
   def index(conn, _params) do
     links = Repo.all(Link)
@@ -13,14 +15,14 @@ defmodule DeliciousElixir.LinkController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"link" => link_params}) do
-    changeset = Link.changeset(%Link{}, link_params)
+  def create(conn, %{"link" => link}) do
+    changeset = Link.changeset(%Link{}, link)
 
     case Repo.insert(changeset) do
       {:ok, _link} ->
         conn
-        |> put_flash(:info, "Link created successfully.")
-        |> redirect(to: link_path(conn, :index))
+        |> put_flash(:info, "Admin link created successfully.")
+        |> redirect(to: admin_link_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -37,15 +39,15 @@ defmodule DeliciousElixir.LinkController do
     render(conn, "edit.html", link: link, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "link" => link_params}) do
+  def update(conn, %{"id" => id, "link" => admin_link_params}) do
     link = Repo.get!(Link, id)
-    changeset = Link.changeset(link, link_params)
+    changeset = Link.changeset(link, admin_link_params)
 
     case Repo.update(changeset) do
       {:ok, link} ->
         conn
-        |> put_flash(:info, "Link updated successfully.")
-        |> redirect(to: link_path(conn, :show, link))
+        |> put_flash(:info, "Admin link updated successfully.")
+        |> redirect(to: admin_link_path(conn, :show, link))
       {:error, changeset} ->
         render(conn, "edit.html", link: link, changeset: changeset)
     end
@@ -59,7 +61,7 @@ defmodule DeliciousElixir.LinkController do
     Repo.delete!(link)
 
     conn
-    |> put_flash(:info, "Link deleted successfully.")
-    |> redirect(to: link_path(conn, :index))
+    |> put_flash(:info, "Admin link deleted successfully.")
+    |> redirect(to: admin_link_path(conn, :index))
   end
 end

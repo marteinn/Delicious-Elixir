@@ -8,6 +8,7 @@ import Auth from '../containers/Auth/Auth';
 import SignUp from '../views/SignUp';
 import SignIn from '../views/SignIn';
 import Home from '../views/Home';
+import UserDetail from '../views/UserDetail';
 
 
 const configRoutes = store => {
@@ -31,6 +32,8 @@ const configRoutes = store => {
 
             <Route path="/" component={Auth} onEnter={checkAuth}>
                 <IndexRoute component={Home} />
+
+                <Route path="/users/:username" component={UserDetail} />
             </Route>
         </Route>
     );

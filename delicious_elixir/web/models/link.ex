@@ -2,7 +2,6 @@ defmodule DeliciousElixir.Link do
   use DeliciousElixir.Web, :model
   import Ecto.Query
 
-
   schema "links" do
     field :title, :string
     field :url, :string
