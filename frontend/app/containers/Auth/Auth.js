@@ -6,6 +6,10 @@ class Auth extends React.Component {
     render() {
         const { currentUser } = this.props;
 
+        if (!currentUser) {
+            return null;
+        }
+
         return (
             <div className="Auth">
                 <Toolbar modifiers="Auth__Toolbar" />

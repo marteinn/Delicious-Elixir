@@ -29434,6 +29434,10 @@
 	            var currentUser = this.props.currentUser;
 	
 	
+	            if (!currentUser) {
+	                return null;
+	            }
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'Auth' },
