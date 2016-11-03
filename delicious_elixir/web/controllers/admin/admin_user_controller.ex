@@ -1,4 +1,4 @@
-defmodule DeliciousElixir.UserController do
+defmodule DeliciousElixir.AdminUserController do
   use DeliciousElixir.Web, :controller
 
   alias DeliciousElixir.User
@@ -20,7 +20,7 @@ defmodule DeliciousElixir.UserController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: user_path(conn, :index))
+        |> redirect(to: admin_user_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +45,7 @@ defmodule DeliciousElixir.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: user_path(conn, :show, user))
+        |> redirect(to: admin_user_path(conn, :show, user))
       {:error, changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
@@ -60,6 +60,6 @@ defmodule DeliciousElixir.UserController do
 
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: user_path(conn, :index))
+    |> redirect(to: admin_user_path(conn, :index))
   end
 end
