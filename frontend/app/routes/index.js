@@ -10,6 +10,7 @@ import SignIn from '../views/SignIn';
 import SignOut from '../views/SignOut';
 import Home from '../views/Home';
 import UserDetail from '../views/UserDetail';
+import CreateLink from '../views/CreateLink';
 
 
 const configRoutes = store => {
@@ -36,6 +37,7 @@ const configRoutes = store => {
                 <IndexRoute component={Home} />
 
                 <Route path="/users/:username" component={UserDetail} />
+                <Route path="/create-link" component={CreateLink} />
             </Route>
         </Route>
     );

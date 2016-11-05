@@ -36,7 +36,7 @@ class Toolbar extends React.Component {
                         <a href="#" className="Toolbar__Link">Discover</a>
                     </li>
                     <li className="Toolbar__Item">
-                        <a href="#" className="Toolbar__Link">Add link</a>
+                        <Link to={'/create-link'} activeClassName="Toolbar__Link--Active" className="Toolbar__Link">Add link</Link>
                     </li>
 
                     {currentUser ?

@@ -2,6 +2,12 @@ import React from 'react';
 
 
 class CreateLinkForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this._handleSubmit = this._handleSubmit.bind(this);
+    }
+
     _handleSubmit(e) {
         e.preventDefault();
 
