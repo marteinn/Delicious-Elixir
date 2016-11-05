@@ -8,3 +8,5 @@
 node_modules
 
 /tmp
+
+/delicious_elixir/priv/static/
