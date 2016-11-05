@@ -1,4 +1,5 @@
 import React from 'react';
+import LinkItem from '../LinkItem/LinkItem';
 
 
 class LinkList extends React.Component {
@@ -9,17 +10,11 @@ class LinkList extends React.Component {
             <div className="LinkList">
                 {links.map((link, index) => {
                     return (
-                        <li key={index}><a href={ link.url}>{ link.title }</a></li>
+                        <LinkItem key={index} link={link} />
                     )
                 })}
             </div>
         )
-
-        //return (
-            //<div className="LinkList">
-                //<p>Link list</p>
-            //</div>
-        //);
     }
 }
 
