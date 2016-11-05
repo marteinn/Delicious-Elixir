@@ -3,6 +3,7 @@ import { httpGet, httpPost } from '../utils/http';
 
 const CURRENT_USER = 'CURRENT_USER';
 const SESSION_ERROR = 'SESSION_ERROR';
+const CLEAR_SESSION = 'CLEAR_SESSION';
 
 const setCurrentUser = (dispatch, user) => {
     dispatch({
@@ -21,6 +22,13 @@ const currentUser = () => {
         });
     };
 };
+
+const signOut = () => {
+    localStorage.removeItem('token');
+    return {
+        type: CLEAR_SESSION,
+    };
+}
 
 const signIn = (sessionData) => {
     return dispatch => {
@@ -46,4 +54,5 @@ export {
     setCurrentUser,
     currentUser,
     signIn,
+    signOut,
 };

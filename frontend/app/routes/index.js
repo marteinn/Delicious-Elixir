@@ -1,5 +1,5 @@
-import { IndexRoute, Route } from 'react-router';
 import React from 'react';
+import { IndexRoute, Route } from 'react-router';
 
 import { currentUser } from '../actions/session';
 import MainLayout from '../layouts/MainLayout';
@@ -7,6 +7,7 @@ import Auth from '../containers/Auth/Auth';
 // import Placeholder from '../views/Placeholder';
 import SignUp from '../views/SignUp';
 import SignIn from '../views/SignIn';
+import SignOut from '../views/SignOut';
 import Home from '../views/Home';
 import UserDetail from '../views/UserDetail';
 
@@ -29,6 +30,7 @@ const configRoutes = store => {
         <Route component={MainLayout}>
             <Route path="/sign-up" component={SignUp} />
             <Route path="/sign-in" component={SignIn} />
+            <Route path="/sign-out" component={SignOut} />
 
             <Route path="/" component={Auth} onEnter={checkAuth}>
                 <IndexRoute component={Home} />
