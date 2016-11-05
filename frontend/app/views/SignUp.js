@@ -88,4 +88,8 @@ SignUp.propTypes = {
     dispatch: React.PropTypes.func,
 };
 
+SignUp.defaultProps = {
+    errors: []
+}
+
 export default connect(mapStateToProps)(SignUp);

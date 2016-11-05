@@ -6,6 +6,7 @@ import link from './link';
 
 const rootReducer = combineReducers({
     routing: routerReducer,
+    register,
     session,
     link,
 });

@@ -17,13 +17,7 @@ const currentUser = () => {
         .then((data) => {
             setCurrentUser(dispatch, data);
         }).catch((error) => {
-            console.log(error);
-            error.response.json().then((errorJson) => {
-                dispatch({
-                    type: SESSION_ERROR,
-                    error: errorJson,
-                });
-            });
+            dispatch(push('/sign-in'));
         });
     };
 };

@@ -69,7 +69,7 @@
 	
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 	
-	var _Root = __webpack_require__(255);
+	var _Root = __webpack_require__(257);
 	
 	var _Root2 = _interopRequireDefault(_Root);
 	
@@ -26765,7 +26765,7 @@
 	
 	var _session2 = _interopRequireDefault(_session);
 	
-	var _link = __webpack_require__(274);
+	var _link = __webpack_require__(255);
 	
 	var _link2 = _interopRequireDefault(_link);
 	
@@ -26773,6 +26773,7 @@
 	
 	var rootReducer = (0, _redux.combineReducers)({
 	    routing: _reactRouterRedux.routerReducer,
+	    register: _register2.default,
 	    session: _session2.default,
 	    link: _link2.default
 	});
@@ -28602,13 +28603,7 @@
 	        (0, _http.httpGet)('/api/v1/current-user').then(function (data) {
 	            setCurrentUser(dispatch, data);
 	        }).catch(function (error) {
-	            console.log(error);
-	            error.response.json().then(function (errorJson) {
-	                dispatch({
-	                    type: SESSION_ERROR,
-	                    error: errorJson
-	                });
-	            });
+	            dispatch((0, _reactRouterRedux.push)('/sign-in'));
 	        });
 	    };
 	};
@@ -28646,15 +28641,83 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _link = __webpack_require__(256);
+	
+	var initialState = {
+	    links: []
+	};
+	
+	var link = function link() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	
+	    switch (action.type) {
+	        case _link.LINKS_RECEIVED:
+	            return _extends({}, state, { links: action.links });
+	        default:
+	            return state;
+	    }
+	};
+	
+	exports.default = link;
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.fetchLinks = exports.LINKS_RECEIVED = undefined;
+	
+	var _http = __webpack_require__(248);
+	
+	var LINKS_RECEIVED = 'LINKS_RECEIVED';
+	
+	var fetchLinks = function fetchLinks() {
+	    return function (dispatch) {
+	        (0, _http.httpGet)('/api/v1/links').then(function (data) {
+	            dispatch({
+	                type: LINKS_RECEIVED,
+	                links: data
+	            });
+	        }).catch(function (error) {
+	            /*error.response.json().then((errorJson) => {*/
+	            //dispatch({
+	            //type: SESSION_ERROR,
+	            //error: errorJson,
+	            //});
+	            /*});*/
+	        });
+	    };
+	};
+	
+	exports.LINKS_RECEIVED = LINKS_RECEIVED;
+	exports.fetchLinks = fetchLinks;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(256);
+	var _reactRedux = __webpack_require__(258);
 	
 	var _reactRouter = __webpack_require__(160);
 	
-	var _routes = __webpack_require__(263);
+	var _routes = __webpack_require__(265);
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
@@ -28684,7 +28747,7 @@
 	exports.default = Root;
 
 /***/ },
-/* 256 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28692,11 +28755,11 @@
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(257);
+	var _Provider = __webpack_require__(259);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(260);
+	var _connect = __webpack_require__(262);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -28706,7 +28769,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 257 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -28716,11 +28779,11 @@
 	
 	var _react = __webpack_require__(2);
 	
-	var _storeShape = __webpack_require__(258);
+	var _storeShape = __webpack_require__(260);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _warning = __webpack_require__(259);
+	var _warning = __webpack_require__(261);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -28790,7 +28853,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 258 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28806,7 +28869,7 @@
 	});
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28835,7 +28898,7 @@
 	}
 
 /***/ },
-/* 260 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -28847,19 +28910,19 @@
 	
 	var _react = __webpack_require__(2);
 	
-	var _storeShape = __webpack_require__(258);
+	var _storeShape = __webpack_require__(260);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(261);
+	var _shallowEqual = __webpack_require__(263);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(262);
+	var _wrapActionCreators = __webpack_require__(264);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _warning = __webpack_require__(259);
+	var _warning = __webpack_require__(261);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -29234,7 +29297,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 261 */
+/* 263 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29265,7 +29328,7 @@
 	}
 
 /***/ },
-/* 262 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29282,7 +29345,7 @@
 	}
 
 /***/ },
-/* 263 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29299,27 +29362,27 @@
 	
 	var _session = __webpack_require__(254);
 	
-	var _MainLayout = __webpack_require__(264);
+	var _MainLayout = __webpack_require__(266);
 	
 	var _MainLayout2 = _interopRequireDefault(_MainLayout);
 	
-	var _Auth = __webpack_require__(265);
+	var _Auth = __webpack_require__(267);
 	
 	var _Auth2 = _interopRequireDefault(_Auth);
 	
-	var _SignUp = __webpack_require__(268);
+	var _SignUp = __webpack_require__(270);
 	
 	var _SignUp2 = _interopRequireDefault(_SignUp);
 	
-	var _SignIn = __webpack_require__(270);
+	var _SignIn = __webpack_require__(272);
 	
 	var _SignIn2 = _interopRequireDefault(_SignIn);
 	
-	var _Home = __webpack_require__(271);
+	var _Home = __webpack_require__(273);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _UserDetail = __webpack_require__(272);
+	var _UserDetail = __webpack_require__(274);
 	
 	var _UserDetail2 = _interopRequireDefault(_UserDetail);
 	
@@ -29361,7 +29424,7 @@
 	exports.default = configRoutes;
 
 /***/ },
-/* 264 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29394,7 +29457,7 @@
 	exports.default = MainLayout;
 
 /***/ },
-/* 265 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29409,9 +29472,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(256);
+	var _reactRedux = __webpack_require__(258);
 	
-	var _Toolbar = __webpack_require__(266);
+	var _Toolbar = __webpack_require__(268);
 	
 	var _Toolbar2 = _interopRequireDefault(_Toolbar);
 	
@@ -29472,7 +29535,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Auth);
 
 /***/ },
-/* 266 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29487,11 +29550,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(256);
+	var _reactRedux = __webpack_require__(258);
 	
 	var _reactRouter = __webpack_require__(160);
 	
-	var _classnames = __webpack_require__(267);
+	var _classnames = __webpack_require__(269);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -29621,7 +29684,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Toolbar);
 
 /***/ },
-/* 267 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -29675,7 +29738,7 @@
 
 
 /***/ },
-/* 268 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29690,13 +29753,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(256);
+	var _reactRedux = __webpack_require__(258);
 	
 	var _reactRouter = __webpack_require__(160);
 	
 	var _register = __webpack_require__(247);
 	
-	var _ErrorList = __webpack_require__(269);
+	var _ErrorList = __webpack_require__(271);
 	
 	var _ErrorList2 = _interopRequireDefault(_ErrorList);
 	
@@ -29852,10 +29915,14 @@
 	    dispatch: _react2.default.PropTypes.func
 	};
 	
+	SignUp.defaultProps = {
+	    errors: []
+	};
+	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SignUp);
 
 /***/ },
-/* 269 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29918,7 +29985,7 @@
 	exports.default = ErrorList;
 
 /***/ },
-/* 270 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29933,11 +30000,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(256);
+	var _reactRedux = __webpack_require__(258);
 	
 	var _session = __webpack_require__(254);
 	
-	var _ErrorList = __webpack_require__(269);
+	var _ErrorList = __webpack_require__(271);
 	
 	var _ErrorList2 = _interopRequireDefault(_ErrorList);
 	
@@ -30048,7 +30115,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SignIn);
 
 /***/ },
-/* 271 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30074,7 +30141,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 272 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30089,9 +30156,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(256);
+	var _reactRedux = __webpack_require__(258);
 	
-	var _link = __webpack_require__(275);
+	var _link = __webpack_require__(256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30164,75 +30231,6 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(UserDetail);
-
-/***/ },
-/* 273 */,
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _link = __webpack_require__(275);
-	
-	var initialState = {
-	    links: []
-	};
-	
-	var link = function link() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-	    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-	
-	    switch (action.type) {
-	        case _link.LINKS_RECEIVED:
-	            return _extends({}, state, { links: action.links });
-	        default:
-	            return state;
-	    }
-	};
-	
-	exports.default = link;
-
-/***/ },
-/* 275 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.fetchLinks = exports.LINKS_RECEIVED = undefined;
-	
-	var _http = __webpack_require__(248);
-	
-	var LINKS_RECEIVED = 'LINKS_RECEIVED';
-	
-	var fetchLinks = function fetchLinks() {
-	    return function (dispatch) {
-	        (0, _http.httpGet)('/api/v1/links').then(function (data) {
-	            dispatch({
-	                type: LINKS_RECEIVED,
-	                links: data
-	            });
-	        }).catch(function (error) {
-	            /*error.response.json().then((errorJson) => {*/
-	            //dispatch({
-	            //type: SESSION_ERROR,
-	            //error: errorJson,
-	            //});
-	            /*});*/
-	        });
-	    };
-	};
-	
-	exports.LINKS_RECEIVED = LINKS_RECEIVED;
-	exports.fetchLinks = fetchLinks;
 
 /***/ }
 /******/ ]);
