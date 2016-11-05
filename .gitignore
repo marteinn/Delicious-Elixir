@@ -9,4 +9,5 @@ node_modules
 
 /tmp
 
-/delicious_elixir/priv/static/
+/delicious_elixir/priv/static/js/index*
+/delicious_elixir/priv/static/css/index*
