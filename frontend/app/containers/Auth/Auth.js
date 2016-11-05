@@ -10,9 +10,11 @@ class Auth extends React.Component {
             return null;
         }
 
+        let activeRoute = this.props.routes[this.props.routes.length-1];
+
         return (
             <div className="Auth">
-                <Toolbar modifiers="Auth__Toolbar" />
+                <Toolbar modifiers="Auth__Toolbar" activeRoute={activeRoute} />
                 <div className="Auth__Content">
                     {this.props.children}
                 </div>

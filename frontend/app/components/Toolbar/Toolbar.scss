@@ -27,5 +27,10 @@
         color: white;
         padding: 10px 20px 10px 20px;
         text-decoration: none;
+
+        &--Active {
+            background-color: white;
+            color: #0B79E5;
+        }
     }
 }

@@ -8,13 +8,11 @@ class Toolbar extends React.Component {
     render() {
         const { currentUser, modifiers } = this.props;
 
-        console.log(currentUser);
-
         return (
             <nav className={classNames("Toolbar", modifiers)}>
                 <ul className="Toolbar__List">
                     <li className="Toolbar__Item">
-                        <a href="#" className="Toolbar__Link">Elixir+Delicious</a>
+                        <Link to={"/"} className="Toolbar__Link">Elixir+Delicious</Link>
                     </li>
 
                     <li className="Toolbar__Item">
@@ -23,7 +21,7 @@ class Toolbar extends React.Component {
 
                     {currentUser ?
                         <li className="Toolbar__Item">
-                            <a href="#" className="Toolbar__Link">My links</a>
+                            <Link to={"users/"+currentUser.username} activeClassName="Toolbar__Link--Active" className="Toolbar__Link">My links</Link>
                         </li>
                         :
                         <li className="Toolbar__Item">
