@@ -38,7 +38,7 @@ class SignIn extends React.Component {
                     </fieldset>
                     <fieldset>
                         <label htmlFor="password">Password</label>
-                        <input ref={(c) => { this.password = c; }} id="password"name="password" />
+                        <input ref={(c) => { this.password = c; }} id="password" name="password" />
                     </fieldset>
                     <button>Sign in</button>
                 </form>
@@ -55,6 +55,7 @@ const mapStateToProps = state => {
 };
 
 SignIn.propTypes = {
+    currentUser: React.PropTypes.object,
     errors: React.PropTypes.array,
     dispatch: React.PropTypes.func,
 };

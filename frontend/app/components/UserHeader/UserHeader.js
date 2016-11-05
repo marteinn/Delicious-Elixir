@@ -13,8 +13,8 @@ class UserHeader extends React.Component {
     }
 }
 
-UserHeader.defaultProps = {
-    user: null,
+UserHeader.propTypes = {
+    user: React.PropTypes.object.isRequired,
 };
 
 export default UserHeader;

@@ -19,9 +19,9 @@ const fetchLinks = () => {
             /*});*/
         });
     };
-}
+};
 
 export {
     LINKS_RECEIVED,
     fetchLinks,
-}
+};

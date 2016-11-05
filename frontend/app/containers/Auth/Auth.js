@@ -10,7 +10,7 @@ class Auth extends React.Component {
             return null;
         }
 
-        let activeRoute = this.props.routes[this.props.routes.length-1];
+        const activeRoute = this.props.routes[this.props.routes.length - 1];
 
         return (
             <div className="Auth">

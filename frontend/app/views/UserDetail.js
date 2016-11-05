@@ -6,10 +6,6 @@ import LinkList from '../components/LinkList/LinkList';
 
 
 class UserDetail extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         const { dispatch } = this.props;
 
@@ -17,11 +13,11 @@ class UserDetail extends React.Component {
     }
 
     render() {
-        const { currentUser, links } = this.props;
+        const { user, links } = this.props;
 
         return (
             <div>
-                <UserHeader user={currentUser} />
+                <UserHeader user={user} />
                 <LinkList links={links} />
             </div>
 
@@ -29,9 +25,15 @@ class UserDetail extends React.Component {
     }
 }
 
+UserDetail.propTypes = {
+    links: React.PropTypes.array.isRequired,
+    user: React.PropTypes.object.isRequired,
+    dispatch: React.PropTypes.func,
+};
+
 const mapStateToProps = state => {
     return {
-        currentUser: state.session.currentUser,
+        user: state.session.currentUser,
         links: state.link.links,
     };
 };

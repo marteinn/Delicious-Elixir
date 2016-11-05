@@ -11,11 +11,16 @@ class LinkList extends React.Component {
                 {links.map((link, index) => {
                     return (
                         <LinkItem key={index} link={link} />
-                    )
+                    );
                 })}
             </div>
-        )
+        );
     }
 }
+
+
+LinkList.propTypes = {
+    links: React.PropTypes.array.isRequired,
+};
 
 export default LinkList;

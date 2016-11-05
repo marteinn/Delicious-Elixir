@@ -34,5 +34,4 @@ defmodule DeliciousElixir.Router do
     resources "/admin/users", AdminUserController
     get "/*path", PageController, :index
   end
-
-  end
+end

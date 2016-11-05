@@ -89,7 +89,7 @@ SignUp.propTypes = {
 };
 
 SignUp.defaultProps = {
-    errors: []
-}
+    errors: [],
+};
 
 export default connect(mapStateToProps)(SignUp);

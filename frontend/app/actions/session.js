@@ -28,7 +28,7 @@ const signOut = () => {
     return {
         type: CLEAR_SESSION,
     };
-}
+};
 
 const signIn = (sessionData) => {
     return dispatch => {
