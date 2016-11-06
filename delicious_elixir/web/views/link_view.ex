@@ -11,10 +11,16 @@ defmodule DeliciousElixir.LinkView do
 
   def render("link.json", %{link: link}) do
     %{
+      id: link.id,
       title: link.title,
       url: link.url,
       description: link.description,
-      user: link.user.email
+      inserted_at: link.inserted_at,
+      user: %{
+        email: link.user.email,
+        username: link.user.username,
+        id: link.user.id,
+      }
     }
   end
 end

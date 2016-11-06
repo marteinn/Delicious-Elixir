@@ -1,7 +1,7 @@
 import { push } from 'react-router-redux';
 import { httpPost } from '../utils/http';
 
-const REGISTER_USER = 'REGIST_USER';
+const REGISTER_USER = 'REGISTER_USER';
 const REGISTER_ERROR = 'REGISTER_ERROR';
 
 const registerUser = (userData) => {
