@@ -7,6 +7,12 @@
 * Install Node.js dependencies with `npm install`
 * Start Phoenix endpoint with `mix phoenix.server`
 
+## Debugging
+
+- Start server: `iex -S mix phoenix.server`
+- Import: `require IEx`
+- Trigger debugger: `IEx.pry`
+
 
 ## Snippets
 
@@ -42,3 +48,4 @@
 ## References
 
 - https://github.com/bigardone/phoenix-trello/
+- https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11
