@@ -1,2 +1,23 @@
 .LinkItem {
+    border-top: 1px solid #CCC;
+    padding: 20px;
+
+    &__Title {
+        font-size: 2rem;
+    }
+
+    &__DomainTitle {
+    }
+
+    &__Footer {
+        display: flex;
+    }
+
+    &__Column {
+        width: 50%;
+
+        &--Right {
+            text-align: right;
+        }
+    }
 }
