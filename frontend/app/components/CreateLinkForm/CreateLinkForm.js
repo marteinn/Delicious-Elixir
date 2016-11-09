@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLink } from '../../actions/link';
+import { createLink } from '../../actions/links';
 
 
 class CreateLinkForm extends React.Component {

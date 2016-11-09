@@ -3,6 +3,7 @@ import { httpGet, httpPost } from '../utils/http';
 
 const CREATE_LINK_ERROR = 'CREATE_LINK_ERROR';
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
+const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
 
 
 const createLink = (linkData) => {
@@ -21,27 +22,29 @@ const createLink = (linkData) => {
     }
 }
 
-const fetchLinks = () => {
-    return dispatch => {
+const receiveLinks = (category, data) => {
+    return {
+        type: LINKS_RECEIVED,
+        links: data,
+        receivedAt: Date.now(),
+        category
+    }
+}
+
+const fetchLinks = (category) => {
+    return (dispatch, getState) => {
         httpGet('/api/v1/links')
         .then((data) => {
-            dispatch({
-                type: LINKS_RECEIVED,
-                links: data,
-            });
+            dispatch(receiveLinks(category, data));
         }).catch((error) => {
-            /*error.response.json().then((errorJson) => {*/
-                //dispatch({
-                    //type: SESSION_ERROR,
-                    //error: errorJson,
-                //});
-            /*});*/
+            console.log(error);
         });
     };
 };
 
 export {
     LINKS_RECEIVED,
+    LINKS_INVALIDATE,
     fetchLinks,
     createLink,
 };

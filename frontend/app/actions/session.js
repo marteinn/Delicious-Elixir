@@ -1,4 +1,5 @@
 import { push } from 'react-router-redux';
+import { Socket } from 'phoenix';
 import { httpGet, httpPost } from '../utils/http';
 
 const CURRENT_USER = 'CURRENT_USER';
@@ -6,10 +7,29 @@ const SESSION_ERROR = 'SESSION_ERROR';
 const CLEAR_SESSION = 'CLEAR_SESSION';
 
 const setCurrentUser = (dispatch, user) => {
-    dispatch({
-        type: CURRENT_USER,
-        user,
+    let token = localStorage.getItem('token');
+    const socket = new Socket('/socket', {
+        params: {
+            token: token
+        },
+        logger: (kind, msg, data) => {
+            console.log(`${kind}: ${msg}`, data);
+        },
     });
+
+    socket.connect();
+
+    const channel = socket.channel(`users:${user.id}`);
+
+    if (channel.state !== 'joined') {
+        channel.join().receive("ok", resp => {
+            dispatch({
+                type: CURRENT_USER,
+                user,
+                socket,
+            });
+        })
+    }
 };
 
 const currentUser = () => {
