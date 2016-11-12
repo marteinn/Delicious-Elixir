@@ -3,10 +3,8 @@ defmodule DeliciousElixir.AdminLinkController do
 
   alias DeliciousElixir.Link
 
-  #plug :put_view, DeliciousElixir.AdminLinkView
-
   def index(conn, _params) do
-    links = Repo.all(Link)
+    links = Repo.all(Link) |> Repo.preload([:user])
     render(conn, "index.html", links: links)
   end
 

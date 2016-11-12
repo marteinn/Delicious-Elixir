@@ -3,9 +3,11 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Title</th>
       <th>Link</th>
       <th>Description</th>
+      <th>User</th>
       <th>User</th>
 
       <th></th>
@@ -14,10 +16,12 @@
   <tbody>
   <%= for link <- @links do %>
     <tr>
+      <td><%= link.id %></td>
       <td><%= link.title %></td>
       <td><%= link.url %></td>
       <td><%= link.description %></td>
       <td><%= link.user_id %></td>
+      <td><%= link.user.username %></td>
 
       <td class="text-right">
         <%= link "Show", to: admin_link_path(@conn, :show, link), class: "btn btn-default btn-xs" %>

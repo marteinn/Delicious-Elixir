@@ -3,11 +3,24 @@
 <ul>
 
   <li>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </li>
+  <li>
     <strong>Email:</strong>
     <%= @user.email %>
+  </li>
+  <li>
+    <strong>Firstname:</strong>
+    <%= @user.first_name %>
+  </li>
+  <li>
+    <strong>Lastname:</strong>
+    <%= @user.last_name %>
   </li>
 
 </ul>
 
 <%= link "Edit", to: admin_user_path(@conn, :edit, @user) %>
+
 <%= link "Back", to: admin_user_path(@conn, :index) %>
