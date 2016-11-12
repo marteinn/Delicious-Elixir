@@ -31,9 +31,20 @@ const receiveLinks = (category, data) => {
     }
 }
 
-const fetchLinks = (category) => {
+const fetchUserLinks = (user) => {
     return (dispatch, getState) => {
-        httpGet('/api/v1/links')
+        httpGet(`/api/v1/links?user_id=${user.id}`)
+        .then((data) => {
+            dispatch(receiveLinks(`links:${user.id}`, data));
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+}
+
+const fetchLinks = (params = '', category) => {
+    return (dispatch, getState) => {
+        httpGet(`/api/v1/links${params}`)
         .then((data) => {
             dispatch(receiveLinks(category, data));
         }).catch((error) => {
@@ -46,5 +57,6 @@ export {
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
     fetchLinks,
+    fetchUserLinks,
     createLink,
 };

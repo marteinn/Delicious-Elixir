@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchLinks } from '../actions/links';
+import { fetchUserLinks } from '../actions/links';
 import { followList } from '../actions/currentList';
 import UserHeader from '../components/UserHeader/UserHeader';
 import LinkList from '../components/LinkList/LinkList';
@@ -11,7 +11,7 @@ class UserDetail extends React.Component {
         const { dispatch, user, socket } = this.props;
         const category = `links:${user.id}`;
 
-        dispatch(fetchLinks(category));
+        dispatch(fetchUserLinks(user));
         dispatch(followList(socket, category));
     }
 
@@ -23,7 +23,6 @@ class UserDetail extends React.Component {
                 <UserHeader user={user} />
                 <LinkList links={links} />
             </div>
-
         );
     }
 }
