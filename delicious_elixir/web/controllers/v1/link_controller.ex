@@ -4,20 +4,20 @@ defmodule DeliciousElixir.LinkController do
 
   plug Guardian.Plug.EnsureAuthenticated, handler: DeliciousElixir.SessionController
 
-  def index(conn, params) do
-    filters = Ecto.Changeset.cast(
-                                  %Link{},
-                                  params,
-                                  [],
-                                  [:user_id]
-                                )
-                                |> Map.fetch!(:changes)
-                                |> Map.to_list
 
+  def index(conn, params) do
     links = Link
-            |> where(^filters)
-            |> Repo.all()
-            |> Repo.preload(:user)
+
+    links = if Map.has_key?(params, "username") do
+              username = Map.get(params, "username")
+              links |> Link.by_user(username)
+            else
+              links
+            end
+
+    links = links
+            |> Repo.all
+            |> Repo.preload([:user])
 
     render conn, links: links
   end
@@ -32,7 +32,7 @@ defmodule DeliciousElixir.LinkController do
       {:ok, link} ->
         link = Repo.preload(link, [:user])
 
-        channel = "links:" <> Integer.to_string(current_user.id)
+        channel = "links:" <> current_user.username
         Endpoint.broadcast(channel, "list:updated",
                            %{message: "hello from the console"})
 

@@ -22,4 +22,10 @@ defmodule DeliciousElixir.Link do
     struct
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def by_user(query, username) do
+    from l in query,
+      left_join: u in assoc(l, :user),
+      where: u.username == ^username
+  end
 end
