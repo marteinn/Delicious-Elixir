@@ -49,3 +49,5 @@
 
 - https://github.com/bigardone/phoenix-trello/
 - https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11
+- https://blog.drewolson.org/composable-queries-ecto/
+- http://elixir-lang.org/getting-started/case-cond-and-if.html

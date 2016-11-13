@@ -31,11 +31,11 @@ const receiveLinks = (category, data) => {
     }
 }
 
-const fetchUserLinks = (user) => {
+const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
-        httpGet(`/api/v1/links?user_id=${user.id}`)
+        httpGet(`/api/v1/links?username=${username}`)
         .then((data) => {
-            dispatch(receiveLinks(`links:${user.id}`, data));
+            dispatch(receiveLinks(`links:${username}`, data));
         }).catch((error) => {
             console.log(error);
         });

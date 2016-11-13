@@ -19,7 +19,7 @@ const setCurrentUser = (dispatch, user) => {
 
     socket.connect();
 
-    const channel = socket.channel(`users:${user.id}`);
+    const channel = socket.channel(`users:${user.username}`);
 
     if (channel.state !== 'joined') {
         channel.join().receive("ok", resp => {

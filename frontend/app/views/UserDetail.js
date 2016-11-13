@@ -8,10 +8,11 @@ import LinkList from '../components/LinkList/LinkList';
 
 class UserDetail extends React.Component {
     componentDidMount() {
-        const { dispatch, user, socket } = this.props;
-        const category = `links:${user.id}`;
+        const { dispatch, socket } = this.props;
+        const { username  } = this.props.params;
+        const category = `links:${username}`;
 
-        dispatch(fetchUserLinks(user));
+        dispatch(fetchUserLinks(username));
         dispatch(followList(socket, category));
     }
 
