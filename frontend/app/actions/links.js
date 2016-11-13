@@ -25,7 +25,7 @@ const createLink = (linkData) => {
 const receiveLinks = (category, data) => {
     return {
         type: LINKS_RECEIVED,
-        links: data,
+        links: data.body,
         receivedAt: Date.now(),
         category
     }
@@ -56,6 +56,7 @@ const fetchLinks = (params = '', category) => {
 export {
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
+
     fetchLinks,
     fetchUserLinks,
     createLink,

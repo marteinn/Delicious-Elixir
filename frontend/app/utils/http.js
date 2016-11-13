@@ -3,8 +3,34 @@ import { polyfill } from 'es6-promise';
 
 const parseJSON = response => response.json();
 
+const parseResponseHeaders = response => {
+    new Promise((resolve, reject) => {
+        return {
+            next: response.headers.get('next'),
+            prev: response.headers.get('prev'),
+            link: response.headers.get('link')
+        }
+    });
+}
+
+const parseResponse = response => {
+    return new Promise((resolve, reject) => {
+        Promise.all([
+            parseResponseHeaders(response),
+            parseJSON(response),
+        ]).then((data) => {
+            let [ meta, body ] = data;
+
+            resolve(Object.assign(
+                { meta: meta },
+                { body: body },
+            ));
+        });
+    });
+}
+
 const defaultHeaders = {
-    Accept: 'application/json',
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
 };
 
@@ -32,7 +58,7 @@ const httpGet = url => (
         headers: buildHeaders(),
     })
     .then(checkStatus)
-    .then(parseJSON)
+    .then(parseResponse)
 );
 
 const httpPost = (url, data) => (
@@ -42,7 +68,7 @@ const httpPost = (url, data) => (
         body: JSON.stringify(data),
     })
     .then(checkStatus)
-    .then(parseJSON)
+    .then(parseResponse)
 );
 
 export {

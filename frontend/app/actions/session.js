@@ -36,7 +36,7 @@ const currentUser = () => {
     return dispatch => {
         httpGet('/api/v1/current-user')
         .then((data) => {
-            setCurrentUser(dispatch, data);
+            setCurrentUser(dispatch, data.body);
         }).catch((error) => {
             dispatch(push('/sign-in'));
         });
@@ -54,8 +54,8 @@ const signIn = (sessionData) => {
     return dispatch => {
         httpPost('/api/v1/sessions', { session: sessionData })
         .then((data) => {
-            localStorage.setItem('token', data.jwt);
-            setCurrentUser(dispatch, data.user);
+            localStorage.setItem('token', data.body.jwt);
+            setCurrentUser(dispatch, data.body.user);
             dispatch(push('/'));
         }).catch((error) => {
             error.response.json().then((errorJson) => {

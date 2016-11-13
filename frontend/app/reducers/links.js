@@ -6,6 +6,7 @@ const links = (state = initialState, action = { }) => {
     switch (action.type) {
         case LINKS_RECEIVED:
             let formattedLinks = {};
+            console.log(action);
             action.links.map((item) => {
                 formattedLinks[item.id] = item;
             });

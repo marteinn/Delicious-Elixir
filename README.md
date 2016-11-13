@@ -51,3 +51,4 @@
 - https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11
 - https://blog.drewolson.org/composable-queries-ecto/
 - http://elixir-lang.org/getting-started/case-cond-and-if.html
+- https://elixirnation.io/references/ecto-query-examples#limit_offset
