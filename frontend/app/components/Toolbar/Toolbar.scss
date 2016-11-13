@@ -1,7 +1,12 @@
 .Toolbar {
-    background-color: #0B79E5;
-
     &__List {
+        background-color: #0B79E5;
+        height: 100vh;
+
+        &--Fixed {
+            min-width: 240px;
+            position: fixed;
+        }
     }
 
     &__Item {

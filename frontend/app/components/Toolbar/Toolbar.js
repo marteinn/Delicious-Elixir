@@ -10,7 +10,7 @@ class Toolbar extends React.Component {
 
         return (
             <nav className={classNames('Toolbar', modifiers)}>
-                <ul className="Toolbar__List">
+                <ul className="Toolbar__List Toolbar__List--Fixed">
                     <li className="Toolbar__Item">
                         <Link to={'/'} className="Toolbar__Link">Elixir+Delicious</Link>
                     </li>
