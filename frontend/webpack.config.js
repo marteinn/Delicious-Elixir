@@ -1,16 +1,31 @@
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+
+// Output base directory
+const outputPath = path.join(__dirname, '/../delicious_elixir/priv/static')
+
+// static prefix where the static files will be served on the webserver
+// Eg: /static/ will be: http://localhost:7000/static/js/index.js
+const staticPath = '/static/';
+
+// Root app directory, unless you want a headache, don't change
+const context = path.join(__dirname, '/app');
+
 
 module.exports = [{
     name: 'js',
     devtool: 'source-map',
+    context: context,
     entry: {
-        app: ['./app/index.js'],
+        app: ['./index.js'],
     },
     output: {
-        path: path.join(__dirname, '/../delicious_elixir/priv/static/js'),
+        path: outputPath + '/js',
         filename: 'index.js',
+        publicPath: staticPath,
     },
     module: {
         preLoaders: [
@@ -39,17 +54,65 @@ module.exports = [{
         //     }
         // })
     ],
+    externals: {
+        //'react': 'React',
+        //'react-dom': 'ReactDOM',
+    },
+},
+{
+    name: 'vendor',
+    devtool: 'eval',
+    context: context,
+    entry: {
+        vendor: './vendor.js',
+    },
+    output: {
+        path: outputPath + '/js',
+        filename: 'vendor.js',
+    },
+    loaders: [
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+        },
+    ],
+    plugins: [
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //         'NODE_ENV': JSON.stringify('production')
+        //     }
+        // })
+    ],
+},
+{
+    name: 'copy',
+    context: context,
+    output: {
+        path: outputPath,
+        filename: '[name].[ext]'
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: 'img/**',
+                to: outputPath
+            }
+        ]),
+    ],
 },
 {
     name: 'style',
     devtool: 'source-map',
+    context: context,
     entry: {
         styles: [
-            path.join(__dirname, '/app/scss/index.scss'),
+            './scss/index.scss',
+            './components/',
         ],
     },
     output: {
-        path: path.join(__dirname, '/../delicious_elixir/priv/static/css'),
+        path: outputPath + '/css',
         filename: 'index.css',
     },
     module: {
@@ -63,11 +126,13 @@ module.exports = [{
             },
             {
                 test: /\.(svg|png|jpe?g|gif)$/,
-                loader: 'file?name=img/[name].[ext]',
+                exclude: /fonts/,
+                loader: 'file?name=[path][name].[ext]',
             },
             {
-                test: /\.(woff2?|ttf|eot|otf)$/,
-                loader: 'file?name=fonts/[name].[ext]',
+                test: /\.(woff2?|ttf|eot|otf|svg)$/,
+                exclude: /img/,
+                loader: 'file?name=[path][name].[ext]',
             },
         ],
     },
@@ -76,10 +141,5 @@ module.exports = [{
         new ExtractTextPlugin('index.css', {
             allChunks: true,
         }),
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         'NODE_ENV': JSON.stringify('production')
-        //     }
-        // })
     ],
 }];
