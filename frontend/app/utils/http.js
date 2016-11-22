@@ -4,12 +4,19 @@ import { polyfill } from 'es6-promise';
 const parseJSON = response => response.json();
 
 const parseResponseHeaders = response => {
-    new Promise((resolve, reject) => {
-        return {
-            next: response.headers.get('next'),
-            prev: response.headers.get('prev'),
-            link: response.headers.get('link')
-        }
+    return new Promise((resolve, reject) => {
+        let headers = {};
+        let whitelist = ['next', 'prev', 'link'];
+        let entries = Array.from(response.headers.entries());
+
+        entries = entries.filter(([key, value]) =>
+            whitelist.includes(key)
+        );
+        entries.map(([key, value]) => {
+            headers[key] = value;
+        });
+
+        return resolve(headers);
     });
 }
 
@@ -21,7 +28,7 @@ const parseResponse = response => {
         ]).then((data) => {
             let [ meta, body ] = data;
 
-            resolve(Object.assign(
+            return resolve(Object.assign(
                 { meta: meta },
                 { body: body },
             ));

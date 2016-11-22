@@ -13,7 +13,7 @@ const setCurrentUser = (dispatch, user) => {
             token: token
         },
         logger: (kind, msg, data) => {
-            console.log(`${kind}: ${msg}`, data);
+            //console.log(`${kind}: ${msg}`, data);
         },
     });
 
