@@ -26,6 +26,7 @@ const receiveLinks = (category, data) => {
     return {
         type: LINKS_RECEIVED,
         links: data.body,
+        meta: data.meta,
         receivedAt: Date.now(),
         category
     }
