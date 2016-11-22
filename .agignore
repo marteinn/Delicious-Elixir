@@ -1,0 +1,4 @@
+/delicious_elixir/priv/static/*
+/delicious_elixir/deps/*
+/tmp
+yarn.lock
