@@ -30,7 +30,7 @@ function category(state={
             return Object.assign({}, state, {
                 isFetching: false,
                 lastUpdated: action.receivedAt,
-                //next: action.meta.next,
+                next: action.meta.next,
                 ids: state.ids.concat(ids)
             })
 
