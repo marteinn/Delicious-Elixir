@@ -9,7 +9,7 @@ import LinkList from '../components/LinkList/LinkList';
 class UserDetail extends React.Component {
     componentDidMount() {
         const { dispatch, socket } = this.props;
-        const { username  } = this.props.params;
+        const { username } = this.props.params;
         const category = `links:${username}`;
 
         dispatch(fetchUserLinks(username));
@@ -42,21 +42,21 @@ UserDetail.propTypes = {
 /*};*/
 
 const mapStateToProps = state => {
-    let currentList = Object.assign({
+    const currentList = Object.assign({
         category: undefined,
     }, state.currentList);
 
-    let categoryState = Object.assign({
+    const categoryState = Object.assign({
         isFetching: false,
-        ids: []
+        ids: [],
     }, state.linksByCategory[currentList.category]);
 
-    let links = categoryState.ids.map((id) => state.links[id]);
+    const links = categoryState.ids.map((id) => state.links[id]);
 
     return {
         user: state.session.currentUser,
         socket: state.session.socket,
-        links: links,
+        links,
     };
 };
 

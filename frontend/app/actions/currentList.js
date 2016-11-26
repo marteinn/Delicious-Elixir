@@ -16,17 +16,17 @@ const followList = (socket, category) => {
 
         dispatch({
             type: CURRENT_LIST_FOLLOWED_LIST,
-            category: category,
-            channel: channel,
+            category,
+            channel,
         });
-    }
-}
+    };
+};
 
 const unfollowList = () => {
-}
+};
 
 export {
     CURRENT_LIST_FOLLOWED_LIST,
     followList,
     unfollowList,
-}
+};

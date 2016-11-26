@@ -16,6 +16,6 @@ class CreateLink extends React.Component {
 
 const mapStateToProps = (state) => {
     return {};
-}
+};
 
 export default connect(mapStateToProps)(CreateLink);

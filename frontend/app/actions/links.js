@@ -19,8 +19,8 @@ const createLink = (linkData) => {
                 });
             });
         });
-    }
-}
+    };
+};
 
 const receiveLinks = (category, data) => {
     return {
@@ -28,9 +28,9 @@ const receiveLinks = (category, data) => {
         links: data.body,
         meta: data.meta,
         receivedAt: Date.now(),
-        category
-    }
-}
+        category,
+    };
+};
 
 const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
@@ -41,7 +41,7 @@ const fetchUserLinks = (username) => {
             console.log(error);
         });
     };
-}
+};
 
 const fetchLinks = (params = '', category) => {
     return (dispatch, getState) => {

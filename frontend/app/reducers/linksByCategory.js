@@ -5,41 +5,41 @@ import {
 } from '../actions/links';
 
 
-function category(state={
+function category(state = {
     isFetching: false,
     lastUpdated: -1,
     next: null,
-    ids: []
+    ids: [],
 }, action) {
-    switch(action.type) {
+    switch (action.type) {
         case LINKS_INVALIDATE:
             return Object.assign({}, state, {
                 lastUpdated: -1,
                 next: null,
                 ids: [],
-            })
+            });
 
         case LINKS_REQUEST:
             return Object.assign({}, state, {
-                isFetching: true
-            })
+                isFetching: true,
+            });
 
-        case LINKS_RECEIVED:
-            let ids = action.links.map((item) => item.id);
+        case LINKS_RECEIVED: {
+            const ids = action.links.map((item) => item.id);
 
             return Object.assign({}, state, {
                 isFetching: false,
                 lastUpdated: action.receivedAt,
                 next: action.meta.next,
-                ids: state.ids.concat(ids)
-            })
-
+                ids: state.ids.concat(ids),
+            });
+        }
         default:
             return state;
     }
 }
 
-function linksByCategory(state={
+function linksByCategory(state = {
     /*user: {*/
         //isFetching: false,
         //lastUpdated: -1,
@@ -59,12 +59,12 @@ function linksByCategory(state={
         //next: null,
     /*},*/
 }, action) {
-    switch(action.type) {
+    switch (action.type) {
         case LINKS_INVALIDATE:
         case LINKS_REQUEST:
         case LINKS_RECEIVED:
             return Object.assign({}, state, {
-                [action.category]: category(state[action.category], action)
+                [action.category]: category(state[action.category], action),
             });
 
         default:

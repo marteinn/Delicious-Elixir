@@ -7,10 +7,10 @@ const SESSION_ERROR = 'SESSION_ERROR';
 const CLEAR_SESSION = 'CLEAR_SESSION';
 
 const setCurrentUser = (dispatch, user) => {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const socket = new Socket('/socket', {
         params: {
-            token: token
+            token,
         },
         logger: (kind, msg, data) => {
             //console.log(`${kind}: ${msg}`, data);
@@ -22,13 +22,13 @@ const setCurrentUser = (dispatch, user) => {
     const channel = socket.channel(`users:${user.username}`);
 
     if (channel.state !== 'joined') {
-        channel.join().receive("ok", resp => {
+        channel.join().receive('ok', resp => {
             dispatch({
                 type: CURRENT_USER,
                 user,
                 socket,
             });
-        })
+        });
     }
 };
 

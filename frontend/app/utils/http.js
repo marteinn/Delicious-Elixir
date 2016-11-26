@@ -5,20 +5,20 @@ const parseJSON = response => response.json();
 
 const parseResponseHeaders = response => {
     return new Promise((resolve, reject) => {
-        let headers = {};
-        let whitelist = ['next', 'prev', 'link'];
+        const headers = {};
+        const whitelist = ['next', 'prev', 'link'];
         let entries = Array.from(response.headers.entries());
 
         entries = entries.filter(([key, value]) =>
             whitelist.includes(key)
         );
-        entries.map(([key, value]) => {
+        entries.forEach(([key, value]) => {
             headers[key] = value;
         });
 
         return resolve(headers);
     });
-}
+};
 
 const parseResponse = response => {
     return new Promise((resolve, reject) => {
@@ -26,18 +26,18 @@ const parseResponse = response => {
             parseResponseHeaders(response),
             parseJSON(response),
         ]).then((data) => {
-            let [ meta, body ] = data;
+            const [meta, body] = data;
 
             return resolve(Object.assign(
-                { meta: meta },
-                { body: body },
+                { meta },
+                { body },
             ));
         });
     });
-}
+};
 
 const defaultHeaders = {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
 };
 
