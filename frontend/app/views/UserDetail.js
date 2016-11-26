@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserLinks } from '../actions/links';
+import Waypoint from 'react-waypoint';
+import { fetchUserLinks, fetchMoreUserLinks } from '../actions/links';
 import { followList } from '../actions/currentList';
 import UserHeader from '../components/UserHeader/UserHeader';
 import LinkList from '../components/LinkList/LinkList';
 
 
 class UserDetail extends React.Component {
+    state = {
+    };
+
     componentDidMount() {
         const { dispatch, socket } = this.props;
         const { username } = this.props.params;
@@ -16,6 +20,23 @@ class UserDetail extends React.Component {
         dispatch(followList(socket, category));
     }
 
+    handleWaypointEnter = ({ previousPosition, currentPosition, event }) => {
+        console.log(previousPosition +" / "+currentPosition);
+
+        const { isFetching, dispatch } = this.props;
+        const { username } = this.props.params;
+
+        if (isFetching) {
+            return;
+        }
+
+        dispatch(fetchMoreUserLinks(username));
+    }
+
+    handleWaypointLeave = () => {
+        console.log('on leave');
+    }
+
     render() {
         const { user, links } = this.props;
 
@@ -23,6 +44,13 @@ class UserDetail extends React.Component {
             <div>
                 <UserHeader user={user} />
                 <LinkList links={links} />
+                {links.length &&
+                    <Waypoint
+                        onEnter={this.handleWaypointEnter}
+                        onLeave={this.handleWaypointLeave}
+                        onPositionChange={() => console.log('change')}
+                    />
+                }
             </div>
         );
     }
@@ -54,6 +82,7 @@ const mapStateToProps = state => {
     const links = categoryState.ids.map((id) => state.links[id]);
 
     return {
+        isFetching: categoryState.isFetching,
         user: state.session.currentUser,
         socket: state.session.socket,
         links,

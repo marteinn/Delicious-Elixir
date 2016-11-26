@@ -51,6 +51,20 @@ const fetchUserLinks = (username) => {
     };
 };
 
+const fetchMoreUserLinks = (username) => {
+    return (dispatch, getState) => {
+        const categoryState = getState().linksByCategory[`links:${username}`];
+        const url = categoryState.next;
+
+        httpGet(url)
+        .then((data) => {
+            dispatch(receiveLinks(`links:${username}`, data));
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+}
+
 const fetchLinks = (params = '', category) => {
     return (dispatch, getState) => {
         httpGet(`/api/v1/links${params}`)
@@ -68,5 +82,6 @@ export {
 
     fetchLinks,
     fetchUserLinks,
+    fetchMoreUserLinks,
     createLink,
 };
