@@ -32,10 +32,18 @@ const receiveLinks = (category, data) => {
     };
 };
 
+const invalidateLinks = (category) => {
+    return {
+        type: LINKS_INVALIDATE,
+        category,
+    };
+}
+
 const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
         httpGet(`/api/v1/links?username=${username}`)
         .then((data) => {
+            dispatch(invalidateLinks(`links:${username}`));
             dispatch(receiveLinks(`links:${username}`, data));
         }).catch((error) => {
             console.log(error);
