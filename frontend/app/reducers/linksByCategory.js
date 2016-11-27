@@ -7,6 +7,7 @@ import {
 
 function category(state = {
     isFetching: false,
+    isComplete: false,
     lastUpdated: -1,
     next: null,
     ids: [],
@@ -30,6 +31,7 @@ function category(state = {
             return Object.assign({}, state, {
                 isFetching: false,
                 lastUpdated: action.receivedAt,
+                isComplete: !action.meta.next,
                 next: action.meta.next,
                 ids: state.ids.concat(ids),
             });

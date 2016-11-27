@@ -12,4 +12,10 @@ body {
     font-size: 1.6rem;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+
+}
+
+#main_container {
+    max-height: 100vh;
+    overflow-y: scroll;
 }

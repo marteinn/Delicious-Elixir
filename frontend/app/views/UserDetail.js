@@ -21,20 +21,14 @@ class UserDetail extends React.Component {
     }
 
     handleWaypointEnter = ({ previousPosition, currentPosition, event }) => {
-        console.log(previousPosition +" / "+currentPosition);
-
-        const { isFetching, dispatch } = this.props;
+        const { isFetching, dispatch, isComplete } = this.props;
         const { username } = this.props.params;
 
-        if (isFetching) {
+        if (isFetching || isComplete) {
             return;
         }
 
         dispatch(fetchMoreUserLinks(username));
-    }
-
-    handleWaypointLeave = () => {
-        console.log('on leave');
     }
 
     render() {
@@ -47,8 +41,6 @@ class UserDetail extends React.Component {
                 {links.length &&
                     <Waypoint
                         onEnter={this.handleWaypointEnter}
-                        onLeave={this.handleWaypointLeave}
-                        onPositionChange={() => console.log('change')}
                     />
                 }
             </div>
@@ -76,6 +68,7 @@ const mapStateToProps = state => {
 
     const categoryState = Object.assign({
         isFetching: false,
+        isComplete: false,
         ids: [],
     }, state.linksByCategory[currentList.category]);
 
@@ -83,6 +76,7 @@ const mapStateToProps = state => {
 
     return {
         isFetching: categoryState.isFetching,
+        isComplete: categoryState.isComplete,
         user: state.session.currentUser,
         socket: state.session.socket,
         links,

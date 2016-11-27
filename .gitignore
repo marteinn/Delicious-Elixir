@@ -10,7 +10,7 @@ node_modules
 /tmp
 
 # Ignore dist folder
-/delicious_elixir/priv/static/js/index*
+/delicious_elixir/priv/static/js/*
 /delicious_elixir/priv/static/css/index*
 
 # Ignore build errors and node_modules
