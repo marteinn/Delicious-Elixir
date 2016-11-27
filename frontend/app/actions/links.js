@@ -37,11 +37,11 @@ const invalidateLinks = (category) => {
         type: LINKS_INVALIDATE,
         category,
     };
-}
+};
 
 const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
-        httpGet(`/api/v1/links?username=${username}`)
+        httpGet(`/api/v1/links?username=${username}&limit=20`)
         .then((data) => {
             dispatch(invalidateLinks(`links:${username}`));
             dispatch(receiveLinks(`links:${username}`, data));
@@ -63,7 +63,7 @@ const fetchMoreUserLinks = (username) => {
             console.log(error);
         });
     };
-}
+};
 
 const fetchLinks = (params = '', category) => {
     return (dispatch, getState) => {

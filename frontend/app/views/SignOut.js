@@ -4,6 +4,10 @@ import { signOut } from '../actions/session';
 
 
 class SignOut extends React.Component {
+    static propTypes = {
+        dispatch: React.PropTypes.func,
+    }
+
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(signOut());

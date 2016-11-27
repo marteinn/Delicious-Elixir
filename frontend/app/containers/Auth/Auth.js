@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import Toolbar from '../../components/Toolbar/Toolbar';
 
 class Auth extends React.Component {
+    static propTypes = {
+        currentUser: React.PropTypes.object.isRequired,
+        routes: React.PropTypes.array,
+        children: React.PropTypes.array,
+    }
+
     render() {
         const { currentUser } = this.props;
 
@@ -26,10 +32,5 @@ class Auth extends React.Component {
 const mapStateToProps = state => ({
     currentUser: state.session.currentUser,
 });
-
-//Auth.propTypes = {
-    //currentUser: React.PropTypes.object,
-    //children: React.PropTypes.array,
-//};
 
 export default connect(mapStateToProps)(Auth);

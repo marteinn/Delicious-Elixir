@@ -8,7 +8,13 @@ import LinkList from '../components/LinkList/LinkList';
 
 
 class UserDetail extends React.Component {
-    state = {
+    static propTypes = {
+        links: React.PropTypes.array.isRequired,
+        user: React.PropTypes.object.isRequired,
+        isFetching: React.PropTypes.bool,
+        isComplete: React.PropTypes.bool,
+        socket: React.PropTypes.object,
+        dispatch: React.PropTypes.func,
     };
 
     componentDidMount() {
@@ -39,20 +45,12 @@ class UserDetail extends React.Component {
                 <UserHeader user={user} />
                 <LinkList links={links} />
                 {links.length &&
-                    <Waypoint
-                        onEnter={this.handleWaypointEnter}
-                    />
+                    <Waypoint onEnter={this.handleWaypointEnter} />
                 }
             </div>
         );
     }
 }
-
-UserDetail.propTypes = {
-    links: React.PropTypes.array.isRequired,
-    user: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func,
-};
 
 /*UserDetail.defaultProps = {*/
     //isFetching: false,

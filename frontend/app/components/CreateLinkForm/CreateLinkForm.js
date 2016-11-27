@@ -4,13 +4,11 @@ import { createLink } from '../../actions/links';
 
 
 class CreateLinkForm extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this._handleSubmit = this._handleSubmit.bind(this);
+    static propTypes = {
+        dispatch: React.PropTypes.func,
     }
 
-    _handleSubmit(e) {
+    _handleSubmit = (e) => {
         e.preventDefault();
 
         const { dispatch } = this.props;

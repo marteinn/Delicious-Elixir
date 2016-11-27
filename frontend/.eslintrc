@@ -23,8 +23,9 @@
     "react/forbid-prop-types": 0,
     "react/prefer-stateless-function": 0,
     "import/no-extraneous-dependencies": 0,
-    "no-class-assign": 0,
     "spaced-comment": 0,
-    "no-underscore-dangle": 0
+    "no-class-assign": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-vars": 0
   }
 }
