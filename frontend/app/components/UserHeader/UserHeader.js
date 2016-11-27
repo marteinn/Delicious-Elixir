@@ -18,10 +18,13 @@ class UserHeader extends React.Component {
                         </div>
                         <div className="UserHeader__DescriptionBottom">
                             <ul className="UserHeader__Stats">
-                                <li><strong>4332</strong> Links</li>
+                                <li className="UserHeader__StatItem"><strong>20</strong> Links</li>
+                                <li className="UserHeader__StatItem"><strong>15</strong> Following</li>
+                                <li className="UserHeader__StatItem"><strong>5</strong> Followers</li>
+                                <li className="UserHeader__StatItem"><strong>2</strong> Subscriptions</li>
                             </ul>
-                            <div className="UserHeader__Dates">
-                                Joined on...
+                            <div className="UserHeader__Joined">
+                                Joined on {user.inserted_at.substr(0, 10)}
                             </div>
                         </div>
                     </div>
