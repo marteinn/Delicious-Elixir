@@ -4,9 +4,9 @@ import Toolbar from '../../components/Toolbar/Toolbar';
 
 class Auth extends React.Component {
     static propTypes = {
-        currentUser: React.PropTypes.object.isRequired,
+        currentUser: React.PropTypes.object,
         routes: React.PropTypes.array,
-        children: React.PropTypes.array,
+        children: React.PropTypes.object,
     }
 
     render() {

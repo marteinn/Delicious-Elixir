@@ -1,0 +1,29 @@
+.UserHeader {
+    &__Content {
+        padding: 20px;
+        display: flex;
+    }
+
+    &__Avatar {
+    }
+
+    &__AvatarImage {
+        width: 66px;
+        height: 66px;
+    }
+
+    &__Description {
+        margin-left: 20px;
+    }
+
+    &__DescriptionUsername {
+    }
+
+    &__DescriptionTop {
+        min-height: 66px;
+    }
+
+    &__DescriptionBottom {
+        display: flex;
+    }
+}

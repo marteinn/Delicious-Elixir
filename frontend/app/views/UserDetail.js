@@ -52,13 +52,6 @@ class UserDetail extends React.Component {
     }
 }
 
-/*UserDetail.defaultProps = {*/
-    //isFetching: false,
-    //items: {},
-    //visited: [],
-    //lastUpdated: -1,
-/*};*/
-
 const mapStateToProps = state => {
     const currentList = Object.assign({
         category: undefined,
