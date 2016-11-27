@@ -2,12 +2,45 @@
 
 ## Getting started
 
-* Install dependencies with `mix deps.get`
-* Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-* Install Node.js dependencies with `npm install`
-* Start Phoenix endpoint with `mix phoenix.server`
+### Phoenix
 
-## Debugging
+1. `cd delicious_elixir`
+2. Install dependencies with `mix deps.get`
+3. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+4. Install Node.js dependencies with `npm install`
+5. Start Phoenix endpoint with `mix phoenix.server`
+
+### Frontend
+
+1. `cd frontend`
+2. `yarn`
+3. Done!
+
+## Frontend cli
+
+The cli will scaffold a new component with scss, js, test and automatically add it to index.js and index.scss.
+
+Create a component will both scss and classbase
+
+    npm run new ComponentName
+
+Create a component without scss file
+
+    npm run new ComponentName no-scss
+
+Create a component without classbase (it will be a functional component), and no scss
+
+    npm run new ComponentName no-scss no-class
+
+no-scss and no-class is both optional.
+
+index.scss and index.js will be automatically updated when adding a component through the cli.
+
+You can also override the html if you want/need to for your component by adding a html file in the components folder, or have it created by adding this to the cli:
+
+    npm run new ComponentName add-html
+
+## Debugging phoenix
 
 - Start server: `iex -S mix phoenix.server`
 - Import: `require IEx`
