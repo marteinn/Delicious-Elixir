@@ -5,17 +5,18 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
 import Root from './containers/Root';
 
-/*eslint-disable*/
-require('expose?Components!./components');
-/*eslint-enable*/
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
+window.store = store;
 
 if (document.getElementById('main_container')) {
-    const store = configureStore();
-    const history = syncHistoryWithStore(browserHistory, store);
-
     const target = document.getElementById('main_container');
     const node = <Root routerHistory={history} store={store} />;
 
     ReactDOM.render(node, target);
 }
+
+/*eslint-disable*/
+require('expose?Components!./components');
+/*eslint-enable*/
