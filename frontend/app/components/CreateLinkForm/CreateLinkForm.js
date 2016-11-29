@@ -6,11 +6,22 @@ import { createLink } from '../../actions/links';
 class CreateLinkForm extends React.Component {
     static propTypes = {
         dispatch: React.PropTypes.func,
+        onRequestClose: React.PropTypes.func,
     }
 
     _handleSubmit = (e) => {
         e.preventDefault();
 
+        this._submitForm();
+    }
+
+    _handleCancelClick = () => {
+        const { onRequestClose } = this.props;
+
+        onRequestClose();
+    }
+
+    _submitForm = () => {
         const { dispatch } = this.props;
 
         const data = {
@@ -42,7 +53,8 @@ class CreateLinkForm extends React.Component {
                         <input ref={(c) => { this.description = c; }} name="description" />
                     </fieldset>
 
-                    <button>Add link</button>
+                    <a href="#" onClick={this._handleCancelClick}>Cancel</a>
+                    <button onClick={this._handleSaveLink}>Save link</button>
                 </form>
             </div>
         );

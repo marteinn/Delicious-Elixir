@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Modal from 'react-modal';
 import Toolbar from '../../components/Toolbar/Toolbar';
+import CreateLinkForm from '../../components/CreateLinkForm';
+import { showModal, hideModal, modalNames } from '../../actions/modals';
 
 class Auth extends React.Component {
     static propTypes = {
@@ -9,8 +12,13 @@ class Auth extends React.Component {
         children: React.PropTypes.object,
     }
 
+    handleModalRequestClose = () => {
+        const { dispatch } = this.props;
+        dispatch(hideModal(modalNames.CREATE_LINK));
+    }
+
     render() {
-        const { currentUser } = this.props;
+        const { currentUser, showCreateLinkModal } = this.props;
 
         if (!currentUser) {
             return null;
@@ -20,6 +28,10 @@ class Auth extends React.Component {
 
         return (
             <div className="Auth">
+                <Modal isOpen={showCreateLinkModal} onRequestClose={this.handleModalRequestClose}>
+                    <CreateLinkForm onRequestClose={this.handleModalRequestClose} />
+                </Modal>
+
                 <Toolbar modifiers="Auth__Toolbar" activeRoute={activeRoute} />
                 <div className="Auth__Content">
                     {this.props.children}
@@ -29,8 +41,11 @@ class Auth extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.session.currentUser,
-});
+const mapStateToProps = state => {
+    return {
+        showCreateLinkModal: state.modals.createLink.isOpen,
+        currentUser: state.session.currentUser,
+    }
+};
 
 export default connect(mapStateToProps)(Auth);

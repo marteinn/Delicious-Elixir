@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Waypoint from 'react-waypoint';
 import { fetchUserLinks, fetchMoreUserLinks } from '../actions/links';
 import { followList } from '../actions/currentList';
-import UserHeader from '../components/UserHeader/UserHeader';
-import LinkList from '../components/LinkList/LinkList';
+import UserHeader from '../components/UserHeader';
+import LinkList from '../components/LinkList';
 
 
 class UserDetail extends React.Component {

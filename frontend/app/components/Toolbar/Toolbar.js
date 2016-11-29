@@ -2,14 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import classNames from 'classnames';
+import { showModal, hideModal, modalNames } from '../../actions/modals';
 
 
 class Toolbar extends React.Component {
+    static propTypes = {
+        currentUser: React.PropTypes.object,
+        modifiers: React.PropTypes.string,
+    };
+
+    handleCreateLinkClick = () => {
+        const { dispatch } = this.props;
+        dispatch(showModal(modalNames.CREATE_LINK));
+    }
+
     render() {
         const { currentUser, modifiers } = this.props;
 
         return (
             <nav className={classNames('Toolbar', modifiers)}>
+
                 <ul className="Toolbar__List Toolbar__List--Fixed">
                     <li className="Toolbar__Item">
                         <Link to={'/'} className="Toolbar__Link">Elixir+Delicious</Link>
@@ -36,23 +48,19 @@ class Toolbar extends React.Component {
                         <a href="#" className="Toolbar__Link">Discover</a>
                     </li>
                     <li className="Toolbar__Item">
-                        <Link to={'/create-link'} activeClassName="Toolbar__Link--Active" className="Toolbar__Link">Add link</Link>
+                        <a href="#" onClick={this.handleCreateLinkClick} className="Toolbar__Link">Add link</a>
                     </li>
 
-                    {currentUser ?
+                    {currentUser &&
                         <li className="Toolbar__Item">
                             <a href="#" className="Toolbar__Link">Settings</a>
                         </li>
-                        :
-                        null
                     }
 
-                    {currentUser ?
+                    {currentUser &&
                         <li className="Toolbar__Item">
                             <Link to={'/sign-out'} className="Toolbar__Link">Sign Out</Link>
                         </li>
-                        :
-                        null
                     }
                 </ul>
             </nav>
@@ -60,10 +68,6 @@ class Toolbar extends React.Component {
     }
 }
 
-Toolbar.propTypes = {
-    currentUser: React.PropTypes.object,
-    modifiers: React.PropTypes.string,
-};
 
 const mapStateToProps = state => ({
     currentUser: state.session.currentUser,

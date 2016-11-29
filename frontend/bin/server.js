@@ -75,6 +75,7 @@ function allPaths(app) {
         let snippet;
         try {
             let component = req.path.replace(compPath + '/', '');
+            console.log(component);
             template = getTemplate(component, getData(component));
             snippet = getSnippet(component);
         } catch(e) {
@@ -166,7 +167,13 @@ function getTemplate(component, data = '{}', snippet = '') {
     let template = `
     ${snippet}
     <script>
-        ReactDOM.render(React.createElement(${component}, ${data}), document.getElementById("${container}"));
+        var data = ${data};
+
+        if (window.store) {
+            data.store = window.store;
+        }
+
+        ReactDOM.render(React.createElement(${component}, data), document.getElementById("${container}"));
     </script>
     `;
     return template;

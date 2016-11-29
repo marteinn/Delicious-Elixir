@@ -5,6 +5,7 @@ import session from './session';
 import links from './links';
 import linksByCategory from './linksByCategory';
 import currentList from './currentList';
+import modals from './modals';
 
 const rootReducer = combineReducers({
     routing: routerReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     links,
     linksByCategory,
     currentList,
+    modals,
 });
 
 export default rootReducer;
