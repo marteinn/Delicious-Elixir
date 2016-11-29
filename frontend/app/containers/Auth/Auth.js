@@ -28,7 +28,12 @@ class Auth extends React.Component {
 
         return (
             <div className="Auth">
-                <Modal isOpen={showCreateLinkModal} onRequestClose={this.handleModalRequestClose}>
+                <Modal
+                    className="Modal"
+                    overlayClassName="OverlayModal"
+                    isOpen={showCreateLinkModal}
+                    onRequestClose={this.handleModalRequestClose}
+                >
                     <CreateLinkForm onRequestClose={this.handleModalRequestClose} />
                 </Modal>
 

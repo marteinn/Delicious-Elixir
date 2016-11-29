@@ -1,0 +1,24 @@
+.Modal {
+    max-width: 600px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFF;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+
+    &__Actions {
+        height: 50px;
+        background-color: #F6F6F6;
+    }
+
+    &__ActionNegative {
+    }
+
+    &__ActionNeutral {
+        color: #959595;
+    }
+
+    &__ActionPositive {
+        color: #007DE6;
+    }
+}

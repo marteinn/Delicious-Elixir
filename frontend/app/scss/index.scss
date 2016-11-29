@@ -2,6 +2,10 @@
 @import 'global/reset';
 @import 'global/globals';
 
+// General blocks
+@import 'blocks/OverlayModal.scss';
+@import 'blocks/Modal.scss';
+
 // Containers
 @import '../containers/Auth/Auth.scss';
 

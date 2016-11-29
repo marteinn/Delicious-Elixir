@@ -53,8 +53,10 @@ class CreateLinkForm extends React.Component {
                         <input ref={(c) => { this.description = c; }} name="description" />
                     </fieldset>
 
-                    <a href="#" onClick={this._handleCancelClick}>Cancel</a>
-                    <button onClick={this._handleSaveLink}>Save link</button>
+                    <nav className="Modal__Actions">
+                        <a className="Modal__ActionNeutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
+                        <button className="Modal__ActionPositive" onClick={this._handleSaveLink}>Save link</button>
+                    </nav>
                 </form>
             </div>
         );
