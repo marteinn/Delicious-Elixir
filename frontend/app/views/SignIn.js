@@ -38,7 +38,7 @@ class SignIn extends React.Component {
                     </fieldset>
                     <fieldset>
                         <label htmlFor="password">Password</label>
-                        <input ref={(c) => { this.password = c; }} id="password" name="password" />
+                        <input ref={(c) => { this.password = c; }} id="password" name="password" type="password" />
                     </fieldset>
                     <button>Sign in</button>
                 </form>

@@ -57,7 +57,7 @@ class SignUp extends React.Component {
 
                     <fieldset>
                         <label htmlFor="password">Password</label>
-                        <input ref={(c) => { this.password = c; }} id="password"name="password" />
+                        <input ref={(c) => { this.password = c; }} id="password" name="password" type="password" />
                     </fieldset>
 
                     <button>Register</button>
