@@ -76,6 +76,13 @@ You can also override the html if you want/need to for your component by adding 
 - Generate model
     `mix phoenix.gen.html Example examples field_name:field_type`
 
+## Roadmap
+
+- [ ] Create link modal
+- [ ] Edit link modal
+- [ ] Tag support
+- [ ] Sign up styling
+- [ ] Register styling
 
 
 ## References
