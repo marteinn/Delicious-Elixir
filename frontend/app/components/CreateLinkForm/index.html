@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React testing ground</title>
+    <script src="${publicPath}js/vendor.js"></script>
+<link rel="stylesheet" href="${publicPath}css/index.css">
+</head>
+<body>
+    <div id="${container}"></div>
+    <script src="${publicPath}js/index.js"></script>
+
+    <script>
+    var data = ${JSON.stringify(data)};
+
+    if (window.store) {
+        data.store = window.store;
+    }
+    </script>
+
+    <script>
+        ReactDOM.render(React.createElement(Components.${component}, data), document.getElementById("${container}"));
+    </script>
+</body>
+</html>
