@@ -5,6 +5,7 @@
 
 *.sql
 
+# Node
 node_modules
 
 /tmp
