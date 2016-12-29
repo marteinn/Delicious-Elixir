@@ -102,3 +102,4 @@ You can also override the html if you want/need to for your component by adding 
 - https://blog.drewolson.org/composable-queries-ecto/
 - http://elixir-lang.org/getting-started/case-cond-and-if.html
 - https://elixirnation.io/references/ecto-query-examples#limit_offset
+- [Nested Associations & Changeset Errors in Ecto](https://medium.com/@cjbell_/nested-associations-changeset-errors-in-ecto-f0ce6a4fec70#.f6eiiep25)
