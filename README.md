@@ -1,20 +1,24 @@
 # Delicious - Elxir
 
+## Requirements
+
+- Docker
+- Node + NPM
+- Elixir
+    - [OSX](http://elixir-lang.org/install.html#mac-os-x)
+
 ## Getting started
 
-### Phoenix
-
 1. `cd delicious_elixir`
-2. Install dependencies with `mix deps.get`
-3. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-4. Install Node.js dependencies with `npm install`
-5. Start Phoenix endpoint with `mix phoenix.server`
+1. Install dependencies: `mix deps.get`
+1. Start postgres: `docker-compose up -d`
+1. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+1. `cd ../frontend`
+1. `yarn`
+1. `npm run build`
+1. Start Phoenix endpoint with `mix phoenix.server`
+1. Done!
 
-### Frontend
-
-1. `cd frontend`
-2. `yarn`
-3. Done!
 
 ## Frontend cli
 
