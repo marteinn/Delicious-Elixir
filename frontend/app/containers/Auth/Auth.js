@@ -29,6 +29,7 @@ class Auth extends React.Component {
             currentUser,
             showCreateLinkModal,
             showEditLinkModal,
+            editLinkData,
         } = this.props;
 
         if (!currentUser) {
@@ -56,7 +57,7 @@ class Auth extends React.Component {
                     contentLabel="Edit Link"
                     onRequestClose={this.handleCreateLinkModalClose}
                 >
-                    <EditLinkForm onRequestClose={this.handleEditLinkModalClose} />
+                    <EditLinkForm link={editLinkData} onRequestClose={this.handleEditLinkModalClose} />
                 </Modal>
 
                 <Toolbar modifiers="Auth__Toolbar" activeRoute={activeRoute} />
@@ -72,6 +73,7 @@ const mapStateToProps = state => {
     return {
         showCreateLinkModal: state.modals.createLink.isOpen,
         showEditLinkModal: state.modals.editLink.isOpen,
+        editLinkData: state.modals.editLink.data,
         currentUser: state.session.currentUser,
     };
 };

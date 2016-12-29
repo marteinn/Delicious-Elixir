@@ -5,12 +5,14 @@ import { createLink } from '../../actions/links';
 
 class EditLinkForm extends React.Component {
     static propTypes = {
+        link: React.PropTypes.object,
         errors: React.PropTypes.object,
         dispatch: React.PropTypes.func,
         onRequestClose: React.PropTypes.func,
     }
 
     static defaultProps = {
+        link: null,
         success: false,
         errors: {},
     };
@@ -46,7 +48,7 @@ class EditLinkForm extends React.Component {
     }
 
     render() {
-        const { errors } = this.props;
+        const { link, errors } = this.props;
         const hasErrors = Object.keys(errors).length > 0;
 
         return (
@@ -61,7 +63,7 @@ class EditLinkForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="title">Title</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.title = c; }} name="title" />
+                            <input className="Form__FieldInput" ref={(c) => { this.title = c; }} defaultValue={link.title} name="title" />
                         </div>
                     </div>
 
@@ -70,7 +72,7 @@ class EditLinkForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="url">Url</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} name="url" />
+                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} defaultValue={link.url} name="url" />
                         </div>
                     </div>
 
@@ -79,7 +81,7 @@ class EditLinkForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="description">Comment</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} name="description" />
+                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} defaultValue={link.description} name="description" />
                         </div>
                     </div>
 

@@ -30,7 +30,7 @@ class UserDetail extends React.Component {
     handleRequestEdit = link => {
         const { dispatch } = this.props;
 
-        dispatch(showModal(modalNames.EDIT_LINK));
+        dispatch(showModal(modalNames.EDIT_LINK, link));
     }
 
     handleWaypointEnter = ({ previousPosition, currentPosition, event }) => {
