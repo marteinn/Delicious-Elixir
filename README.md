@@ -11,7 +11,8 @@
 
 1. Start with opening the phoenix src: `cd delicious_elixir`
 1. Install dependencies: `mix deps.get`
-1. Start postgres: `docker-compose up -d`
+1. Create db config: `cp docker/config/db.example.env docker/config/db.env`
+1. Start db: `docker-compose up -d`
 1. Create and migrate your database: `mix ecto.create && mix ecto.migrate`
 1. Switch to frontend dir: `cd ../frontend`
 1. Install node packages: `yarn`
