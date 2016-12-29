@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { createLink } from '../../actions/links';
 
 
 class CreateLinkForm extends React.Component {
     static propTypes = {
+        errors: React.PropTypes.object,
         dispatch: React.PropTypes.func,
         onRequestClose: React.PropTypes.func,
     }
@@ -34,9 +36,16 @@ class CreateLinkForm extends React.Component {
     }
 
     render() {
+        const { errors } = this.props;
+        const hasErrors = Object.keys(errors).length > 0
+
         return (
             <div>
                 <form className="CreateLinkForm Form" onSubmit={this._handleSubmit}>
+                    {hasErrors &&
+                        <div>{_.map(errors, (error, key) => <div key={key} className="Form__Alert">Error: {key} {error[0]}</div>)}</div>
+                    }
+
                     <h2 className="Form__Title">Add link</h2>
 
                     <div className="Form__Field">
@@ -80,8 +89,7 @@ class CreateLinkForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        errors: state.session.errors,
-        currentUser: state.session.currentUser,
+        errors: state.linkStatus.errors,
     };
 };
 

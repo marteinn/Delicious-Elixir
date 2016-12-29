@@ -4,6 +4,7 @@ import register from './register';
 import session from './session';
 import links from './links';
 import linksByCategory from './linksByCategory';
+import linkStatus from './linkStatus';
 import currentList from './currentList';
 import modals from './modals';
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     session,
     links,
     linksByCategory,
+    linkStatus,
     currentList,
     modals,
 });

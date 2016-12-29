@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 import { httpGet, httpPost } from '../utils/http';
 
 const CREATE_LINK_ERROR = 'CREATE_LINK_ERROR';
+const CREATE_LINK_SUCCESS = 'CREATE_LINK_SUCCESS';
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
 const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
 
@@ -15,7 +16,7 @@ const createLink = (linkData) => {
             error.response.json().then((errorJson) => {
                 dispatch({
                     type: CREATE_LINK_ERROR,
-                    error: errorJson,
+                    errors: errorJson.errors,
                 });
             });
         });
@@ -77,6 +78,8 @@ const fetchLinks = (params = '', category) => {
 };
 
 export {
+    CREATE_LINK_ERROR,
+    CREATE_LINK_SUCCESS,
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
 
