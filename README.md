@@ -9,18 +9,20 @@
 
 ## Getting started
 
-1. `cd delicious_elixir`
+1. Start with opening the phoenix src: `cd delicious_elixir`
 1. Install dependencies: `mix deps.get`
 1. Start postgres: `docker-compose up -d`
-1. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-1. `cd ../frontend`
-1. `yarn`
-1. `npm run build`
-1. Start Phoenix endpoint with `mix phoenix.server`
+1. Create and migrate your database: `mix ecto.create && mix ecto.migrate`
+1. Switch to frontend dir: `cd ../frontend`
+1. Install node packages: `yarn`
+1. Run webpack: `npm run build`
+1. Start Phoenix endpoint: `mix phoenix.server`
 1. Done!
 
 
-## Frontend cli
+## Frontend
+
+### CLI
 
 The cli will scaffold a new component with scss, js, test and automatically add it to index.js and index.scss.
 
@@ -44,7 +46,10 @@ You can also override the html if you want/need to for your component by adding 
 
     npm run new ComponentName add-html
 
-## Debugging phoenix
+
+## Phoenix
+
+## Debugging
 
 - Start server: `iex -S mix phoenix.server`
 - Import: `require IEx`
