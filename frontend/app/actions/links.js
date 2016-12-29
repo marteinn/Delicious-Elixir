@@ -3,15 +3,22 @@ import { httpGet, httpPost } from '../utils/http';
 
 const CREATE_LINK_ERROR = 'CREATE_LINK_ERROR';
 const CREATE_LINK_SUCCESS = 'CREATE_LINK_SUCCESS';
+const CREATE_LINK_RESET = 'CREATE_LINK_RESET';
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
 const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
 
 
 const createLink = (linkData) => {
     return dispatch => {
+        dispatch({
+            type: CREATE_LINK_RESET,
+        });
+
         httpPost('/api/v1/links', { link: linkData })
         .then((data) => {
-            dispatch(push(`/users/${data.user.username}`));
+            dispatch({
+                type: CREATE_LINK_SUCCESS,
+            });
         }).catch((error) => {
             error.response.json().then((errorJson) => {
                 dispatch({
@@ -80,6 +87,7 @@ const fetchLinks = (params = '', category) => {
 export {
     CREATE_LINK_ERROR,
     CREATE_LINK_SUCCESS,
+    CREATE_LINK_RESET,
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
 

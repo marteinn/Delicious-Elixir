@@ -2,3 +2,4 @@
 /delicious_elixir/deps/*
 /tmp
 yarn.lock
+/frontend/bin/*

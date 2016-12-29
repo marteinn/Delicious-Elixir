@@ -35,6 +35,12 @@ class CreateLinkForm extends React.Component {
         dispatch(createLink(data));
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.success) {
+            nextProps.onRequestClose();
+        }
+    }
+
     render() {
         const { errors } = this.props;
         const hasErrors = Object.keys(errors).length > 0
@@ -89,6 +95,7 @@ class CreateLinkForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        success: state.linkStatus.success,
         errors: state.linkStatus.errors,
     };
 };

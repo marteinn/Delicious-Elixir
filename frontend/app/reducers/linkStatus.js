@@ -1,4 +1,8 @@
-import { CREATE_LINK_ERROR } from '../actions/links';
+import {
+    CREATE_LINK_SUCCESS,
+    CREATE_LINK_ERROR,
+    CREATE_LINK_RESET
+} from '../actions/links';
 
 const initialState = {
     errors: {},
@@ -8,6 +12,17 @@ const initialState = {
 
 const linkStatus = (state = initialState, action = { }) => {
     switch (action.type) {
+        case CREATE_LINK_RESET: {
+            return initialState;
+        }
+
+        case CREATE_LINK_SUCCESS: {
+            return Object.assign({}, state, {
+                errors: {},
+                success: true,
+                isFetching: false,
+            });
+        }
         case CREATE_LINK_ERROR: {
             return Object.assign({}, state, {
                 errors: action.errors,
