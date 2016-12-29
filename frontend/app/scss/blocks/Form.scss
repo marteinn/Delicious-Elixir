@@ -1,0 +1,52 @@
+.Form {
+    &__Alert {
+        background-color: #F9F9F9;
+    }
+
+    &__Title {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 40px;
+        color: #0B79E5;
+    }
+
+    &__Field {
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        padding: 0 20px 0 20px;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+
+    &__LabelWrap {
+        order: 2;
+    }
+
+    &__InputWrap {
+        order: 1;
+    }
+
+    &__FieldLabel {
+        display: inline-block;
+        font-size: 1.1rem;
+        color: #A5A5A5;
+    }
+
+    &__FieldInput {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid #EEEEEE;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        color: #555;
+
+        &:active,
+        &:focus {
+            border-bottom: 1px solid #999;
+        }
+    }
+}

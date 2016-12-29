@@ -36,33 +36,50 @@ class CreateLinkForm extends React.Component {
     render() {
         return (
             <div>
-                <h2>Add link</h2>
-                <form className="CreateLinkForm" onSubmit={this._handleSubmit}>
-                    <fieldset>
-                        <label htmlFor="title">Title</label>
-                        <input ref={(c) => { this.title = c; }} name="title" />
-                    </fieldset>
+                <form className="CreateLinkForm Form" onSubmit={this._handleSubmit}>
+                    <h2 className="Form__Title">Add link</h2>
 
-                    <fieldset>
-                        <label htmlFor="url">Url</label>
-                        <input ref={(c) => { this.url = c; }} name="url" />
-                    </fieldset>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="title">Title</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.title = c; }} name="title" />
+                        </div>
+                    </div>
 
-                    <fieldset>
-                        <label htmlFor="description">Comment</label>
-                        <input ref={(c) => { this.description = c; }} name="description" />
-                    </fieldset>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="url">Url</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} name="url" />
+                        </div>
+                    </div>
+
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="description">Comment</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} name="description" />
+                        </div>
+                    </div>
 
                     <nav className="Modal__Actions">
-                        <a className="Modal__ActionNeutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
-                        <button className="Modal__ActionPositive" onClick={this._handleSaveLink}>Save link</button>
-                    </nav>
+                        <div className="Modal__ActionsSecondary">
+                            <a className="Modal__Action Modal__Action--Negative" href="#" onClick={this._handleCancelClick}>Cancel</a>
+                        </div>
+                        <div className="Modal__ActionsPrimary">
+                            <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
+                            <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Create link</button>
+                            </div>
+                        </nav>
                 </form>
             </div>
         );
     }
 }
-
 
 const mapStateToProps = state => {
     return {

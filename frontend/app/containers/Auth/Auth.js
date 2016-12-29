@@ -8,6 +8,7 @@ import { showModal, hideModal, modalNames } from '../../actions/modals';
 class Auth extends React.Component {
     static propTypes = {
         currentUser: React.PropTypes.object,
+        dispatch: React.PropTypes.func,
         routes: React.PropTypes.array,
         children: React.PropTypes.object,
     }
@@ -50,7 +51,7 @@ const mapStateToProps = state => {
     return {
         showCreateLinkModal: state.modals.createLink.isOpen,
         currentUser: state.session.currentUser,
-    }
+    };
 };
 
 export default connect(mapStateToProps)(Auth);

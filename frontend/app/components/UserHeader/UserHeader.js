@@ -9,7 +9,7 @@ class UserHeader extends React.Component {
             <div className="UserHeader">
                 <div className="UserHeader__Content">
                     <div className="UserHeader__Avatar">
-                        <img className="UserHeader__AvatarImage" />
+                        <img className="UserHeader__AvatarImage" alt={`${user.username} avatar`} />
                     </div>
                     <div className="UserHeader__Description">
                         <div className="UserHeader__DescriptionTop">
