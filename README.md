@@ -9,14 +9,14 @@
 
 ## Getting started
 
-1. Start with opening the phoenix src: `cd delicious_elixir`
-1. Install dependencies: `mix deps.get`
+1. Make sure docker are running: (`docker-machine start` and `eval "$(docker-machine env default)"`
 1. Create db config: `cp docker/config/db.example.env docker/config/db.env`
 1. Start db: `docker-compose up -d`
+1. Open pheonix app: `cd delicious_elixir`
+1. Install dependencies: `mix deps.get`
 1. Create and migrate your database: `mix ecto.create && mix ecto.migrate`
 1. Switch to frontend dir: `cd ../frontend`
 1. Install node packages: `yarn`
-1. Run webpack: `npm run build`
 1. Start Phoenix endpoint: `mix phoenix.server`
 1. Done!
 
@@ -74,25 +74,23 @@ You can also override the html if you want/need to for your component by adding 
     mix ecto.migrate
     ```
 
-- Create table
-    `mix ecto.create`
-
-- Create migration
-    `mix ecto.gen.migration <description>`
-
-- Run migration
-    `mix ecto.migrate`
-
-- Generate model
-    `mix phoenix.gen.html Example examples field_name:field_type`
+- Create table: `mix ecto.create`
+- Create migration: `mix ecto.gen.migration <description>`
+- Run migration: `mix ecto.migrate`
+- Generate model: `mix phoenix.gen.html Example examples field_name:field_type`
 
 ## Roadmap
 
-- [ ] Create link modal
+- [x] Create link modal
 - [ ] Edit link modal
-- [ ] Tag support
+- [ ] Delete link from list
 - [ ] Sign up styling
+- [ ] Auto reload list if new links arrive (through socket)
 - [ ] Register styling
+- [ ] Url validation when saving link
+- [ ] Bulk editing
+- [ ] Settings (Change password / email)
+- [ ] Tag support
 
 
 ## References
