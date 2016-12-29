@@ -2,6 +2,7 @@ import { MODAL_SHOW, MODAL_HIDE } from '../actions/modals';
 
 const initialState = {
     createLink: { isOpen: false, data: null },
+    editLink: { isOpen: false, data: null },
 };
 
 const modals = (state = initialState, action = { }) => {

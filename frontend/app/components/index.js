@@ -1,3 +1,4 @@
+import EditLinkForm from './EditLinkForm';
 import CreateLinkForm from './CreateLinkForm';
 import ErrorList from './ErrorList';
 import LinkItem from './LinkItem';
@@ -6,6 +7,7 @@ import Toolbar from './Toolbar';
 import UserHeader from './UserHeader';
 
 export {
+    EditLinkForm,
     CreateLinkForm,
     ErrorList,
     LinkItem,

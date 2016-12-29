@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import CreateLinkForm from '../../components/CreateLinkForm';
+import EditLinkForm from '../../components/EditLinkForm';
 import { showModal, hideModal, modalNames } from '../../actions/modals';
 
 class Auth extends React.Component {
@@ -13,13 +14,22 @@ class Auth extends React.Component {
         children: React.PropTypes.object,
     }
 
-    handleModalRequestClose = () => {
+    handleCreateLinkModalClose = () => {
         const { dispatch } = this.props;
         dispatch(hideModal(modalNames.CREATE_LINK));
     }
 
+    handleEditLinkModalClose = () => {
+        const { dispatch } = this.props;
+        dispatch(hideModal(modalNames.EDIT_LINK));
+    }
+
     render() {
-        const { currentUser, showCreateLinkModal } = this.props;
+        const {
+            currentUser,
+            showCreateLinkModal,
+            showEditLinkModal,
+        } = this.props;
 
         if (!currentUser) {
             return null;
@@ -33,9 +43,20 @@ class Auth extends React.Component {
                     className="Modal"
                     overlayClassName="OverlayModal"
                     isOpen={showCreateLinkModal}
-                    onRequestClose={this.handleModalRequestClose}
+                    contentLabel="Create Link"
+                    onRequestClose={this.handleCreateLinkModalClose}
                 >
-                    <CreateLinkForm onRequestClose={this.handleModalRequestClose} />
+                    <CreateLinkForm onRequestClose={this.handleCreateLinkModalClose} />
+                </Modal>
+
+                <Modal
+                    className="Modal"
+                    overlayClassName="OverlayModal"
+                    isOpen={showEditLinkModal}
+                    contentLabel="Edit Link"
+                    onRequestClose={this.handleCreateLinkModalClose}
+                >
+                    <EditLinkForm onRequestClose={this.handleEditLinkModalClose} />
                 </Modal>
 
                 <Toolbar modifiers="Auth__Toolbar" activeRoute={activeRoute} />
@@ -50,6 +71,7 @@ class Auth extends React.Component {
 const mapStateToProps = state => {
     return {
         showCreateLinkModal: state.modals.createLink.isOpen,
+        showEditLinkModal: state.modals.editLink.isOpen,
         currentUser: state.session.currentUser,
     };
 };

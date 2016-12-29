@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { createLink } from '../../actions/links';
 
-
-class CreateLinkForm extends React.Component {
+class EditLinkForm extends React.Component {
     static propTypes = {
         errors: React.PropTypes.object,
         dispatch: React.PropTypes.func,
@@ -52,14 +51,12 @@ class CreateLinkForm extends React.Component {
 
         return (
             <div>
-                <form className="CreateLinkForm Form" onSubmit={this._handleSubmit}>
+                <form className="EditLinkForm Form" onSubmit={this._handleSubmit}>
                     {hasErrors &&
                         <div>{_.map(errors, (error, key) => <div key={key} className="Form__Alert">Error: {key} {error[0]}</div>)}</div>
                     }
 
-                    <h2 className="Form__Title">Add link</h2>
-
-                    <div className="Form__Field">
+                    <div className="Form__Field Form__Field--First">
                         <div className="Form__LabelWrap">
                             <label className="Form__FieldLabel" htmlFor="title">Title</label>
                         </div>
@@ -89,7 +86,7 @@ class CreateLinkForm extends React.Component {
                     <nav className="Modal__Actions">
                         <div className="Modal__ActionsPrimary">
                             <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
-                            <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Create link</button>
+                            <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Save link</button>
                             </div>
                         </nav>
                 </form>
@@ -105,4 +102,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(CreateLinkForm);
+export default connect(mapStateToProps)(EditLinkForm);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Waypoint from 'react-waypoint';
 import { fetchUserLinks, fetchMoreUserLinks } from '../actions/links';
 import { followList } from '../actions/currentList';
+import { showModal, hideModal, modalNames } from '../actions/modals';
 import UserHeader from '../components/UserHeader';
 import LinkList from '../components/LinkList';
 
@@ -26,6 +27,12 @@ class UserDetail extends React.Component {
         dispatch(followList(socket, category));
     }
 
+    handleRequestEdit = link => {
+        const { dispatch } = this.props;
+
+        dispatch(showModal(modalNames.EDIT_LINK));
+    }
+
     handleWaypointEnter = ({ previousPosition, currentPosition, event }) => {
         const { isFetching, dispatch, isComplete } = this.props;
         const { username } = this.props.params;
@@ -43,7 +50,7 @@ class UserDetail extends React.Component {
         return (
             <div>
                 <UserHeader user={user} />
-                <LinkList links={links} />
+                <LinkList links={links} onRequestEdit={this.handleRequestEdit} />
                 {links.length &&
                     <Waypoint onEnter={this.handleWaypointEnter} />
                 }
