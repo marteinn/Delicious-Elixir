@@ -9,7 +9,7 @@
 
 ## Getting started
 
-1. Make sure docker are running: (`docker-machine start` and `eval "$(docker-machine env default)"`
+1. Make sure docker are running: `docker-machine start && eval "$(docker-machine env default)"`
 1. Create db config: `cp docker/config/db.example.env docker/config/db.env`
 1. Start db: `docker-compose up -d`
 1. Open pheonix app: `cd delicious_elixir`
@@ -18,6 +18,7 @@
 1. Switch to frontend dir: `cd ../frontend`
 1. Install node packages: `yarn`
 1. Start Phoenix endpoint: `mix phoenix.server`
+1. Open the application: [http://localhost:4000](http://localhost:4000)
 1. Done!
 
 
@@ -65,7 +66,6 @@ You can also override the html if you want/need to for your component by adding 
     mix phoenix.gen.html Example examples field_name:field_type
     mix ecto.migrate
     ```
-
 - Create migration
 
     ```elixir
@@ -73,7 +73,6 @@ You can also override the html if you want/need to for your component by adding 
     resources "/<model_name>", <Model>Controller
     mix ecto.migrate
     ```
-
 - Create table: `mix ecto.create`
 - Create migration: `mix ecto.gen.migration <description>`
 - Run migration: `mix ecto.migrate`
