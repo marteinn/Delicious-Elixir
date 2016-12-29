@@ -67,9 +67,6 @@ class CreateLinkForm extends React.Component {
                     </div>
 
                     <nav className="Modal__Actions">
-                        <div className="Modal__ActionsSecondary">
-                            <a className="Modal__Action Modal__Action--Negative" href="#" onClick={this._handleCancelClick}>Cancel</a>
-                        </div>
                         <div className="Modal__ActionsPrimary">
                             <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
                             <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Create link</button>
