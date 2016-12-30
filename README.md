@@ -81,7 +81,7 @@ You can also override the html if you want/need to for your component by adding 
 ## Roadmap
 
 - [x] Create link modal
-- [ ] Add put support to link api controller
+- [x] Add put support to link api controller
 - [ ] Edit link modal
 - [ ] Delete link from list
 - [ ] Sign up styling
@@ -91,6 +91,7 @@ You can also override the html if you want/need to for your component by adding 
 - [ ] Bulk editing
 - [ ] Settings (Change password / email)
 - [ ] Tag support
+- [ ] Convert app to docker container
 
 
 ## References
