@@ -83,6 +83,7 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Create link modal
 - [x] Add put support to link api controller
 - [ ] Edit link modal
+- [ ] Update link list with changes happen
 - [ ] Delete link from list
 - [ ] Sign up styling
 - [ ] Auto reload list if new links arrive (through socket)
