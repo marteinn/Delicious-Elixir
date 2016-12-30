@@ -78,8 +78,18 @@ const httpPost = (url, data) => (
     .then(parseResponse)
 );
 
+const httpPut = (url, data) => (
+    fetch(url, {
+        method: 'put',
+        headers: buildHeaders(),
+        body: JSON.stringify(data),
+    })
+    .then(checkStatus)
+    .then(parseResponse)
+);
+
 export {
     httpGet,
     httpPost,
+    httpPut,
 };
-

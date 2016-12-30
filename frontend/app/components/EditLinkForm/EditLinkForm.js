@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { createLink } from '../../actions/links';
+import { editLink } from '../../actions/links';
 
 class EditLinkForm extends React.Component {
     static propTypes = {
@@ -36,15 +36,16 @@ class EditLinkForm extends React.Component {
     }
 
     _submitForm = () => {
-        const { dispatch } = this.props;
+        const { link, dispatch } = this.props;
 
         const data = {
+            id: link.id,
             title: this.title.value,
             url: this.url.value,
             description: this.description.value,
         };
 
-        dispatch(createLink(data));
+        dispatch(editLink(data));
     }
 
     render() {
