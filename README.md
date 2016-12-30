@@ -81,6 +81,7 @@ You can also override the html if you want/need to for your component by adding 
 ## Roadmap
 
 - [x] Create link modal
+- [ ] Add put support to link api controller
 - [ ] Edit link modal
 - [ ] Delete link from list
 - [ ] Sign up styling
