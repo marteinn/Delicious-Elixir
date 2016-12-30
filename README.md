@@ -82,13 +82,13 @@ You can also override the html if you want/need to for your component by adding 
 
 - [x] Create link modal
 - [x] Add put support to link api controller
-- [ ] Edit link modal
-- [ ] Update link list with changes happen
+- [x] Edit link modal
+- [ ] Url validation when saving link
+- [x] Update link list with changes happen
 - [ ] Delete link from list
 - [ ] Sign up styling
 - [ ] Auto reload list if new links arrive (through socket)
 - [ ] Register styling
-- [ ] Url validation when saving link
 - [ ] Bulk editing
 - [ ] Settings (Change password / email)
 - [ ] Tag support

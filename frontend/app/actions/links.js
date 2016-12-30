@@ -9,6 +9,7 @@ const EDIT_LINK_RESET = 'EDIT_LINK_RESET';
 const EDIT_LINK_ERROR = 'EDIT_LINK_ERROR';
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
 const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
+const UPDATE_LINK_DATA = 'UPDATE_LINK_DATA';
 
 
 const createLink = (linkData) => {
@@ -32,6 +33,13 @@ const createLink = (linkData) => {
         });
     };
 };
+
+const updateLinkData = (linkData) => {
+    return {
+        type: UPDATE_LINK_DATA,
+        link: linkData,
+    }
+}
 
 const editLink = (linkData) => {
     return dispatch => {
@@ -118,10 +126,12 @@ export {
     EDIT_LINK_ERROR,
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
+    UPDATE_LINK_DATA,
 
     fetchLinks,
     fetchUserLinks,
     fetchMoreUserLinks,
     createLink,
     editLink,
+    updateLinkData,
 };

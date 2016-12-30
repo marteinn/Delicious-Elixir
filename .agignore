@@ -1,5 +1,6 @@
 /delicious_elixir/priv/static/*
 /delicious_elixir/deps/*
+/delicious_elixir/_build/*
 /tmp
 yarn.lock
 /frontend/bin/*

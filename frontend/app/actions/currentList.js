@@ -1,5 +1,7 @@
 const CURRENT_LIST_FOLLOWED_LIST = 'CURRENT_LIST_FOLLOWED_LIST';
 
+import { updateLinkData } from './links';
+
 
 const followList = (socket, category) => {
     return dispatch => {
@@ -10,8 +12,7 @@ const followList = (socket, category) => {
         });
 
         channel.on('list:updated', (msg) => {
-            alert('update list!');
-            console.log('list updated!');
+            dispatch(updateLinkData(msg.data));
         });
 
         dispatch({
