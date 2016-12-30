@@ -5,6 +5,7 @@ defmodule DeliciousElixir.LinkController do
 
   alias DeliciousElixir.{Repo, Link, Endpoint}
   alias DeliciousElixir.{Pagination}
+  alias DeliciousElixir.{LinkView}
 
   plug Guardian.Plug.EnsureAuthenticated, handler: DeliciousElixir.SessionController
 
@@ -43,6 +44,14 @@ defmodule DeliciousElixir.LinkController do
     case Repo.update(changeset) do
       {:ok, link} ->
         link = Repo.preload(link, [:user])
+
+        channel = "links:" <> current_user.username
+        broadcast_data = Dict.merge(LinkView.render("show.json", link: link),
+                                    %{
+                                      message: "Hello friend!",
+                                    }
+        )
+        Endpoint.broadcast(channel, "list:updated", broadcast_data)
 
         conn
         |> put_status(:ok)
