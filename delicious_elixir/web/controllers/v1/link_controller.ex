@@ -33,6 +33,31 @@ defmodule DeliciousElixir.LinkController do
     |> render(links: links)
   end
 
+  def update(conn, %{"id" => id, "link" => link_params}) do
+    {id, _} = Integer.parse(id)
+    current_user = Guardian.Plug.current_resource(conn)
+
+    link = Repo.get!(Link, id)
+    changeset = Link.changeset(link, link_params)
+
+    case Repo.update(changeset) do
+      {:ok, link} ->
+        link = Repo.preload(link, [:user])
+
+        conn
+        |> put_status(:ok)
+        |> render("show.json", link: link)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("error.json", changeset: changeset)
+    end
+
+    conn
+    |> put_status(:unprocessable_entity)
+    |> render("update.json", user: current_user)
+  end
+
   def create(conn, %{"link" => link_params}) do
     current_user = Guardian.Plug.current_resource(conn)
     link_params = Map.put(link_params, "user_id", current_user.id)

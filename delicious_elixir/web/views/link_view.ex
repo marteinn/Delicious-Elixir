@@ -33,4 +33,8 @@ defmodule DeliciousElixir.LinkView do
 
     %{errors: errors}
   end
+
+  def render("update.json", %{user: user}) do
+    %{data: "cake"}
+  end
 end
