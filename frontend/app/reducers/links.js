@@ -5,7 +5,7 @@ const initialState = {};
 const links = (state = initialState, action = { }) => {
     switch (action.type) {
         case UPDATE_LINK_DATA: {
-            return Object.assign(state, {
+            return Object.assign([], state, {
                 [action.link.id]: action.link,
             });
         }
