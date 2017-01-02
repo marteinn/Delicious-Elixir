@@ -83,7 +83,7 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Create link modal
 - [x] Add put support to link api controller
 - [x] Edit link modal
-- [ ] Url validation when saving link
+- [x] Url validation when saving link
 - [x] Update link list with changes happen
 - [ ] Delete link from list
 - [ ] Sign up styling
@@ -104,3 +104,4 @@ You can also override the html if you want/need to for your component by adding 
 - https://elixirnation.io/references/ecto-query-examples#limit_offset
 - [Nested Associations & Changeset Errors in Ecto](https://medium.com/@cjbell_/nested-associations-changeset-errors-in-ecto-f0ce6a4fec70#.f6eiiep25)
 - [Adding Edit and Update Functionality](http://phoenix.thefirehoseproject.com/7.html)
+- [Useful Ecto Validators](http://blog.danielberkompas.com/elixir/2015/05/20/useful-ecto-validators.html)
