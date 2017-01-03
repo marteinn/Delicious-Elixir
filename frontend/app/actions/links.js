@@ -14,7 +14,6 @@ const DELETE_LINK_RESET = 'DELETE_LINK_RESET';
 const DELETE_LINK_ERROR = 'DELETE_LINK_ERROR';
 
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
-const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
 const CREATE_LINK_DATA = 'CREATE_LINK_DATA';
 const UPDATE_LINK_DATA = 'UPDATE_LINK_DATA';
 const DELETE_LINK_DATA = 'DELETE_LINK_DATA';
@@ -110,20 +109,14 @@ const editLink = (linkData) => {
     };
 }
 
-const receiveLinks = (category, data) => {
+const receiveLinks = (category, data, options = { invalidate: false }) => {
     return {
         type: LINKS_RECEIVED,
         links: data.body,
         meta: data.meta,
         receivedAt: Date.now(),
         category,
-    };
-};
-
-const invalidateLinks = (category) => {
-    return {
-        type: LINKS_INVALIDATE,
-        category,
+        invalidate: options.invalidate,
     };
 };
 
@@ -131,8 +124,7 @@ const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
         httpGet(`/api/v1/links?username=${username}&limit=20`)
         .then((data) => {
-            dispatch(invalidateLinks(`links:${username}`));
-            dispatch(receiveLinks(`links:${username}`, data));
+            dispatch(receiveLinks(`links:${username}`, data, { invalidate: true }));
         }).catch((error) => {
             console.log(error);
         });
@@ -175,7 +167,6 @@ export {
     DELETE_LINK_RESET,
     DELETE_LINK_ERROR,
     LINKS_RECEIVED,
-    LINKS_INVALIDATE,
     UPDATE_LINK_DATA,
     DELETE_LINK_DATA,
     CREATE_LINK_DATA,

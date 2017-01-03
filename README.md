@@ -87,11 +87,13 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Update link list with changes happen
 - [x] Delete link from list
 - [x] Auto update list if new links arrive (through socket)
-- [ ] Update link list styling
+- [x] Update link list styling
+- [x] Fix bug that happen when toggling home/my links
 - [ ] Support for public/private links
 - [ ] Sign up styling
-- [ ] Delete button on edit link modular
 - [ ] Register styling
+- [ ] Delete button on edit link modular
+- [ ] Styling UserProfile header
 - [ ] Settings (Change password / email)
 - [ ] Tag support
 - [ ] Bulk editing
