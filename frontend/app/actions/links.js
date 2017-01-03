@@ -10,6 +10,7 @@ const EDIT_LINK_ERROR = 'EDIT_LINK_ERROR';
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
 const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
 const UPDATE_LINK_DATA = 'UPDATE_LINK_DATA';
+const DELETE_LINK_DATA = 'DELETE_LINK_DATA';
 
 
 const createLink = (linkData) => {
@@ -37,6 +38,13 @@ const createLink = (linkData) => {
 const updateLinkData = (linkData) => {
     return {
         type: UPDATE_LINK_DATA,
+        link: linkData,
+    }
+}
+
+const deleteLinkData = (linkData) => {
+    return {
+        type: DELETE_LINK_DATA,
         link: linkData,
     }
 }
@@ -127,6 +135,7 @@ export {
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
     UPDATE_LINK_DATA,
+    DELETE_LINK_DATA,
 
     fetchLinks,
     fetchUserLinks,
@@ -134,4 +143,5 @@ export {
     createLink,
     editLink,
     updateLinkData,
+    deleteLinkData,
 };

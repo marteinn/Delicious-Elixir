@@ -1,4 +1,8 @@
-import { LINKS_RECEIVED, UPDATE_LINK_DATA } from '../actions/links';
+import {
+    LINKS_RECEIVED,
+    UPDATE_LINK_DATA,
+    DELETE_LINK_DATA,
+} from '../actions/links';
 
 const initialState = {};
 
@@ -8,6 +12,11 @@ const links = (state = initialState, action = { }) => {
             return Object.assign([], state, {
                 [action.link.id]: action.link,
             });
+        }
+        case DELETE_LINK_DATA: {
+            let newState = Object.assign({}, state);
+            delete newState[action.link.id];
+            return newState;
         }
         case LINKS_RECEIVED: {
             const formattedLinks = {};

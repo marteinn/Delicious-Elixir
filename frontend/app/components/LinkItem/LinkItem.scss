@@ -1,6 +1,24 @@
+@keyframes ListItem--LeaveContentAnimation {
+    100% {
+        opacity: 0;
+        margin-top: -30px;
+        display: none;
+    }
+}
+
+@keyframes ListItem--LeaveAnimation {
+    100% {
+        border: 0;
+        height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
 .LinkItem {
     border-top: 1px solid #CCC;
     padding: 20px;
+    overflow: hidden;
 
     &__Title {
         font-size: 2rem;
@@ -18,6 +36,30 @@
 
         &--Right {
             text-align: right;
+        }
+    }
+
+    &__Action {
+        outline: 0;
+    }
+
+    &--Leave {
+        background-color: #FF0000;
+        color: #FFF;
+
+        animation: ListItem--LeaveAnimation 0.6s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+
+        a {
+            color: #FFF;
+        }
+
+        & .LinkItem__Title,
+        & .LinkItem__Footer {
+            animation: ListItem--LeaveContentAnimation 0.3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
     }
 }

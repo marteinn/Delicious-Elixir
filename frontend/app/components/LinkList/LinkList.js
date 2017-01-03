@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import LinkItem from '../LinkItem/LinkItem';
 
 
@@ -8,15 +9,25 @@ class LinkList extends React.Component {
     }
 
     render() {
-        const { links, onRequestEdit } = this.props;
+        const { links, onRequestEdit, onRequestDelete } = this.props;
+        const items = links.map((link, index) => (
+            <LinkItem key={link.id} link={link} onRequestEdit={onRequestEdit} onRequestDelete={onRequestDelete} />
+        ));
 
         return (
             <div className="LinkList">
-                {links.map((link, index) => {
-                    return (
-                        <LinkItem key={index} link={link} onRequestEdit={onRequestEdit} />
-                    );
-                })}
+            <ReactCSSTransitionGroup
+                transitionAppear={false}
+                transitionEnter={false}
+                transitionLeave={true}
+                transitionLeaveTimeout={600}
+                transitionName={ {
+                    leave: 'LinkItem--Leave',
+                    leaveActive: 'LinkItem--LeaveActive',
+                }}
+            >
+                {items}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }
@@ -26,6 +37,7 @@ class LinkList extends React.Component {
 LinkList.propTypes = {
     links: React.PropTypes.array.isRequired,
     onRequestEdit: React.PropTypes.func.isRequired,
+    onRequestDelete: React.PropTypes.func.isRequired,
 };
 
 export default LinkList;
