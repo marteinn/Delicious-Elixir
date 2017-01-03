@@ -22,6 +22,8 @@ class LinkItem extends React.Component {
     render() {
         const { link } = this.props;
         const domain = URI(link.url).domain();
+        const insertedAt = link.inserted_at;
+        const formattedInsertDate = new Date(insertedAt).toLocaleDateString();
 
         return (
             <div className="LinkItem">
@@ -30,13 +32,16 @@ class LinkItem extends React.Component {
                 <div className="LinkItem__Footer">
                     <div className="LinkItem__Column">
                         <span className="LinkItem__Saved">0</span>
-                        <p className="LinkItem__Tags">Tag</p>
+                        <p className="LinkItem__Tags">
+                            <a className="LinkItem__Tag" href="#">Tag</a>
+                            <a className="LinkItem__Tag" href="#">Tag 2</a>
+                        </p>
                     </div>
                     <div className="LinkItem__Column LinkItem__Column--Right">
                         <span className="LinkItem__Action">Share</span>
                         <a className="LinkItem__Action" href="#" onClick={this.handleShareClick}>Edit</a>
                         <a className="LinkItem__Action" href="#" onClick={this.handleDeleteClick}>Delete</a>
-                        <span className="LinkItem__Date">Date</span>
+                        <span className="LinkItem__Date">{formattedInsertDate}</span>
                     </div>
                 </div>
             </div>

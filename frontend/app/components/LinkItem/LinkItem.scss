@@ -25,6 +25,7 @@
     }
 
     &__TitleLink {
+        color: #0B79E4;
         text-decoration: none;
     }
 
@@ -35,6 +36,8 @@
 
     &__Footer {
         display: flex;
+        margin-top: 10px;
+        font-size: 1.3rem;
     }
 
     &__Column {
@@ -45,8 +48,38 @@
         }
     }
 
+    &__Saved {
+        background-color: #BEBEBE;
+        color: #FFF;
+        line-height: 2rem;
+        padding: 0 10px 0 10px;
+        display: inline-block;
+    }
+
+    &__Tags {
+        margin-left: 15px;
+        display: inline-block;
+    }
+
+    &__Tag {
+        color: #999999;
+        text-decoration: none;
+        margin-left: 15px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
     &__Action {
+        color: #999999;
         outline: 0;
+        margin-right: 15px;
+        text-decoration: none;
+    }
+
+    &__Date {
+        color: #999999;
     }
 
     &--Leave {

@@ -23,6 +23,7 @@ defmodule DeliciousElixir.LinkController do
                   |> Map.put("total_count", total_count)
 
     links = links
+            |> Ecto.Query.order_by(desc: :inserted_at)
             |> Pagination.paginate(page_params)
             |> Repo.all
             |> Repo.preload([:user])
