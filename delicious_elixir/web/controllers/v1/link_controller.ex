@@ -43,8 +43,10 @@ defmodule DeliciousElixir.LinkController do
         link = Repo.preload(link, [:user])
 
         channel = "links:" <> current_user.username
-        Endpoint.broadcast(channel, "list:updated",
-                           %{message: "hello from the console"})
+
+        broadcast_data = LinkView.render("show.json", link: link)
+
+        Endpoint.broadcast(channel, "item:created", broadcast_data)
 
         conn
         |> put_status(:created)
@@ -70,11 +72,9 @@ defmodule DeliciousElixir.LinkController do
 
         channel = "links:" <> current_user.username
         broadcast_data = Dict.merge(LinkView.render("show.json", link: link),
-                                    %{
-                                      message: "Hello friend!",
-                                    }
+                                    %{}
         )
-        Endpoint.broadcast(channel, "list:updated", broadcast_data)
+        Endpoint.broadcast(channel, "item:updated", broadcast_data)
 
         conn
         |> put_status(:ok)
@@ -95,8 +95,14 @@ defmodule DeliciousElixir.LinkController do
     {id, _} = Integer.parse(id)
     current_user = Guardian.Plug.current_resource(conn)
 
-    link = Repo.get!(Link, id)
+    link = Repo.get!(Link, id) |> Repo.preload([:user])
+    broadcast_data = Dict.merge(LinkView.render("show.json", link: link),
+                                %{}
+                              )
     Repo.delete!(link)
+
+    channel = "links:" <> current_user.username
+    Endpoint.broadcast(channel, "item:deleted", broadcast_data)
 
     conn
     |> send_resp(204, "")

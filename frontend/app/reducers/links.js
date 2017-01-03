@@ -1,5 +1,6 @@
 import {
     LINKS_RECEIVED,
+    CREATE_LINK_DATA,
     UPDATE_LINK_DATA,
     DELETE_LINK_DATA,
 } from '../actions/links';
@@ -8,6 +9,11 @@ const initialState = {};
 
 const links = (state = initialState, action = { }) => {
     switch (action.type) {
+        case CREATE_LINK_DATA: {
+            return Object.assign([], state, {
+                [action.link.id]: action.link,
+            });
+        }
         case UPDATE_LINK_DATA: {
             return Object.assign([], state, {
                 [action.link.id]: action.link,

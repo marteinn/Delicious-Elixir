@@ -1,6 +1,6 @@
 const CURRENT_LIST_FOLLOWED_LIST = 'CURRENT_LIST_FOLLOWED_LIST';
 
-import { updateLinkData } from './links';
+import { updateLinkData, deleteLinkData, createLinkData } from './links';
 
 
 const followList = (socket, category) => {
@@ -11,8 +11,16 @@ const followList = (socket, category) => {
             console.log('joined!');
         });
 
-        channel.on('list:updated', (msg) => {
-            dispatch(updateLinkData(msg.data));
+        channel.on('item:created', (msg) => {
+            dispatch(createLinkData(msg.data, category));
+        });
+
+        channel.on('item:updated', (msg) => {
+            dispatch(updateLinkData(msg.data, category));
+        });
+
+        channel.on('item:deleted', (msg) => {
+            dispatch(deleteLinkData(msg.data, category));
         });
 
         dispatch({

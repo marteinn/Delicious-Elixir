@@ -85,9 +85,9 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Edit link modal
 - [x] Url validation when saving link
 - [x] Update link list with changes happen
-- [ ] Delete link from list
+- [x] Delete link from list
+- [x] Auto update list if new links arrive (through socket)
 - [ ] Sign up styling
-- [ ] Auto reload list if new links arrive (through socket)
 - [ ] Register styling
 - [ ] Bulk editing
 - [ ] Settings (Change password / email)

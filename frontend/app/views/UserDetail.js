@@ -42,7 +42,9 @@ class UserDetail extends React.Component {
         const { dispatch } = this.props;
 
         dispatch(deleteLink(link));
-        dispatch(deleteLinkData(link));
+
+        // Run optimistic update
+        //dispatch(deleteLinkData(link));
     }
 
     handleWaypointEnter = ({ previousPosition, currentPosition, event }) => {

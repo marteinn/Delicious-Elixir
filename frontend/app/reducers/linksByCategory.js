@@ -2,6 +2,8 @@ import {
     LINKS_REQUEST,
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
+    CREATE_LINK_DATA,
+    DELETE_LINK_DATA,
 } from '../actions/links';
 
 
@@ -13,17 +15,33 @@ function category(state = {
     ids: [],
 }, action) {
     switch (action.type) {
-        case LINKS_INVALIDATE:
+        case CREATE_LINK_DATA: {
+            let ids = [action.link.id, ...state.ids];
+            return Object.assign({}, state, {
+                ids: ids,
+            });
+        }
+
+        case DELETE_LINK_DATA: {
+            let ids = state.ids.filter(id => id !== action.link.id);
+            return Object.assign({}, state, {
+                ids: ids,
+            });
+        }
+
+        case LINKS_INVALIDATE: {
             return Object.assign({}, state, {
                 lastUpdated: -1,
                 next: null,
                 ids: [],
             });
+        }
 
-        case LINKS_REQUEST:
+        case LINKS_REQUEST: {
             return Object.assign({}, state, {
                 isFetching: true,
             });
+        }
 
         case LINKS_RECEIVED: {
             const ids = action.links.map((item) => item.id);
@@ -36,8 +54,9 @@ function category(state = {
                 ids: state.ids.concat(ids),
             });
         }
-        default:
+        default: {
             return state;
+        }
     }
 }
 
@@ -62,9 +81,12 @@ function linksByCategory(state = {
     /*},*/
 }, action) {
     switch (action.type) {
+        case CREATE_LINK_DATA:
+        case DELETE_LINK_DATA:
         case LINKS_INVALIDATE:
         case LINKS_REQUEST:
         case LINKS_RECEIVED:
+            console.log(action.category);
             return Object.assign({}, state, {
                 [action.category]: category(state[action.category], action),
             });

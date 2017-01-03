@@ -15,6 +15,7 @@ const DELETE_LINK_ERROR = 'DELETE_LINK_ERROR';
 
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
 const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
+const CREATE_LINK_DATA = 'CREATE_LINK_DATA';
 const UPDATE_LINK_DATA = 'UPDATE_LINK_DATA';
 const DELETE_LINK_DATA = 'DELETE_LINK_DATA';
 
@@ -41,17 +42,27 @@ const createLink = (linkData) => {
     };
 };
 
-const updateLinkData = (linkData) => {
+const createLinkData = (link, category) => {
     return {
-        type: UPDATE_LINK_DATA,
-        link: linkData,
+        type: CREATE_LINK_DATA,
+        link,
+        category,
     }
 }
 
-const deleteLinkData = (linkData) => {
+const updateLinkData = (link, category) => {
+    return {
+        type: UPDATE_LINK_DATA,
+        link,
+        category,
+    }
+}
+
+const deleteLinkData = (link, category) => {
     return {
         type: DELETE_LINK_DATA,
-        link: linkData,
+        link,
+        category,
     }
 }
 
@@ -167,6 +178,7 @@ export {
     LINKS_INVALIDATE,
     UPDATE_LINK_DATA,
     DELETE_LINK_DATA,
+    CREATE_LINK_DATA,
 
     fetchLinks,
     fetchUserLinks,
@@ -176,4 +188,5 @@ export {
     deleteLink,
     updateLinkData,
     deleteLinkData,
+    createLinkData,
 };
