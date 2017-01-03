@@ -1,12 +1,18 @@
 import { push } from 'react-router-redux';
-import { httpGet, httpPost, httpPut } from '../utils/http';
+import { httpGet, httpPost, httpPut, httpDelete } from '../utils/http';
 
 const CREATE_LINK_SUCCESS = 'CREATE_LINK_SUCCESS';
 const CREATE_LINK_RESET = 'CREATE_LINK_RESET';
 const CREATE_LINK_ERROR = 'CREATE_LINK_ERROR';
+
 const EDIT_LINK_SUCCESS = 'EDIT_LINK_SUCCESS';
 const EDIT_LINK_RESET = 'EDIT_LINK_RESET';
 const EDIT_LINK_ERROR = 'EDIT_LINK_ERROR';
+
+const DELETE_LINK_SUCCESS = 'DELETE_LINK_SUCCESS';
+const DELETE_LINK_RESET = 'DELETE_LINK_RESET';
+const DELETE_LINK_ERROR = 'DELETE_LINK_ERROR';
+
 const LINKS_RECEIVED = 'LINKS_RECEIVED';
 const LINKS_INVALIDATE = 'LINKS_INVALIDATE';
 const UPDATE_LINK_DATA = 'UPDATE_LINK_DATA';
@@ -47,6 +53,28 @@ const deleteLinkData = (linkData) => {
         type: DELETE_LINK_DATA,
         link: linkData,
     }
+}
+
+const deleteLink = (linkData) => {
+    return dispatch => {
+        dispatch({
+            type: EDIT_LINK_RESET,
+        });
+
+        httpDelete(`/api/v1/links/${linkData.id}`)
+        .then((data) => {
+            dispatch({
+                type: DELETE_LINK_SUCCESS,
+            });
+        }).catch((error) => {
+            error.response.json().then((errorJson) => {
+                dispatch({
+                    type: DELETE_LINK_ERROR,
+                    errors: errorJson.errors,
+                });
+            });
+        });
+    };
 }
 
 const editLink = (linkData) => {
@@ -132,6 +160,9 @@ export {
     EDIT_LINK_SUCCESS,
     EDIT_LINK_RESET,
     EDIT_LINK_ERROR,
+    DELETE_LINK_SUCCESS,
+    DELETE_LINK_RESET,
+    DELETE_LINK_ERROR,
     LINKS_RECEIVED,
     LINKS_INVALIDATE,
     UPDATE_LINK_DATA,
@@ -142,6 +173,7 @@ export {
     fetchMoreUserLinks,
     createLink,
     editLink,
+    deleteLink,
     updateLinkData,
     deleteLinkData,
 };

@@ -94,7 +94,7 @@ const httpDelete = url => (
         headers: buildHeaders(),
     })
     .then(checkStatus)
-    .then(parseResponse)
+    //.then(parseResponse)
 );
 
 export {

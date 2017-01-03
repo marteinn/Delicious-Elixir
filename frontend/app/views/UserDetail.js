@@ -4,6 +4,7 @@ import Waypoint from 'react-waypoint';
 import {
     fetchUserLinks,
     fetchMoreUserLinks,
+    deleteLink,
     deleteLinkData,
 } from '../actions/links';
 import { followList } from '../actions/currentList';
@@ -40,6 +41,7 @@ class UserDetail extends React.Component {
     handleRequestDelete = link => {
         const { dispatch } = this.props;
 
+        dispatch(deleteLink(link));
         dispatch(deleteLinkData(link));
     }
 

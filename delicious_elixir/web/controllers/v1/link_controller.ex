@@ -1,6 +1,4 @@
 defmodule DeliciousElixir.LinkController do
-  require IEx
-
   use DeliciousElixir.Web, :controller
 
   alias DeliciousElixir.{Repo, Link, Endpoint}
@@ -32,6 +30,31 @@ defmodule DeliciousElixir.LinkController do
     conn
     |> Pagination.headers(page_params)
     |> render(links: links)
+  end
+
+  def create(conn, %{"link" => link_params}) do
+    current_user = Guardian.Plug.current_resource(conn)
+    link_params = Map.put(link_params, "user_id", current_user.id)
+
+    changeset = Link.changeset(%Link{}, link_params)
+
+    case Repo.insert(changeset) do
+      {:ok, link} ->
+        link = Repo.preload(link, [:user])
+
+        channel = "links:" <> current_user.username
+        Endpoint.broadcast(channel, "list:updated",
+                           %{message: "hello from the console"})
+
+        conn
+        |> put_status(:created)
+        |> render("show.json", link: link)
+
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("error.json", changeset: changeset)
+    end
   end
 
   def update(conn, %{"id" => id, "link" => link_params}) do
@@ -67,28 +90,15 @@ defmodule DeliciousElixir.LinkController do
     |> render("update.json", user: current_user)
   end
 
-  def create(conn, %{"link" => link_params}) do
+
+  def delete(conn, %{"id" => id}) do
+    {id, _} = Integer.parse(id)
     current_user = Guardian.Plug.current_resource(conn)
-    link_params = Map.put(link_params, "user_id", current_user.id)
 
-    changeset = Link.changeset(%Link{}, link_params)
+    link = Repo.get!(Link, id)
+    Repo.delete!(link)
 
-    case Repo.insert(changeset) do
-      {:ok, link} ->
-        link = Repo.preload(link, [:user])
-
-        channel = "links:" <> current_user.username
-        Endpoint.broadcast(channel, "list:updated",
-                           %{message: "hello from the console"})
-
-        conn
-        |> put_status(:created)
-        |> render("show.json", link: link)
-
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render("error.json", changeset: changeset)
-    end
+    conn
+    |> send_resp(204, "")
   end
 end
