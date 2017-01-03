@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import URI from 'urijs';
 
 class LinkItem extends React.Component {
     handleShareClick = (e) => {
@@ -20,10 +21,11 @@ class LinkItem extends React.Component {
 
     render() {
         const { link } = this.props;
+        const domain = URI(link.url).domain();
 
         return (
             <div className="LinkItem">
-                <h3 className="LinkItem__Title"><a href={link.url}>{link.title}</a> <span className="LinkItem__DomainTitle">{link.url}</span></h3>
+                <h3 className="LinkItem__Title"><a className="LinkItem__TitleLink" href={link.url}>{link.title}</a> <span className="LinkItem__DomainTitle">{domain}</span></h3>
 
                 <div className="LinkItem__Footer">
                     <div className="LinkItem__Column">

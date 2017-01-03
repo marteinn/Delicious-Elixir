@@ -79,6 +79,7 @@
     "react-router-redux": "^4.0.6",
     "react-waypoint": "^4.1.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "urijs": "^1.18.4"
   }
 }

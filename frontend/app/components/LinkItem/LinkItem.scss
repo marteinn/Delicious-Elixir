@@ -24,7 +24,13 @@
         font-size: 2rem;
     }
 
+    &__TitleLink {
+        text-decoration: none;
+    }
+
     &__DomainTitle {
+        font-size: 1.5rem;
+        color: #969696;
     }
 
     &__Footer {
