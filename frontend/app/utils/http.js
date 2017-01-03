@@ -88,8 +88,18 @@ const httpPut = (url, data) => (
     .then(parseResponse)
 );
 
+const httpDelete = url => (
+    fetch(url, {
+        method: 'delete',
+        headers: buildHeaders(),
+    })
+    .then(checkStatus)
+    .then(parseResponse)
+);
+
 export {
     httpGet,
     httpPost,
     httpPut,
+    httpDelete,
 };
