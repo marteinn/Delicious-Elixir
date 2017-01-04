@@ -22,19 +22,20 @@ class CreateLinkForm extends React.Component {
         }
     }
 
-    _handleSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
 
-        this._submitForm();
+        this.submitForm();
     }
 
-    _handleCancelClick = () => {
+    handleCancelClick = (e) => {
         const { onRequestClose } = this.props;
 
+        e.preventDefault();
         onRequestClose();
     }
 
-    _submitForm = () => {
+    submitForm = () => {
         const { dispatch } = this.props;
 
         const data = {
@@ -52,7 +53,7 @@ class CreateLinkForm extends React.Component {
 
         return (
             <div>
-                <form className="CreateLinkForm Form" onSubmit={this._handleSubmit}>
+                <form className="CreateLinkForm Form" onSubmit={this.handleSubmit}>
                     {hasErrors &&
                         <div>{_.map(errors, (error, key) => <div key={key} className="Form__Alert">Error: {key} {error[0]}</div>)}</div>
                     }
@@ -88,7 +89,7 @@ class CreateLinkForm extends React.Component {
 
                     <nav className="Modal__Actions">
                         <div className="Modal__ActionsPrimary">
-                            <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
+                            <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this.handleCancelClick}>Cancel</a>
                             <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Create link</button>
                             </div>
                         </nav>

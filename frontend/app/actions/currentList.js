@@ -7,7 +7,7 @@ const followList = (socket, category) => {
         const channel = socket.channel(category);
 
         channel.join().receive('ok', (response) => {
-            console.log('joined!');
+            //console.log('joined!');
         });
 
         channel.on('item:created', (msg) => {

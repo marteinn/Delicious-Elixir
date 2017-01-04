@@ -12,7 +12,9 @@ class Toolbar extends React.Component {
         dispatch: React.PropTypes.func,
     };
 
-    handleCreateLinkClick = () => {
+    handleCreateLinkClick = (e) => {
+        e.preventDefault();
+
         const { dispatch } = this.props;
         dispatch(showModal(modalNames.CREATE_LINK));
     }
