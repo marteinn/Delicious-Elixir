@@ -11,7 +11,12 @@ class LinkList extends React.Component {
     render() {
         const { links, onRequestEdit, onRequestDelete } = this.props;
         const items = links.map((link, index) => (
-            <LinkItem key={link.id} link={link} onRequestEdit={onRequestEdit} onRequestDelete={onRequestDelete} />
+            <LinkItem
+                key={link.id}
+                link={link}
+                onRequestEdit={onRequestEdit}
+                onRequestDelete={onRequestDelete}
+            />
         ));
 
         return (
@@ -21,10 +26,11 @@ class LinkList extends React.Component {
                     transitionEnter={false}
                     transitionLeave={true}
                     transitionLeaveTimeout={600}
-                    transitionName={ {
+                    transitionName={{
                         leave: 'LinkItem--Leave',
                         leaveActive: 'LinkItem--LeaveActive',
-                    }}>
+                    }}
+                >
                 {items}
                 </ReactCSSTransitionGroup>
             </div>

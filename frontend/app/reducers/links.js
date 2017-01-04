@@ -20,7 +20,7 @@ const links = (state = initialState, action = { }) => {
             });
         }
         case DELETE_LINK_DATA: {
-            let newState = Object.assign({}, state);
+            const newState = Object.assign({}, state);
             delete newState[action.link.id];
             return newState;
         }

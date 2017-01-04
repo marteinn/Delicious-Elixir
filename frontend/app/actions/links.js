@@ -41,30 +41,6 @@ const createLink = (linkData) => {
     };
 };
 
-const createLinkData = (link, category) => {
-    return {
-        type: CREATE_LINK_DATA,
-        link,
-        category,
-    }
-}
-
-const updateLinkData = (link, category) => {
-    return {
-        type: UPDATE_LINK_DATA,
-        link,
-        category,
-    }
-}
-
-const deleteLinkData = (link, category) => {
-    return {
-        type: DELETE_LINK_DATA,
-        link,
-        category,
-    }
-}
-
 const deleteLink = (linkData) => {
     return dispatch => {
         dispatch({
@@ -85,7 +61,7 @@ const deleteLink = (linkData) => {
             });
         });
     };
-}
+};
 
 const editLink = (linkData) => {
     return dispatch => {
@@ -107,7 +83,7 @@ const editLink = (linkData) => {
             });
         });
     };
-}
+};
 
 const receiveLinks = (category, data, options = { invalidate: false }) => {
     return {
@@ -167,9 +143,6 @@ export {
     DELETE_LINK_RESET,
     DELETE_LINK_ERROR,
     LINKS_RECEIVED,
-    UPDATE_LINK_DATA,
-    DELETE_LINK_DATA,
-    CREATE_LINK_DATA,
 
     fetchLinks,
     fetchUserLinks,
@@ -177,7 +150,4 @@ export {
     createLink,
     editLink,
     deleteLink,
-    updateLinkData,
-    deleteLinkData,
-    createLinkData,
 };

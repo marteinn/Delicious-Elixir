@@ -12,6 +12,9 @@ class Auth extends React.Component {
         dispatch: React.PropTypes.func,
         routes: React.PropTypes.array,
         children: React.PropTypes.object,
+        showCreateLinkModal: React.PropTypes.func,
+        showEditLinkModal: React.PropTypes.func,
+        editLinkData: React.PropTypes.func,
     }
 
     handleCreateLinkModalClose = () => {
@@ -57,7 +60,10 @@ class Auth extends React.Component {
                     contentLabel="Edit Link"
                     onRequestClose={this.handleCreateLinkModalClose}
                 >
-                    <EditLinkForm link={editLinkData} onRequestClose={this.handleEditLinkModalClose} />
+                    <EditLinkForm
+                        link={editLinkData}
+                        onRequestClose={this.handleEditLinkModalClose}
+                    />
                 </Modal>
 
                 <Toolbar modifiers="Auth__Toolbar" activeRoute={activeRoute} />

@@ -1,7 +1,6 @@
+import { updateLinkData, deleteLinkData, createLinkData } from './linkData';
+
 const CURRENT_LIST_FOLLOWED_LIST = 'CURRENT_LIST_FOLLOWED_LIST';
-
-import { updateLinkData, deleteLinkData, createLinkData } from './links';
-
 
 const followList = (socket, category) => {
     return dispatch => {

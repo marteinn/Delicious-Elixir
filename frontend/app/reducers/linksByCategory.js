@@ -15,16 +15,16 @@ function category(state = {
 }, action) {
     switch (action.type) {
         case CREATE_LINK_DATA: {
-            let ids = [action.link.id, ...state.ids];
+            const ids = [action.link.id, ...state.ids];
             return Object.assign({}, state, {
-                ids: ids,
+                ids,
             });
         }
 
         case DELETE_LINK_DATA: {
-            let ids = state.ids.filter(id => id !== action.link.id);
+            const ids = state.ids.filter(id => id !== action.link.id);
             return Object.assign({}, state, {
-                ids: ids,
+                ids,
             });
         }
 

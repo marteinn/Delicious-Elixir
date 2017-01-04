@@ -5,8 +5,8 @@ import {
     fetchUserLinks,
     fetchMoreUserLinks,
     deleteLink,
-    deleteLinkData,
 } from '../actions/links';
+import { deleteLinkData } from '../actions/linkData';
 import { followList } from '../actions/currentList';
 import { showModal, hideModal, modalNames } from '../actions/modals';
 import UserHeader from '../components/UserHeader';
@@ -20,6 +20,7 @@ class UserDetail extends React.Component {
         isFetching: React.PropTypes.bool,
         isComplete: React.PropTypes.bool,
         socket: React.PropTypes.object,
+        params: React.PropTypes.object,
         dispatch: React.PropTypes.func,
     };
 
@@ -64,7 +65,11 @@ class UserDetail extends React.Component {
         return (
             <div>
                 <UserHeader user={user} />
-                <LinkList links={links} onRequestEdit={this.handleRequestEdit} onRequestDelete={this.handleRequestDelete} />
+                <LinkList
+                    links={links}
+                    onRequestEdit={this.handleRequestEdit}
+                    onRequestDelete={this.handleRequestDelete}
+                />
                 {links.length &&
                     <Waypoint onEnter={this.handleWaypointEnter} />
                 }

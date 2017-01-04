@@ -9,6 +9,7 @@ class Toolbar extends React.Component {
     static propTypes = {
         currentUser: React.PropTypes.object,
         modifiers: React.PropTypes.string,
+        dispatch: React.PropTypes.func,
     };
 
     handleCreateLinkClick = () => {

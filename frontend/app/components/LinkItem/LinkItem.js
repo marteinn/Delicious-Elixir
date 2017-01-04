@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import URI from 'urijs';
+import uri from 'urijs';
 
 class LinkItem extends React.Component {
     handleShareClick = (e) => {
@@ -21,7 +21,7 @@ class LinkItem extends React.Component {
 
     render() {
         const { link } = this.props;
-        const domain = URI(link.url).domain();
+        const domain = uri(link.url).domain();
         const insertedAt = link.inserted_at;
         const formattedInsertDate = new Date(insertedAt).toLocaleDateString();
 
@@ -46,12 +46,13 @@ class LinkItem extends React.Component {
                 </div>
             </div>
         );
-    };
-};
+    }
+}
 
 LinkItem.propTypes = {
     link: React.PropTypes.object.isRequired,
     onRequestEdit: React.PropTypes.func.isRequired,
+    onRequestDelete: React.PropTypes.func.isRequired,
 };
 
 export default LinkItem;
