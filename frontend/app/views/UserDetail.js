@@ -36,17 +36,18 @@ class UserDetail extends React.Component {
     componentDidUpdate(prevProps) {
         const { username: prevUsername } = prevProps.params;
         const { username } = this.props.params;
+        const { dispatch, socket } = this.props;
+        const prevCategory = `links:${prevUsername}`;
+        const category = `links:${username}`;
 
-        if (prevUsername !== username) {
-            const { dispatch, socket } = this.props;
-            const prevCategory = `links:${prevUsername}`;
-            const category = `links:${username}`;
-
-            dispatch(unFollowList(socket, prevCategory));
-
-            dispatch(fetchUserLinks(username));
-            dispatch(followList(socket, category));
+        if (prevUsername === username) {
+            return;
         }
+
+        dispatch(unFollowList(socket, prevCategory));
+
+        dispatch(fetchUserLinks(username));
+        dispatch(followList(socket, category));
     }
 
     handleRequestEdit = link => {
@@ -76,7 +77,7 @@ class UserDetail extends React.Component {
     }
 
     render() {
-        const { user, links } = this.props;
+        const { username, user, links } = this.props;
 
         return (
             <div>
