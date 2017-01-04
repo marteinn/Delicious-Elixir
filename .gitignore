@@ -13,6 +13,7 @@ node_modules
 # Ignore dist folder
 /delicious_elixir/priv/static/js/*
 /delicious_elixir/priv/static/css/index*
+/delicious_elixir/priv/static/img/*
 
 # Ignore build errors and node_modules
 npm-debug*

@@ -16,6 +16,7 @@ defmodule DeliciousElixir.LinkView do
       url: link.url,
       description: link.description,
       inserted_at: link.inserted_at,
+      private: link.private,
       user: %{
         email: link.user.email,
         username: link.user.username,

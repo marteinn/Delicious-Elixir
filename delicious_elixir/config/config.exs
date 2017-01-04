@@ -28,7 +28,7 @@ import_config "#{Mix.env}.exs"
 
 
 config :guardian, Guardian,
-  issuer: "PhoenixTrello",
+  issuer: "DeliciousElixir",
   ttl: {3, :days},
   verify_issuer: true,
   secret_key: "pqCVzbQhE2NL4cYtyRHecyTsxeBWzxPqLZfpGBVMikYQXBMynL",

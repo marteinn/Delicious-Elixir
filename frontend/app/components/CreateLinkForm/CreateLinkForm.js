@@ -42,6 +42,7 @@ class CreateLinkForm extends React.Component {
             title: this.title.value,
             url: this.url.value,
             description: this.description.value,
+            private: this.private.checked,
         };
 
         dispatch(createLink(data));
@@ -85,6 +86,11 @@ class CreateLinkForm extends React.Component {
                         <div className="Form__InputWrap">
                             <input className="Form__FieldInput" ref={(c) => { this.description = c; }} name="description" />
                         </div>
+                    </div>
+
+                    <div className="Form__Field">
+                        <input type="checkbox" className="Form__CheckboxLock" ref={(c) => { this.private = c; }} defaultChecked={false} name="private" />
+                        <label className="Form__CheckboxLockLabel" data-checkedLabel="Private" htmlFor="private">Public</label>
                     </div>
 
                     <nav className="Modal__Actions">

@@ -1,9 +1,9 @@
+import { LINKS_RECEIVED } from '../actions/links';
 import {
-    LINKS_RECEIVED,
     CREATE_LINK_DATA,
     UPDATE_LINK_DATA,
     DELETE_LINK_DATA,
-} from '../actions/links';
+} from '../actions/linkData';
 
 const initialState = {};
 

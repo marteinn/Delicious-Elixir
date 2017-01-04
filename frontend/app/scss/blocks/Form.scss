@@ -42,6 +42,34 @@
         color: #A5A5A5;
     }
 
+    &__CheckboxLock {
+        opacity: 0;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        width: 100%;
+
+        &:checked + .Form__CheckboxLockLabel {
+            background-image: url('/img/icon_lock_outline_blue_24px.svg');
+            font-size: 0;
+
+            &:after {
+                content: attr(data-checkedLabel);
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    &__CheckboxLockLabel {
+        background-image: url('/img/icon_lock_open_blue_24px.svg');
+        background-repeat: no-repeat;
+        line-height: 2.4rem;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #0078E1;
+        padding-left: 30px;
+    }
+
     &__FieldInput {
         width: 100%;
         border: 0;

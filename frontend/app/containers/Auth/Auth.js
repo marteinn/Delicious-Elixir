@@ -12,9 +12,9 @@ class Auth extends React.Component {
         dispatch: React.PropTypes.func,
         routes: React.PropTypes.array,
         children: React.PropTypes.object,
+        editLinkData: React.PropTypes.object,
         showCreateLinkModal: React.PropTypes.bool,
         showEditLinkModal: React.PropTypes.bool,
-        editLinkData: React.PropTypes.func,
     }
 
     handleCreateLinkModalClose = () => {
@@ -58,7 +58,7 @@ class Auth extends React.Component {
                     overlayClassName="OverlayModal"
                     isOpen={showEditLinkModal}
                     contentLabel="Edit Link"
-                    onRequestClose={this.handleCreateLinkModalClose}
+                    onRequestClose={this.handleEditLinkModalClose}
                 >
                     <EditLinkForm
                         link={editLinkData}

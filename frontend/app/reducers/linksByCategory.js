@@ -1,9 +1,5 @@
-import {
-    LINKS_REQUEST,
-    LINKS_RECEIVED,
-    CREATE_LINK_DATA,
-    DELETE_LINK_DATA,
-} from '../actions/links';
+import { LINKS_REQUEST, LINKS_RECEIVED } from '../actions/links';
+import { CREATE_LINK_DATA, DELETE_LINK_DATA } from '../actions/linkData';
 
 
 function category(state = {
@@ -52,26 +48,7 @@ function category(state = {
     }
 }
 
-function linksByCategory(state = {
-    /*user: {*/
-        //isFetching: false,
-        //lastUpdated: -1,
-        //ids: [],
-        //next: null,
-    /*},*/
-    /*popular: {*/
-        //isFetching: false,
-        //lastUpdated: -1,
-        //ids: [],
-        //next: null,
-    //},
-    //editorial: {
-        //isFetching: false,
-        //lastUpdated: -1,
-        //ids: [],
-        //next: null,
-    /*},*/
-}, action) {
+function linksByCategory(state = {}, action) {
     switch (action.type) {
         case CREATE_LINK_DATA:
         case DELETE_LINK_DATA:
