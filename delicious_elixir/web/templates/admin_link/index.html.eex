@@ -7,8 +7,9 @@
       <th>Title</th>
       <th>Link</th>
       <th>Description</th>
-      <th>User</th>
-      <th>User</th>
+      <th>Private</th>
+      <th>User id</th>
+      <th>Username</th>
 
       <th></th>
     </tr>
@@ -20,6 +21,7 @@
       <td><%= link.title %></td>
       <td><%= link.url %></td>
       <td><%= link.description %></td>
+      <td><%= link.private %></td>
       <td><%= link.user_id %></td>
       <td><%= link.user.username %></td>
 

@@ -6,6 +6,7 @@ defmodule DeliciousElixir.Link do
     field :title, :string
     field :url, :string
     field :description, :string
+    field :private, :boolean, default: false
 
     belongs_to :user, DeliciousElixir.User
 
@@ -13,7 +14,7 @@ defmodule DeliciousElixir.Link do
   end
 
   @required_fields ~w(title url user_id)
-  @optional_fields ~w(description)
+  @optional_fields ~w(description private)
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
