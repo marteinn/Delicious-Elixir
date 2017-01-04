@@ -16,16 +16,15 @@ class LinkList extends React.Component {
 
         return (
             <div className="LinkList">
-            <ReactCSSTransitionGroup
-                transitionAppear={false}
-                transitionEnter={false}
-                transitionLeave={true}
-                transitionLeaveTimeout={600}
-                transitionName={ {
-                    leave: 'LinkItem--Leave',
-                    leaveActive: 'LinkItem--LeaveActive',
-                }}
-            >
+                <ReactCSSTransitionGroup
+                    transitionAppear={false}
+                    transitionEnter={false}
+                    transitionLeave={true}
+                    transitionLeaveTimeout={600}
+                    transitionName={ {
+                        leave: 'LinkItem--Leave',
+                        leaveActive: 'LinkItem--LeaveActive',
+                    }}>
                 {items}
                 </ReactCSSTransitionGroup>
             </div>
