@@ -36,7 +36,7 @@ class Toolbar extends React.Component {
 
                     {currentUser ?
                         <li className="Toolbar__Item">
-                            <Link to={`users/${currentUser.username}`} activeClassName="Toolbar__Link--Active" className="Toolbar__Link">My links</Link>
+                            <Link to={`/users/${currentUser.username}`} activeClassName="Toolbar__Link--Active" className="Toolbar__Link">My links</Link>
                         </li>
                         :
                         <li className="Toolbar__Item">

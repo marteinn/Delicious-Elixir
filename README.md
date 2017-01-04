@@ -89,8 +89,9 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Auto update list if new links arrive (through socket)
 - [x] Update link list styling
 - [x] Fix bug that happen when toggling home/my links
-- [ ] Support for public/private links
+- [x] Support for public/private links
 - [ ] Implement unfollow list logic
+- [ ] Fix 'My links' navigation recursive bug
 - [ ] Sign up styling
 - [ ] Register styling
 - [ ] Delete button on edit link modular

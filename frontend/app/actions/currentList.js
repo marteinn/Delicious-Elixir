@@ -1,10 +1,13 @@
 import { updateLinkData, deleteLinkData, createLinkData } from './linkData';
 
 const CURRENT_LIST_FOLLOWED_LIST = 'CURRENT_LIST_FOLLOWED_LIST';
+const CURRENT_LIST_UNFOLLOWED_LIST = 'CURRENT_LIST_UNFOLLOWED_LIST';
 
 const followList = (socket, category) => {
     return dispatch => {
         const channel = socket.channel(category);
+
+        //unFollowList();
 
         channel.join().receive('ok', (response) => {
             //console.log('joined!');
@@ -30,11 +33,25 @@ const followList = (socket, category) => {
     };
 };
 
-const unfollowList = () => {
+const unFollowList = (socket, category) => {
+    return dispatch => {
+        const channel = socket.channel(category);
+
+        channel.leave().receive('ok', (response) => {
+            console.log('left channel');
+        });
+
+        dispatch({
+            type: CURRENT_LIST_UNFOLLOWED_LIST,
+            category,
+            channel,
+        });
+    }
 };
 
 export {
     CURRENT_LIST_FOLLOWED_LIST,
+    CURRENT_LIST_UNFOLLOWED_LIST,
     followList,
-    unfollowList,
+    unFollowList,
 };

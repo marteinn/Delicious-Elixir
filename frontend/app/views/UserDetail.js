@@ -7,7 +7,7 @@ import {
     deleteLink,
 } from '../actions/links';
 import { deleteLinkData } from '../actions/linkData';
-import { followList } from '../actions/currentList';
+import { followList, unFollowList } from '../actions/currentList';
 import { showModal, hideModal, modalNames } from '../actions/modals';
 import UserHeader from '../components/UserHeader';
 import LinkList from '../components/LinkList';
@@ -31,6 +31,22 @@ class UserDetail extends React.Component {
 
         dispatch(fetchUserLinks(username));
         dispatch(followList(socket, category));
+    }
+
+    componentDidUpdate(prevProps) {
+        const { username: prevUsername } = prevProps.params;
+        const { username } = this.props.params;
+
+        if (prevUsername !== username) {
+            const { dispatch, socket } = this.props;
+            const prevCategory = `links:${prevUsername}`;
+            const category = `links:${username}`;
+
+            dispatch(unFollowList(socket, prevCategory));
+
+            dispatch(fetchUserLinks(username));
+            dispatch(followList(socket, category));
+        }
     }
 
     handleRequestEdit = link => {
@@ -78,7 +94,7 @@ class UserDetail extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     const currentList = Object.assign({
         category: undefined,
     }, state.currentList);
