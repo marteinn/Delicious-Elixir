@@ -7,6 +7,7 @@ import linksByCategory from './linksByCategory';
 import linkStatus from './linkStatus';
 import currentList from './currentList';
 import modals from './modals';
+import users from './users';
 
 const rootReducer = combineReducers({
     routing: routerReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     linkStatus,
     currentList,
     modals,
+    users,
 });
 
 export default rootReducer;
