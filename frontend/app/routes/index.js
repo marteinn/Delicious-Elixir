@@ -3,7 +3,7 @@ import { IndexRoute, Route } from 'react-router';
 
 import { currentUser } from '../actions/session';
 import MainLayout from '../layouts/MainLayout';
-import Auth from '../containers/Auth/Auth';
+import Auth from '../containers/Auth';
 
 import SignOut from '../views/SignOut';
 import Home from '../views/Home';

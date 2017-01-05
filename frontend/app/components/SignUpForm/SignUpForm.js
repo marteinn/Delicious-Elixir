@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { registerUser } from '../../actions/register';
-import ErrorList from '../ErrorList/ErrorList';
+import MessageList from '../MessageList';
 
 class SignUpForm extends React.Component {
     static propTypes = {
@@ -29,38 +29,65 @@ class SignUpForm extends React.Component {
     render() {
         return (
             <div>
-                <h2>Sign up!</h2>
                 <form method="post" onSubmit={this.handleSubmit}>
-                    <ErrorList errors={this.props.errors} />
+                    <MessageList errors={this.props.errors} />
 
-                    <fieldset>
-                        <label htmlFor="username">Username</label>
-                        <input ref={(c) => { this.username = c; }} id="username" name="username" />
-                    </fieldset>
+                    <h2 className="Form__Title">Sign up</h2>
 
-                    <fieldset>
-                        <label htmlFor="email">E-mail</label>
-                        <input ref={(c) => { this.email = c; }} id="email" name="email" />
-                    </fieldset>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="username">Username</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.username = c; }} id="username" name="username" />
+                        </div>
+                    </div>
 
-                    <fieldset>
-                        <label htmlFor="first_name">First name</label>
-                        <input ref={(c) => { this.firstName = c; }} id="firstName" name="first_name" />
-                    </fieldset>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="email">E-mail</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.email = c; }} id="email" name="email" />
+                        </div>
+                    </div>
 
-                    <fieldset>
-                        <label htmlFor="last_name">Lastname</label>
-                        <input ref={(c) => { this.lastName = c; }} id="lastName" name="last_name" />
-                    </fieldset>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="first_name">First name</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.firstName = c; }} id="firstName" name="first_name" />
+                        </div>
+                    </div>
 
-                    <fieldset>
-                        <label htmlFor="password">Password</label>
-                        <input ref={(c) => { this.password = c; }} id="password" name="password" type="password" />
-                    </fieldset>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="last_name">Lastname</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.lastName = c; }} id="lastName" name="last_name" />
+                        </div>
+                    </div>
 
-                    <button>Register</button>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="password">Password</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.password = c; }} id="password" name="password" type="password" />
+                        </div>
+                    </div>
+
+                    <nav className="Modal__Actions">
+                        <div className="Modal__ActionsSecondary">
+                        </div>
+                        <div className="Modal__ActionsPrimary">
+                            <Link className="Modal__Action Modal__Action--Neutral" to="/sign-in">Already a member? Sign in</Link>
+                            <button className="Modal__Action Modal__Action--Positive Modal__Action--Button">Sign up</button>
+                        </div>
+                    </nav>
                 </form>
-                <Link to="/sign-in">Sign in</Link>
             </div>
         );
     }

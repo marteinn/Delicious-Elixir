@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { Link, Redirect } from 'react-router';
 import uri from 'urijs';
-import SignInForm from '../components/SignInForm';
-import SignUpForm from '../components/SignUpForm';
+import SignInForm from '../../components/SignInForm';
+import SignUpForm from '../../components/SignUpForm';
 
 
 const SECTION_SIGN_UP = 'sign-up';

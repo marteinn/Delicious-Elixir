@@ -10,6 +10,9 @@
 // Containers
 @import '../containers/Auth/Auth.scss';
 
+// Views
+@import '../views/Start/Start.scss';
+
 // Components
 @import '../components/Toolbar/Toolbar.scss';
 @import '../components/UserHeader/UserHeader.scss';
@@ -18,3 +21,4 @@
 @import '../components/EditLinkForm/EditLinkForm.scss';
 @import '../components/SignInForm/SignInForm.scss';
 @import '../components/SignUpForm/SignUpForm.scss';
+@import '../components/MessageList/MessageList.scss';

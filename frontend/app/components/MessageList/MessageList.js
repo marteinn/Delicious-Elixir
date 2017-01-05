@@ -1,16 +1,16 @@
 import React from 'react';
 
-class ErrorList extends React.Component {
+class MessageList extends React.Component {
     render() {
         if (!this.props.errors) {
             return false;
         }
 
         return (
-            <ul>
+            <ul className="MessageList">
                 {this.props.errors.map((error, index) => {
                     return (
-                        <li key={index} className="error">
+                        <li key={index} className="MessageList__Error">
                             {error}
                         </li>
                     );
@@ -20,8 +20,8 @@ class ErrorList extends React.Component {
     }
 }
 
-ErrorList.propTypes = {
+MessageList.propTypes = {
     errors: React.PropTypes.array,
 };
 
-export default ErrorList;
+export default MessageList;

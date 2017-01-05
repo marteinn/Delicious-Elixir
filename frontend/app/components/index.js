@@ -2,7 +2,7 @@ import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 import EditLinkForm from './EditLinkForm';
 import CreateLinkForm from './CreateLinkForm';
-import ErrorList from './ErrorList';
+import MessageList from './MessageList';
 import LinkItem from './LinkItem';
 import LinkList from './LinkList';
 import Toolbar from './Toolbar';
@@ -13,7 +13,7 @@ export {
     SignInForm,
     EditLinkForm,
     CreateLinkForm,
-    ErrorList,
+    MessageList,
     LinkItem,
     LinkList,
     Toolbar,

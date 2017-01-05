@@ -4,8 +4,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { signIn } from '../../actions/session';
-import ErrorList from '../ErrorList/ErrorList';
+import MessageList from '../MessageList';
 
 
 class SignInForm extends React.Component {
@@ -33,18 +34,33 @@ class SignInForm extends React.Component {
 
         return (
             <div>
-                <h2>Sign in!</h2>
-                <form method="post" onSubmit={this.handleSubmit}>
-                    <ErrorList errors={this.props.errors} />
-                    <fieldset>
-                        <label htmlFor="email">email</label>
-                        <input ref={(c) => { this.email = c; }} id="email" name="email" />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="password">Password</label>
-                        <input ref={(c) => { this.password = c; }} id="password" name="password" type="password" />
-                    </fieldset>
-                    <button>Sign in</button>
+                <form className="Form" onSubmit={this.handleSubmit}>
+                    <MessageList errors={this.props.errors} />
+
+                    <h2 className="Form__Title">Sign in</h2>
+
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="email">E-mail</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.email = c; }} id="email" name="email" />
+                        </div>
+                    </div>
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="password">Password</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" ref={(c) => { this.password = c; }} id="password" name="password" type="password" />
+                        </div>
+                    </div>
+                    <nav className="Modal__Actions">
+                        <div className="Modal__ActionsPrimary">
+                            <Link className="Modal__Action Modal__Action--Neutral" to="/sign-up">Not a member? Sign up</Link>
+                            <button className="Modal__Action Modal__Action--Positive Modal__Action--Button">Sign in</button>
+                        </div>
+                    </nav>
                 </form>
             </div>
         );
