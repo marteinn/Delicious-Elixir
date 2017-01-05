@@ -9,6 +9,8 @@ defmodule DeliciousElixir.UserView do
       last_name: user.last_name,
       email: user.email,
       inserted_at: user.inserted_at,
+      description: user.description,
+      url: user.url,
       stats: stats,
     }
   end

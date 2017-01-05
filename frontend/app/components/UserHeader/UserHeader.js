@@ -1,10 +1,18 @@
 import React from 'react';
+import uri from 'urijs';
 
 
 class UserHeader extends React.Component {
     render() {
         const { user } = this.props;
         const { stats } = user;
+        let url = user.url;
+        let urlLabel;
+
+        if (url) {
+            urlLabel = uri(url).protocol('');
+            urlLabel = urlLabel.toString().substr(2);
+        }
 
         return (
             <div className="UserHeader">
@@ -15,8 +23,10 @@ class UserHeader extends React.Component {
                     <div className="UserHeader__Description">
                         <div className="UserHeader__DescriptionTop">
                             <h2 className="UserHeader__DescriptionUsername">{user.username}</h2>
-                            <p className="UserHeader__DescriptionInfo">{'Description'}</p>
-                            <a className="UserHeader__DescriptionUrl" href="#">{'example.com'}</a>
+                            <p className="UserHeader__DescriptionInfo">{user.description}</p>
+                            {url != null &&
+                                <a className="UserHeader__DescriptionUrl" href={url}>{urlLabel}</a>
+                            }
                         </div>
                         <div className="UserHeader__DescriptionBottom">
                             <ul className="UserHeader__Stats">

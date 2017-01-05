@@ -10,8 +10,9 @@ defmodule DeliciousElixir.User do
     field :username, :string
     field :email, :string
     field :encrypted_password, :string
-
     field :password, :string, virtual: true
+    field :description, :string
+    field :url, :string
 
     has_many :owned_links, DeliciousElixir.Link
 
@@ -19,7 +20,7 @@ defmodule DeliciousElixir.User do
   end
 
   @required_fields ~w(first_name last_name username email password)
-  @optional_fields ~w(encrypted_password)
+  @optional_fields ~w(encrypted_password description url)
 
   @doc """
   Builds a changeset based on the `struct` and `params`.

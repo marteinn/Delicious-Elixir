@@ -1,7 +1,6 @@
 <h2>Show user</h2>
 
 <ul>
-
   <li>
     <strong>Username:</strong>
     <%= @user.username %>
@@ -18,7 +17,14 @@
     <strong>Lastname:</strong>
     <%= @user.last_name %>
   </li>
-
+  <li>
+    <strong>Description:</strong>
+    <%= @user.description %>
+  </li>
+  <li>
+    <strong>Url:</strong>
+    <%= @user.url %>
+  </li>
 </ul>
 
 <%= link "Edit", to: admin_user_path(@conn, :edit, @user) %>
