@@ -1,8 +1,8 @@
 defmodule DeliciousElixir.User do
   use DeliciousElixir.Web, :model
 
-  #@derive {Poison.Encoder, only: [:id, :username, :first_name, :last_name, :email,
-                                  #:inserted_at]}
+  @derive {Poison.Encoder, only: [:id, :username, :first_name, :last_name, :email,
+                                  :inserted_at, :description, :url]}
 
   schema "users" do
     field :first_name, :string

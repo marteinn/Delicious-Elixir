@@ -34,9 +34,22 @@ defmodule DeliciousElixir.Link do
     end
   end
 
+  def public_only(query, status \\ true) do
+    if !status do
+      query
+    else
+      from l in query,
+        where: l.private == false
+    end
+  end
+
   def by_user(query, username) do
-    from l in query,
-      left_join: u in assoc(l, :user),
-      where: u.username == ^username
+    if username == nil do
+      query
+    else
+      from l in query,
+        left_join: u in assoc(l, :user),
+        where: u.username == ^username
+    end
   end
 end

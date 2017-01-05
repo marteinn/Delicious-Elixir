@@ -8,13 +8,12 @@ defmodule DeliciousElixir.LinkController do
   plug Guardian.Plug.EnsureAuthenticated, handler: DeliciousElixir.SessionController
 
   def index(conn, params) do
+    user = Guardian.Plug.current_resource(conn)
+    username = Map.get(params, "username", nil)
+
     links = Link
-    links = if Map.has_key?(params, "username") do
-              username = Map.get(params, "username")
-              links |> Link.by_user(username)
-            else
-              links
-            end
+            |> Link.by_user(username)
+            |> Link.public_only(username != user.username)
 
     total_count = links |> Repo.aggregate(:count, :id)
 

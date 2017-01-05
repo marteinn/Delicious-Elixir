@@ -93,12 +93,13 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Implement unfollow list logic
 - [x] Fix 'My links' navigation recursive bug
 - [x] Sign up styling
-- [ ] Update so UserProfile gets correct user data
-- [ ] Make sure only link owner see private links
+- [x] Update so UserProfile gets correct user data
+- [x] Make sure only link owner see private links
 - [x] Fix issue occuring when link-list receives a new list in user-profile
 - [x] Register styling
+- [ ] Add avatar support
 - [ ] Delete button on edit link modular
-- [ ] Styling UserProfile header
+- [x] Styling UserProfile header
 - [ ] Settings (Change password / email)
 - [ ] Tag support
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
