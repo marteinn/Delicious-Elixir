@@ -18,9 +18,10 @@
         background-color: #0056A9;
         border: 0;
         text-indent: 20px;
-        padding: 10px 20px 10px 0;
+        padding: 0 20px 0 0;
         color: white;
         font-size: 1.3rem;
+        height: 40px;
 
         &:focus {
             outline: 0;
@@ -30,8 +31,10 @@
     &__Link {
         display: block;
         color: white;
-        padding: 10px 20px 10px 20px;
+        padding: 0 20px 0 20px;
         text-decoration: none;
+        height: 40px;
+        line-height: 40px;
 
         outline: 0;
 
