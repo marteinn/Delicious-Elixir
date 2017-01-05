@@ -23,7 +23,8 @@ defmodule DeliciousElixir.Router do
       resources "/links", LinkController
       post "/registrations", RegistrationController, :create
       post "/sessions", SessionController, :create
-      get "/current-user", CurrentUserController, :show
+      get "/current-user", UserController, :show_current
+      get "/users/:username", UserController, :show
     end
   end
 

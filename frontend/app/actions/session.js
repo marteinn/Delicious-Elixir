@@ -50,7 +50,8 @@ const signOut = () => {
     };
 };
 
-const signIn = (sessionData) => {
+const signIn = sessionData => {
+    console.log(sessionData);
     return dispatch => {
         httpPost('/api/v1/sessions', { session: sessionData })
         .then((data) => {

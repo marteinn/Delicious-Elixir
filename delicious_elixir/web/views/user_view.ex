@@ -1,4 +1,4 @@
-defmodule DeliciousElixir.CurrentUserView do
+defmodule DeliciousElixir.UserView do
   use DeliciousElixir.Web, :view
 
   def render("show.json", %{user: user}) do
