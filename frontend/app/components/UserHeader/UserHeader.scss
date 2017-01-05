@@ -18,6 +18,22 @@
     }
 
     &__DescriptionUsername {
+        font-size: 2rem;
+        color: #666666;
+    }
+
+    &__DescriptionInfo {
+        margin-top: 5px;
+        font-size: 1.3rem;
+        color: #666666;
+    }
+
+    &__DescriptionUrl {
+        display: block;
+        margin-top: 5px;
+        font-size: 1.3rem;
+        color: #0B79E4;
+        text-decoration: none;
     }
 
     &__DescriptionTop {
@@ -35,8 +51,17 @@
     &__StatItem {
         display: inline-block;
         margin-right: 15px;
+        font-size: 1.3rem;
+        color: #666666;
+
+        strong {
+            font-weight: bold;
+            color: #000;
+        }
     }
 
     &__Joined {
+        color: #666666;
+        font-size: 1.3rem;
     }
 }
