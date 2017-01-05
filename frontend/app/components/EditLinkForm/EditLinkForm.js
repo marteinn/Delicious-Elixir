@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { editLink } from '../../actions/links';
+import MessageList from '../MessageList';
 
 class EditLinkForm extends React.Component {
     static propTypes = {
@@ -23,19 +24,20 @@ class EditLinkForm extends React.Component {
         }
     }
 
-    _handleSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
 
-        this._submitForm();
+        this.submitForm();
     }
 
-    _handleCancelClick = () => {
+    handleCancelClick = () => {
         const { onRequestClose } = this.props;
 
+        e.preventDefault();
         onRequestClose();
     }
 
-    _submitForm = () => {
+    submitForm = () => {
         const { link, dispatch } = this.props;
 
         const data = {
@@ -51,14 +53,12 @@ class EditLinkForm extends React.Component {
 
     render() {
         const { link, errors } = this.props;
-        const hasErrors = Object.keys(errors).length > 0;
+        const messageErrors = _.map(errors, (error, key) => `Error: ${key} ${error[0]}`);
 
         return (
             <div>
-                <form className="EditLinkForm Form" onSubmit={this._handleSubmit}>
-                    {hasErrors &&
-                        <div>{_.map(errors, (error, key) => <div key={key} className="Form__Alert">Error: {key} {error[0]}</div>)}</div>
-                    }
+                <form className="EditLinkForm Form" onSubmit={this.handleSubmit}>
+                    <MessageList errors={messageErrors} />
 
                     <div className="Form__Field Form__Field--First">
                         <div className="Form__LabelWrap">
@@ -94,7 +94,7 @@ class EditLinkForm extends React.Component {
 
                     <nav className="Modal__Actions">
                         <div className="Modal__ActionsPrimary">
-                            <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this._handleCancelClick}>Cancel</a>
+                            <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this.handleCancelClick}>Cancel</a>
                             <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Save link</button>
                             </div>
                         </nav>

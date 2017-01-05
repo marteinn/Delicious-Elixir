@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { createLink } from '../../actions/links';
+import MessageList from '../MessageList';
 
 
 class CreateLinkForm extends React.Component {
@@ -50,14 +51,12 @@ class CreateLinkForm extends React.Component {
 
     render() {
         const { errors } = this.props;
-        const hasErrors = Object.keys(errors).length > 0;
+        const messageErrors = _.map(errors, (error, key) => `Error: ${key} ${error[0]}`);
 
         return (
             <div>
                 <form className="CreateLinkForm Form" onSubmit={this.handleSubmit}>
-                    {hasErrors &&
-                        <div>{_.map(errors, (error, key) => <div key={key} className="Form__Alert">Error: {key} {error[0]}</div>)}</div>
-                    }
+                    <MessageList errors={messageErrors} />
 
                     <h2 className="Form__Title">Add link</h2>
 

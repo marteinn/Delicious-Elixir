@@ -1,24 +1,26 @@
 import React from 'react';
 
-class MessageList extends React.Component {
-    render() {
-        if (!this.props.errors) {
-            return false;
-        }
-
-        return (
-            <ul className="MessageList">
-                {this.props.errors.map((error, index) => {
-                    return (
-                        <li key={index} className="MessageList__Error">
-                            {error}
-                        </li>
-                    );
-                })}
-            </ul>
-        );
+const MessageList = ({ errors }) => {
+    if (!errors) {
+        return false;
     }
-}
+
+    return (
+        <ul className="MessageList">
+            {errors.map((error, index) => {
+                return (
+                    <li key={index} className="MessageList__Error">
+                        {error}
+                    </li>
+                );
+            })}
+        </ul>
+    );
+};
+
+MessageList.defaultProps = {
+    errors: [],
+};
 
 MessageList.propTypes = {
     errors: React.PropTypes.array,
