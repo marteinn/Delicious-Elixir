@@ -4,6 +4,7 @@ import React from 'react';
 class UserHeader extends React.Component {
     render() {
         const { user } = this.props;
+        const { stats } = user;
 
         return (
             <div className="UserHeader">
@@ -18,7 +19,7 @@ class UserHeader extends React.Component {
                         </div>
                         <div className="UserHeader__DescriptionBottom">
                             <ul className="UserHeader__Stats">
-                                <li className="UserHeader__StatItem"><strong>20</strong> Links</li>
+                                <li className="UserHeader__StatItem"><strong>{stats.link_count}</strong> Links</li>
                                 <li className="UserHeader__StatItem"><strong>15</strong> Following</li>
                                 <li className="UserHeader__StatItem"><strong>5</strong> Followers</li>
                                 <li className="UserHeader__StatItem"><strong>2</strong> Subscriptions</li>
