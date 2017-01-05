@@ -92,17 +92,30 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Support for public/private links
 - [x] Implement unfollow list logic
 - [x] Fix 'My links' navigation recursive bug
-- [ ] Sign up styling
+- [x] Sign up styling
 - [ ] Update so UserProfile gets correct user data
 - [ ] Make sure only link owner see private links
 - [x] Fix issue occuring when link-list receives a new list in user-profile
-- [ ] Register styling
+- [x] Register styling
 - [ ] Delete button on edit link modular
 - [ ] Styling UserProfile header
 - [ ] Settings (Change password / email)
 - [ ] Tag support
-- [ ] Bulk editing
+- [ ] Rename project to `Phenix-Delicious` (or something else?)
+- [ ] Create heroku instance
 - [ ] Convert app to docker container
+- [ ] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
+- [ ] Bulk editing
+
+### Possible new features
+
+- [ ] Make it possible to email links to user
+- [ ] Add read/unread flag
+- [ ] Add support for collections/categories
+- [ ] Add slack integration
+- [ ] Create browser plugin
+- [ ] Add support for private accounts
+- [ ] Make it possible to import delicious data dumps
 
 
 ## References
