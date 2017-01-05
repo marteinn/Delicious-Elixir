@@ -48,10 +48,37 @@ class Start extends React.Component {
                     <SignUpForm onRequestClose={this.handleModalClose} />
                 </Modal>
 
-                <h1>Start view</h1>
+                <header className="Start__Header">
+                    <div className="Start__HeaderLogo">
+                        <h2 className="Start__HeaderTitle">Elixir+Delicious</h2>
+                    </div>
 
-                <Link to={'sign-in'}>Sign in</Link>
-                <Link to={'sign-up'}>Sign up</Link>
+                    <nav className="Start__HeaderNav">
+                        <Link className="Start__HeaderNavItem" to={'sign-in'}>Sign in</Link>
+                        <Link className="Start__HeaderNavItem" to={'sign-up'}>Sign up</Link>
+                    </nav>
+                </header>
+
+                <div className="Start__Hero">
+                    <div className="Start__HeroContent">
+                        <h1 className="Start__HeroTitle">Aliquam vulputate et diam</h1>
+                        <p className="Start__HeroPreamble">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices efficitur risus, a lobortis mauris accumsan sed. — <Link to={'/sign-up'}>Sign up</Link></p>
+                    </div>
+                </div>
+
+                <footer className="Start__Footer">
+                    <div className="Start__FooterColumn">
+                        <span className="Start__FooterCopyright">Copyright</span>
+                    </div>
+
+                    <div className="Start__FooterColumn">
+                        <nav className="Start__FooterNav">
+                            <a className="Start__FooterNavItem" href="#">Help</a>
+                            <a className="Start__FooterNavItem" href="#">Blog</a>
+                        </nav>
+                    </div>
+                </footer>
+
             </div>
         );
     }
