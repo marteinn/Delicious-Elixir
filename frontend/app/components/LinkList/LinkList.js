@@ -15,7 +15,7 @@ class LinkList extends React.Component {
     componentWillReceiveProps(nextProps) {
         const { links } = this.props;
         const { links: newLinks } = nextProps;
-        const listDiff = Math.abs(links.length-newLinks.length);
+        const listDiff = Math.abs(links.length - newLinks.length);
 
         this.setState({
             useLeaveTransition: listDiff < 2,

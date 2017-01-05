@@ -22,6 +22,7 @@ class UserDetail extends React.Component {
         socket: React.PropTypes.object,
         params: React.PropTypes.object,
         dispatch: React.PropTypes.func,
+        username: React.PropTypes.string,
     };
 
     componentDidMount() {

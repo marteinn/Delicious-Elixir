@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { registerUser } from '../actions/register';
-import ErrorList from '../components/ErrorList/ErrorList';
+import { registerUser } from '../../actions/register';
+import ErrorList from '../ErrorList/ErrorList';
 
-
-class SignUp extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this._handleSubmit = this._handleSubmit.bind(this);
+class SignUpForm extends React.Component {
+    static propTypes = {
+        errors: React.PropTypes.array,
+        dispatch: React.PropTypes.func,
     }
 
-    _handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
 
         const { dispatch } = this.props;
@@ -32,7 +30,7 @@ class SignUp extends React.Component {
         return (
             <div>
                 <h2>Sign up!</h2>
-                <form method="post" onSubmit={this._handleSubmit}>
+                <form method="post" onSubmit={this.handleSubmit}>
                     <ErrorList errors={this.props.errors} />
 
                     <fieldset>
@@ -82,14 +80,8 @@ const mapStateToProps = state => {
     };
 };
 
-
-SignUp.propTypes = {
-    errors: React.PropTypes.array,
-    dispatch: React.PropTypes.func,
-};
-
-SignUp.defaultProps = {
+SignUpForm.defaultProps = {
     errors: [],
 };
 
-export default connect(mapStateToProps)(SignUp);
+export default connect(mapStateToProps)(SignUpForm);

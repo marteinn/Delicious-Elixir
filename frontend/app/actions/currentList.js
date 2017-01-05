@@ -46,7 +46,7 @@ const unFollowList = (socket, category) => {
             category,
             channel,
         });
-    }
+    };
 };
 
 export {

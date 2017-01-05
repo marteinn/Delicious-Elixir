@@ -1,17 +1,21 @@
+/**
+ * SignInForm
+ */
+
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn } from '../actions/session';
-import ErrorList from '../components/ErrorList/ErrorList';
+import { signIn } from '../../actions/session';
+import ErrorList from '../ErrorList/ErrorList';
 
 
-class SignIn extends React.Component {
-    constructor(props) {
-        super(props);
+class SignInForm extends React.Component {
+    static propTypes = {
+        currentUser: React.PropTypes.object,
+        errors: React.PropTypes.array,
+        dispatch: React.PropTypes.func,
+    };
 
-        this._handleSubmit = this._handleSubmit.bind(this);
-    }
-
-    _handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
 
         const { dispatch } = this.props;
@@ -30,7 +34,7 @@ class SignIn extends React.Component {
         return (
             <div>
                 <h2>Sign in!</h2>
-                <form method="post" onSubmit={this._handleSubmit}>
+                <form method="post" onSubmit={this.handleSubmit}>
                     <ErrorList errors={this.props.errors} />
                     <fieldset>
                         <label htmlFor="email">email</label>
@@ -54,10 +58,5 @@ const mapStateToProps = state => {
     };
 };
 
-SignIn.propTypes = {
-    currentUser: React.PropTypes.object,
-    errors: React.PropTypes.array,
-    dispatch: React.PropTypes.func,
-};
 
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps)(SignInForm);
