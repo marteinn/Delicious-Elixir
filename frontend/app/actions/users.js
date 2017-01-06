@@ -13,10 +13,10 @@ const fetchUser = username => {
         }).catch((error) => {
             console.log(error);
         });
-    }
-}
+    };
+};
 
 export {
     USER_RECEIVED,
     fetchUser,
-}
+};

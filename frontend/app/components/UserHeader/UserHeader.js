@@ -6,7 +6,7 @@ class UserHeader extends React.Component {
     render() {
         const { user } = this.props;
         const { stats } = user;
-        let url = user.url;
+        const url = user.url;
         let urlLabel;
 
         if (url) {

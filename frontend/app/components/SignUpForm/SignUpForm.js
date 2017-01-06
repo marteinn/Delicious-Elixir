@@ -80,8 +80,6 @@ class SignUpForm extends React.Component {
                     </div>
 
                     <nav className="Modal__Actions">
-                        <div className="Modal__ActionsSecondary">
-                        </div>
                         <div className="Modal__ActionsPrimary">
                             <Link className="Modal__Action Modal__Action--Neutral" to="/sign-in">Already a member? Sign in</Link>
                             <button className="Modal__Action Modal__Action--Positive Modal__Action--Button">Sign up</button>

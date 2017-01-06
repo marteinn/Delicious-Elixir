@@ -5,13 +5,13 @@ import {
     fetchUserLinks,
     fetchMoreUserLinks,
     deleteLink,
-} from '../actions/links';
-import { fetchUser } from '../actions/users';
-import { deleteLinkData } from '../actions/linkData';
-import { followList, unFollowList } from '../actions/currentList';
-import { showModal, hideModal, modalNames } from '../actions/modals';
-import UserHeader from '../components/UserHeader';
-import LinkList from '../components/LinkList';
+} from '../../actions/links';
+import { fetchUser } from '../../actions/users';
+import { deleteLinkData } from '../../actions/linkData';
+import { followList, unFollowList } from '../../actions/currentList';
+import { showModal, hideModal, modalNames } from '../../actions/modals';
+import UserHeader from '../../components/UserHeader';
+import LinkList from '../../components/LinkList';
 
 
 class UserDetail extends React.Component {
@@ -22,7 +22,6 @@ class UserDetail extends React.Component {
         isFetching: React.PropTypes.bool,
         isComplete: React.PropTypes.bool,
         socket: React.PropTypes.object,
-        params: React.PropTypes.object,
         dispatch: React.PropTypes.func,
     };
 
