@@ -1,5 +1,6 @@
 defmodule DeliciousElixir.Router do
   use DeliciousElixir.Web, :router
+  use ExAdmin.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -15,7 +16,16 @@ defmodule DeliciousElixir.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  # Other scopes may use custom stacks.
+  pipeline :browser_session do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
+  pipeline :require_auth do
+    plug Guardian.Plug.EnsureAuthenticated,
+      handler: DeliciousElixir.AuthController
+  end
+
   scope "/api", DeliciousElixir do
     pipe_through :api
 
@@ -28,11 +38,24 @@ defmodule DeliciousElixir.Router do
     end
   end
 
-  scope "/", DeliciousElixir do
-    pipe_through :browser # Use the default browser stack
+  scope "/auth", DeliciousElixir do
+    pipe_through [:browser, :browser_session]
 
-    resources "/admin/links", AdminLinkController
-    resources "/admin/users", AdminUserController
+    get "/sign-in", AuthController, :new
+    post "/sign-in", AuthController, :create
+    get "/sign-out", AuthController, :destroy
+    patch "/sign-out", AuthController, :destroy
+    delete "/sign-out", AuthController, :destroy
+  end
+
+  scope "/admin", ExAdmin do
+    pipe_through [:browser, :browser_session, :require_auth]
+
+    admin_routes
+  end
+
+  scope "/", DeliciousElixir do
+    pipe_through :browser
     get "/*path", PageController, :index
   end
 end

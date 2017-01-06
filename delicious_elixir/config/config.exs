@@ -33,3 +33,15 @@ config :guardian, Guardian,
   verify_issuer: true,
   secret_key: "pqCVzbQhE2NL4cYtyRHecyTsxeBWzxPqLZfpGBVMikYQXBMynL",
   serializer: DeliciousElixir.GuardianSerializer
+
+config :ex_admin,
+  repo: DeliciousElixir.Repo,
+  module: DeliciousElixir,
+  modules: [
+    DeliciousElixir.ExAdmin.Dashboard,
+    DeliciousElixir.ExAdmin.User,
+    DeliciousElixir.ExAdmin.Link,
+  ]
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}
+

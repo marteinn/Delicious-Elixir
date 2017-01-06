@@ -32,15 +32,16 @@ defmodule DeliciousElixir.Mixfile do
   defp deps do
     [
       {:phoenix, "~> 1.2.1"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.0.1"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.6"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
+      {:phoenix_pubsub, "~> 1.0.1"},
+      {:phoenix_ecto, "~> 3.0"},
+      {:postgrex, ">= 0.12.0"},
+      {:phoenix_html, "~> 2.9.2"},
+      {:phoenix_live_reload, "~> 1.0.6", only: :dev},
+      {:gettext, "~> 0.13.0"},
+      {:cowboy, "~> 1.0.4"},
       {:guardian, "~> 0.13.0"},
-      {:comeonin, "~> 2.5.3"},
+      {:comeonin, "~> 3.0.1"},
+      {:ex_admin, "~> 0.8"},
     ]
   end
 

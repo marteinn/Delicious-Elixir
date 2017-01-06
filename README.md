@@ -77,6 +77,7 @@ You can also override the html if you want/need to for your component by adding 
 - Create migration: `mix ecto.gen.migration <description>`
 - Run migration: `mix ecto.migrate`
 - Generate model: `mix phoenix.gen.html Example examples field_name:field_type`
+- Update all dependecies: `mix deps.unlock --all && mix deps.get`
 
 ## Roadmap
 
@@ -98,6 +99,8 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Fix issue occuring when link-list receives a new list in user-profile
 - [x] Register styling
 - [ ] Add avatar support
+- [x] Update packages (Ecto, Phoenix...)
+- [x] Implement ExAdmin
 - [ ] Delete button on edit link modular
 - [x] Styling UserProfile header
 - [ ] Settings (Change password / email)
@@ -129,3 +132,4 @@ You can also override the html if you want/need to for your component by adding 
 - [Nested Associations & Changeset Errors in Ecto](https://medium.com/@cjbell_/nested-associations-changeset-errors-in-ecto-f0ce6a4fec70#.f6eiiep25)
 - [Adding Edit and Update Functionality](http://phoenix.thefirehoseproject.com/7.html)
 - [Useful Ecto Validators](http://blog.danielberkompas.com/elixir/2015/05/20/useful-ecto-validators.html)
+- [Nice reference site for integrating ExAdmin and Guardian](https://github.com/elixir-lang-moscow/site/)
