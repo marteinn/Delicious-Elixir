@@ -9,6 +9,7 @@ import SignOut from '../views/SignOut';
 import Home from '../views/Home';
 import UserDetail from '../views/UserDetail';
 import Start from '../views/Start';
+import Settings from '../views/Settings';
 
 
 const configRoutes = store => {
@@ -38,6 +39,7 @@ const configRoutes = store => {
                 <IndexRoute component={Home} />
 
                 <Route path="/users/:username" component={UserDetail} />
+                <Route path="/settings" component={Settings} />
             </Route>
         </Route>
     );

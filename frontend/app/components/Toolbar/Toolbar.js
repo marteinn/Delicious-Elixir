@@ -56,7 +56,7 @@ class Toolbar extends React.Component {
 
                     {currentUser &&
                         <li className="Toolbar__Item">
-                            <a href="#" className="Toolbar__Link">Settings</a>
+                            <Link to={'/settings'} className="Toolbar__Link" activeClassName="Toolbar__Link--Active">Settings</Link>
                         </li>
                     }
 

@@ -106,6 +106,7 @@ You can also override the html if you want/need to for your component by adding 
 - [ ] Tag support
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
 - [ ] Add avatar support
+- [ ] Sign out styling
 - [ ] Create heroku instance
 - [ ] Convert app to docker container
 - [ ] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
