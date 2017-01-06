@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { editLink } from '../../actions/links';
+import { editLink, deleteLink } from '../../actions/links';
 import MessageList from '../MessageList';
 
 class EditLinkForm extends React.Component {
@@ -24,16 +24,25 @@ class EditLinkForm extends React.Component {
         }
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
 
         this.submitForm();
     }
 
-    handleCancelClick = () => {
+    handleCancelClick = e => {
         const { onRequestClose } = this.props;
 
         e.preventDefault();
+        onRequestClose();
+    }
+
+    handleDeleteClick = e => {
+        const { link, dispatch, onRequestClose } = this.props;
+
+        e.preventDefault();
+
+        dispatch(deleteLink(link));
         onRequestClose();
     }
 
@@ -93,6 +102,9 @@ class EditLinkForm extends React.Component {
                     </div>
 
                     <nav className="Modal__Actions">
+                        <div className="Modal__ActionsSecondary">
+                            <a className="Modal__Action Modal__Action--Negative" href="#" onClick={this.handleDeleteClick}>Delete</a>
+                        </div>
                         <div className="Modal__ActionsPrimary">
                             <a className="Modal__Action Modal__Action--Neutral" href="#" onClick={this.handleCancelClick}>Cancel</a>
                             <button className="Modal__Action Modal__Action--Positive Modal__Action--Button" onClick={this._handleSaveLink}>Save link</button>

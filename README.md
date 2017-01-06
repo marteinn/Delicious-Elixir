@@ -98,14 +98,14 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Make sure only link owner see private links
 - [x] Fix issue occuring when link-list receives a new list in user-profile
 - [x] Register styling
-- [ ] Add avatar support
 - [x] Update packages (Ecto, Phoenix...)
 - [x] Implement ExAdmin
-- [ ] Delete button on edit link modular
+- [x] Delete button on edit link modular
 - [x] Styling UserProfile header
 - [ ] Settings (Change password / email)
 - [ ] Tag support
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
+- [ ] Add avatar support
 - [ ] Create heroku instance
 - [ ] Convert app to docker container
 - [ ] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
