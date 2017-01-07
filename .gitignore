@@ -18,3 +18,6 @@ node_modules
 # Ignore build errors and node_modules
 npm-debug*
 node_modules/*
+
+
+/delicious_elixir/config/*.secret.exs
