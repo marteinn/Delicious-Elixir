@@ -2,6 +2,8 @@ language: elixir
 elixir:
     - 1.3.4
 install:
-    - cd ./delicious_elixir && mix local.hex --force && mix deps.get
+    - cd ./delicious_elixir
+    - mix local.hex --force
+    - mix deps.get
 script:
-    - cd ./delicious_elixir && mix test
+    - mix test
