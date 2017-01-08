@@ -14,3 +14,4 @@ before_script:
     - psql -c 'create database postgres_test;' -U postgres
 script:
     - cd delicious_elixir && mix test
+    - cd frontend && npm run test
