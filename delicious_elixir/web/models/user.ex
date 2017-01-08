@@ -5,14 +5,14 @@ defmodule DeliciousElixir.User do
                                   :inserted_at, :description, :url]}
 
   schema "users" do
-    field :first_name, :string
-    field :last_name, :string
     field :username, :string
     field :email, :string
-    field :encrypted_password, :string
     field :password, :string, virtual: true
-    field :description, :string
-    field :url, :string
+    field :encrypted_password, :string
+    field :first_name, :string, default: ""
+    field :last_name, :string, default: ""
+    field :description, :string, default: ""
+    field :url, :string, default: ""
 
     has_many :owned_links, DeliciousElixir.Link
 

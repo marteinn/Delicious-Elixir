@@ -36,7 +36,7 @@ defmodule DeliciousElixir.Router do
       get "/current-user", UserController, :show_current
       get "/users/:username", UserController, :show
 
-      #patch "/settings/profile", SettingsController, :update_profile
+      put "/settings/profile", SettingProfileController, :update
       #patch "/settings/password", SettingsController, :update_password
       #patch "/settings/email", SettingsController, :update_email
     end

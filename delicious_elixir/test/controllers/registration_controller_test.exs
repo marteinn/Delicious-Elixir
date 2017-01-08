@@ -1,8 +1,6 @@
 defmodule DeliciousElixir.RegistrationControllerTest do
   use DeliciousElixir.ConnCase
 
-  alias DeliciousElixir.{Repo, User}
-
   test "creates user", %{conn: conn} do
     data = %{
       username: "marteinn",
