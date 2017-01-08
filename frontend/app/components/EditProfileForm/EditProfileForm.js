@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import MessageList from '../MessageList';
 import { updateProfile } from '../../actions/settings';
 
@@ -7,7 +8,7 @@ class EditProfileForm extends React.Component {
     static propTypes = {
         user: React.PropTypes.object,
         loading: React.PropTypes.bool,
-        errors: React.PropTypes.object,
+        errors: React.PropTypes.array,
         success: React.PropTypes.bool,
         dispatch: React.PropTypes.func,
     };
@@ -16,8 +17,29 @@ class EditProfileForm extends React.Component {
         user: {},
         success: false,
         loading: false,
-        errors: {},
+        errors: [],
     };
+
+    state = {
+        firstName: "",
+        lastName: "",
+        description: "",
+        url: "",
+    }
+
+    constructor(props) {
+        super(props);
+
+        const { user } = props;
+        console.log(user);
+
+        this.state = {
+            firstName: user.first_name,
+            lastName: user.last_name,
+            description: user.description,
+            url: user.url,
+        }
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -25,33 +47,60 @@ class EditProfileForm extends React.Component {
         this.submitForm();
     }
 
+    handleFieldChange = (e) => {
+        e.preventDefault();
+
+        let target = e.currentTarget;
+
+        this.setState({
+            [target.name]: target.value,
+        });
+    }
+
     submitForm = () => {
         const { dispatch } = this.props;
 
         const data = {
-            first_name: this.firstName.value,
-            last_name: this.lastName.value,
-            description: this.description.value,
-            url: this.url.value,
+            first_name: this.state.firstName,
+            last_name: this.state.lastName,
+            description: this.state.description,
+            url: this.state.url,
         };
+
+        console.log(data);
 
         dispatch(updateProfile(data));
     }
 
     render() {
-        const { user, loading, errors, success } = this.props;
+        const { loading, success, errors } = this.props;
+        let messageErrors = errors;
+        let messageInfos = [];
+
+        if (errors.length && _.isObject(errors[0])) {
+            messageErrors = _.map(errors, (error, key) =>
+                `Error: ${key} ${error[0]}`
+            );
+        }
+
+        if (success) {
+            messageInfos = ['Your profile has been updated'];
+        }
 
         return (
             <div className="EditProfileForm">
-                <h2 className="Form__Title">Edit profile</h2>
 
                 <form className="Form" onSubmit={this.handleSubmit}>
+                    <MessageList errors={messageErrors} infos={messageInfos} />
+
+                    <h2 className="Form__Title">Edit profile</h2>
+
                     <div className="Form__Field">
                         <div className="Form__LabelWrap">
                             <label className="Form__FieldLabel" htmlFor="firstName">First name</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.firstName = c; }} name="firstName" defaultValue={user.first_name} />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} name="firstName" value={this.state.firstName} />
                         </div>
                     </div>
 
@@ -60,7 +109,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="lastName">Last name</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.lastName = c; }} name="lastName" defaultValue={user.last_name} />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange}  name="lastName" value={this.state.lastName} />
                         </div>
                     </div>
 
@@ -69,7 +118,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="description">Description</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} name="description" defaultValue={user.description} />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} name="description" value={this.state.description} />
                         </div>
                     </div>
 
@@ -78,7 +127,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="url">Website</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} name="url" defaultValue={user.url}/>
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} name="url" value={this.state.url}/>
                         </div>
                     </div>
 

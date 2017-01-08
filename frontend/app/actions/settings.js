@@ -18,19 +18,21 @@ const updateProfile = (userData) => {
 
         httpPut('/api/v1/settings/profile', { user: userData })
         .then((data) => {
-            dispatch(loadStatusDone(CATEGORY_PROFILE));
+            dispatch(loadStatusDone(CATEGORY_PROFILE, true));
 
             dispatch({
                 type: UPDATE_PROFILE_SUCCESS,
                 user: data.body.user,
             });
         }).catch((error) => {
-            dispatch(loadStatusDone(CATEGORY_PROFILE));
+            const errors = errorJson.errors;
+
+            dispatch(loadStatusDone(CATEGORY_PROFILE, false, errors));
 
             error.response.json().then((errorJson) => {
                 dispatch({
                     type: UPDATE_PROFILE_ERROR,
-                    errors: errorJson.errors,
+                    errors,
                 });
             });
         });
