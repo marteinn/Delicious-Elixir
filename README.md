@@ -104,7 +104,7 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Implement ExAdmin
 - [x] Delete button on edit link modular
 - [x] Styling UserProfile header
-- [ ] Settings (Change password / email)
+- [x] Settings (Change password / profile)
 - [ ] Tag support
 - [ ] Sign out styling
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
