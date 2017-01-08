@@ -35,6 +35,10 @@ defmodule DeliciousElixir.Router do
       post "/sessions", SessionController, :create
       get "/current-user", UserController, :show_current
       get "/users/:username", UserController, :show
+
+      #patch "/settings/profile", SettingsController, :update_profile
+      #patch "/settings/password", SettingsController, :update_password
+      #patch "/settings/email", SettingsController, :update_email
     end
   end
 
