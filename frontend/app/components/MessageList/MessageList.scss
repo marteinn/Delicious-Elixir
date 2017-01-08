@@ -1,4 +1,10 @@
 .MessageList {
+    &__Info {
+        padding: 20px;
+        color: #007DE6;
+        background-color: #F9F9F9;
+        font-size: 1.3rem;
+    }
     &__Error {
         padding: 20px;
         color: #FF3945;

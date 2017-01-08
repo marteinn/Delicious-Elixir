@@ -64,6 +64,7 @@ class ChangePasswordForm extends React.Component {
     render() {
         const { loading, success, errors } = this.props;
         let messageErrors = errors;
+        let messageInfos = [];
 
         if (errors.length && _.isObject(errors[0])) {
             messageErrors = _.map(errors, (error, key) =>
@@ -71,10 +72,14 @@ class ChangePasswordForm extends React.Component {
             );
         }
 
+        if (success) {
+            messageInfos = ['Password has been changed'];
+        }
+
         return (
             <div className="ChangePasswordForm">
                 <form className="Form" onSubmit={this.handleSubmit}>
-                    <MessageList errors={messageErrors} />
+                    <MessageList errors={messageErrors} infos={messageInfos} />
 
                     <h2 className="Form__Title">Change password</h2>
 
