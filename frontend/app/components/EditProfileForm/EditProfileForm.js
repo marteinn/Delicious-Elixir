@@ -6,14 +6,16 @@ import { updateProfile } from '../../actions/settings';
 class EditProfileForm extends React.Component {
     static propTypes = {
         user: React.PropTypes.object,
-        loadState: React.PropTypes.object,
+        loading: React.PropTypes.bool,
         errors: React.PropTypes.object,
+        success: React.PropTypes.bool,
         dispatch: React.PropTypes.func,
     };
 
     static defaultProps = {
         user: {},
         success: false,
+        loading: false,
         errors: {},
     };
 
@@ -37,7 +39,7 @@ class EditProfileForm extends React.Component {
     }
 
     render() {
-        const { user, loadState } = this.props;
+        const { user, loading, errors, success } = this.props;
 
         return (
             <div className="EditProfileForm">
@@ -82,7 +84,7 @@ class EditProfileForm extends React.Component {
 
                     <nav className="Modal__Actions">
                         <div className="Modal__ActionsPrimary">
-                            {!loadState.loading ?
+                            {!loading ?
                                 <button className="Modal__Action Modal__Action--Positive Modal__Action--Button">Save changes</button>
                                 :
                                 <button className="Modal__Action Modal__Action--Positive Modal__Action--Button">Saving...</button>
@@ -96,12 +98,13 @@ class EditProfileForm extends React.Component {
 }
 const mapStateToProps = state => {
     const user = state.session.currentUser;
+    const { errors, success, loading } = state.loadStatus.profile;
 
     return {
         user,
-        loadState: state.loadStatus.profile,
-        //success: state.linkStatus.success,
-        //errors: state.linkStatus.errors,
+        errors,
+        success,
+        loading,
     };
 };
 

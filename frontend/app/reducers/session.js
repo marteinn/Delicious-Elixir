@@ -1,5 +1,5 @@
 import { CURRENT_USER, SESSION_ERROR, CLEAR_SESSION } from '../actions/session';
-import { UPDATE_PROFILE_SUCCESS} from '../actions/settings';
+import { UPDATE_PROFILE_SUCCESS } from '../actions/settings';
 
 const initialState = {
     currentUser: null,
@@ -21,7 +21,7 @@ const session = (state = initialState, action = { }) => {
         }
         case UPDATE_PROFILE_SUCCESS: {
             let { currentUser } = state;
-            currentUser = {...currentUser, ...action.user};
+            currentUser = {...currentUser, ...action.user };
             return { ...state, currentUser };
         }
         default: {

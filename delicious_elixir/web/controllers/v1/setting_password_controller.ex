@@ -7,7 +7,9 @@ defmodule DeliciousElixir.SettingPasswordController do
 
   plug Guardian.Plug.EnsureAuthenticated, handler: DeliciousElixir.SessionController
 
-  def update(conn, %{"current_password" => current_password, "new_password" => new_password}) do
+  def update(conn, params) do
+
+    {current_password, new_password} = {params["current_password"], params["new_password"]}
 
     user = Guardian.Plug.current_resource(conn)
 
