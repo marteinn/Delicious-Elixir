@@ -28,10 +28,12 @@ defmodule DeliciousElixir.SettingProfileControllerTest do
 
   test "updates requires auth", %{conn: conn} do
     user_params = %{
-      first_name: "A",
-      last_name: "B",
-      description: "C",
-      url: "http://exampled.com",
+      user: %{
+        first_name: "A",
+        last_name: "B",
+        description: "C",
+        url: "http://exampled.com",
+      }
     }
 
     conn = conn |> put("/api/v1/settings/profile", user_params)
@@ -40,10 +42,12 @@ defmodule DeliciousElixir.SettingProfileControllerTest do
 
   test "updates profile", %{conn: conn, user: user} do
     user_params = %{
-      first_name: "A",
-      last_name: "B",
-      description: "C",
-      url: "http://exampled.com",
+      user: %{
+        first_name: "A",
+        last_name: "B",
+        description: "C",
+        url: "http://exampled.com",
+      }
     }
 
     conn = conn

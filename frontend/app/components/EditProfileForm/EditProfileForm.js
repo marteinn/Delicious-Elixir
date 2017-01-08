@@ -5,17 +5,18 @@ import { updateProfile } from '../../actions/settings';
 
 class EditProfileForm extends React.Component {
     static propTypes = {
+        user: React.PropTypes.object,
         errors: React.PropTypes.object,
         dispatch: React.PropTypes.func,
     };
 
     static defaultProps = {
+        user: {},
         success: false,
         errors: {},
     };
 
     handleSubmit = (e) => {
-        console.log('handle submit');
         e.preventDefault();
 
         this.submitForm();
@@ -35,6 +36,8 @@ class EditProfileForm extends React.Component {
     }
 
     render() {
+        const { user } = this.props;
+
         return (
             <div className="EditProfileForm">
                 <h2 className="Form__Title">Edit profile</h2>
@@ -45,7 +48,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="firstName">First name</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.firstName = c; }} name="firstName" />
+                            <input className="Form__FieldInput" ref={(c) => { this.firstName = c; }} name="firstName" defaultValue={user.first_name} />
                         </div>
                     </div>
 
@@ -54,7 +57,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="lastName">Last name</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.lastName = c; }} name="lastName" />
+                            <input className="Form__FieldInput" ref={(c) => { this.lastName = c; }} name="lastName" defaultValue={user.last_name} />
                         </div>
                     </div>
 
@@ -63,7 +66,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="description">Description</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} name="description" />
+                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} name="description" defaultValue={user.description} />
                         </div>
                     </div>
 
@@ -72,7 +75,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="url">Website</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} name="url" />
+                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} name="url" defaultValue={user.url}/>
                         </div>
                     </div>
 
@@ -87,7 +90,9 @@ class EditProfileForm extends React.Component {
     }
 }
 const mapStateToProps = state => {
+    const user = state.session.currentUser;
     return {
+        user,
         //success: state.linkStatus.success,
         //errors: state.linkStatus.errors,
     };

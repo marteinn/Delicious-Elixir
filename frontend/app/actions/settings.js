@@ -9,6 +9,7 @@ const updateProfile = (userData) => {
         .then((data) => {
             dispatch({
                 type: UPDATE_PROFILE_SUCCESS,
+                user: data.body.user,
             });
         }).catch((error) => {
             error.response.json().then((errorJson) => {
