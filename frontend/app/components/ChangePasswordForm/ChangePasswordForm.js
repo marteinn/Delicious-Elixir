@@ -84,4 +84,5 @@ const mapStateToProps = state => {
     };
 };
 
+export { ChangePasswordForm };
 export default connect(mapStateToProps)(ChangePasswordForm);

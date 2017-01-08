@@ -10,6 +10,10 @@ class SignUpForm extends React.Component {
         dispatch: React.PropTypes.func,
     }
 
+    static defaultProps = {
+        errors: [],
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -105,8 +109,6 @@ const mapStateToProps = state => {
     };
 };
 
-SignUpForm.defaultProps = {
-    errors: [],
-};
 
+export { SignUpForm };
 export default connect(mapStateToProps)(SignUpForm);

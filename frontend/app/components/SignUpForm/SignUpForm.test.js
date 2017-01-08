@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import SignUpForm from './';
+import { SignUpForm } from './SignUpForm';
 import data from './SignUpForm.json';
 
 describe('<SignUpForm />', () => {

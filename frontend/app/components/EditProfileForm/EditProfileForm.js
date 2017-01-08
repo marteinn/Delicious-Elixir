@@ -93,4 +93,5 @@ const mapStateToProps = state => {
     };
 };
 
+export { EditProfileForm };
 export default connect(mapStateToProps)(EditProfileForm);

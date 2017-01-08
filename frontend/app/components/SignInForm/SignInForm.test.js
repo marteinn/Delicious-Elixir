@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import SignInForm from './';
+import { SignInForm } from './SignInForm';
 import data from './SignInForm.json';
 
 describe('<SignInForm />', () => {

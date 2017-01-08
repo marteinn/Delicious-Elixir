@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import EditProfileForm from './';
+import { EditProfileForm } from './EditProfileForm';
 import data from './EditProfileForm.json';
 
 describe('<EditProfileForm />', () => {

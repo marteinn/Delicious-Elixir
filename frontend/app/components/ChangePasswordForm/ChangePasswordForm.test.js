@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import ChangePasswordForm from './';
+import { ChangePasswordForm } from './ChangePasswordForm';
 import data from './ChangePasswordForm.json';
 
 describe('<ChangePasswordForm />', () => {
