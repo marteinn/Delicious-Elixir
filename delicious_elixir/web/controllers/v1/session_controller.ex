@@ -1,8 +1,9 @@
 defmodule DeliciousElixir.SessionController do
   use DeliciousElixir.Web, :controller
+  alias DeliciousElixir.Session
 
   def create(conn, %{"session" => session_params}) do
-    case DeliciousElixir.Session.authenticate(session_params) do
+    case Session.authenticate(session_params) do
       {:ok, user} ->
         {:ok, jwt, _full_claims} = user |> Guardian.encode_and_sign(:token)
 
@@ -10,7 +11,7 @@ defmodule DeliciousElixir.SessionController do
         |> put_status(:created)
         |> render("show.json", jwt: jwt, user: user)
 
-      :error ->
+      {:error, msg} ->
         conn
         |> put_status(:unprocessable_entity)
         |> render("error.json")

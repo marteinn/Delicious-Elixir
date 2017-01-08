@@ -14,7 +14,7 @@ defmodule DeliciousElixir.AuthController do
         |> Guardian.Plug.sign_in(user)
         |> put_flash(:info, "Logged in")
         |> redirect(to: "/admin")
-      :error ->
+      {:error, msg} ->
         conn
         |> put_flash(:error, "Wrong email or password")
         |> render("login.html")

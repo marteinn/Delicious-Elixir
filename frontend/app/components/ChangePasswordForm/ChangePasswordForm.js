@@ -14,7 +14,6 @@ class ChangePasswordForm extends React.Component {
     };
 
     handleSubmit = (e) => {
-        console.log('handle submit');
         e.preventDefault();
 
         this.submitForm();
