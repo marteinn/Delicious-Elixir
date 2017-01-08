@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import MessageList from '../MessageList';
 import { changePassword } from '../../actions/settings';
 
@@ -12,8 +13,14 @@ class ChangePasswordForm extends React.Component {
 
     static defaultProps = {
         success: false,
-        errors: {},
+        errors: [],
     };
+
+    state = {
+        password: "",
+        newPassword: "",
+        newPassword2: "",
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -21,14 +28,34 @@ class ChangePasswordForm extends React.Component {
         this.submitForm();
     }
 
+    handleFieldChange = (e) => {
+        e.preventDefault();
+
+        let target = e.currentTarget;
+
+        this.setState({
+            [target.name]: target.value,
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { success } = nextProps;
+
+        if (success) {
+            this.setState({
+                password: "",
+                newPassword: "",
+                newPassword2: "",
+            });
+        }
+    }
+
     submitForm = () => {
         const { dispatch } = this.props;
 
         const data = {
-            current_password: this.password.value,
-            new_password: this.newPassword.value,
-            //description: this.description.value,
-            //url: this.url.value,
+            current_password: this.state.password,
+            new_password: this.state.newPassword,
         };
 
         dispatch(changePassword(data));
@@ -56,7 +83,7 @@ class ChangePasswordForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="password">Current password</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.password = c; }} name="password" type="password" />
+                            <input className="Form__FieldInput" value={this.state.password} onChange={this.handleFieldChange} name="password" type="password" />
                         </div>
                     </div>
 
@@ -65,7 +92,7 @@ class ChangePasswordForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="newPassword">New password</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.newPassword = c; }} name="newPassword" type="password" />
+                            <input className="Form__FieldInput" value={this.state.newPassword} onChange={this.handleFieldChange} name="newPassword" type="password" />
                         </div>
                     </div>
 
@@ -74,7 +101,7 @@ class ChangePasswordForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="newPassword2">Repeat New Password</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.newPassword2 = c; }} name="newPassword2" type="password" />
+                            <input className="Form__FieldInput" value={this.state.newPassword2} onChange={this.handleFieldChange} name="newPassword2" type="password" />
                         </div>
                     </div>
 

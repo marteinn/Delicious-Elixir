@@ -7,7 +7,7 @@ import MessageList from '../MessageList';
 class EditLinkForm extends React.Component {
     static propTypes = {
         link: React.PropTypes.object,
-        errors: React.PropTypes.object,
+        errors: React.PropTypes.array,
         dispatch: React.PropTypes.func,
         onRequestClose: React.PropTypes.func,
     }
@@ -15,7 +15,7 @@ class EditLinkForm extends React.Component {
     static defaultProps = {
         link: null,
         success: false,
-        errors: {},
+        errors: [],
     };
 
     componentWillReceiveProps(nextProps) {
