@@ -57,7 +57,6 @@ function linksByCategory(state = {}, action) {
             return Object.assign({}, state, {
                 [action.category]: category(state[action.category], action),
             });
-
         default:
             return state;
     }
