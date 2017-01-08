@@ -1,3 +1,5 @@
+import ChangePasswordForm from './ChangePasswordForm';
+import EditProfileForm from './EditProfileForm';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 import EditLinkForm from './EditLinkForm';
@@ -9,6 +11,8 @@ import Toolbar from './Toolbar';
 import UserHeader from './UserHeader';
 
 export {
+    ChangePasswordForm,
+    EditProfileForm,
     SignUpForm,
     SignInForm,
     EditLinkForm,
