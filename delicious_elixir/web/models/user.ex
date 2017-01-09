@@ -1,5 +1,6 @@
 defmodule DeliciousElixir.User do
   use DeliciousElixir.Web, :model
+  alias DeliciousElixir.Repo
 
   @derive {Poison.Encoder, only: [:id, :username, :first_name, :last_name, :email,
                                   :inserted_at, :description, :url]}
@@ -42,4 +43,6 @@ defmodule DeliciousElixir.User do
         current_changeset
     end
   end
+
+  def all, do: Repo.all(__MODULE__)
 end

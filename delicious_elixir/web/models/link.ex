@@ -9,6 +9,8 @@ defmodule DeliciousElixir.Link do
     field :private, :boolean, default: false
 
     belongs_to :user, DeliciousElixir.User
+    has_many :link_tags, DeliciousElixir.LinkTag
+    has_many :tags, through: [:link_tags, :tag]
 
     timestamps()
   end

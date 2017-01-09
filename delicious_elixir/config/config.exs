@@ -41,6 +41,7 @@ config :ex_admin,
     DeliciousElixir.ExAdmin.Dashboard,
     DeliciousElixir.ExAdmin.User,
     DeliciousElixir.ExAdmin.Link,
+    DeliciousElixir.ExAdmin.Tag,
   ]
 
 config :xain, :after_callback, {Phoenix.HTML, :raw}
