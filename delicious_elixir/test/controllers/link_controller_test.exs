@@ -2,7 +2,7 @@ defmodule DeliciousElixir.LinkControllerTest do
   use DeliciousElixir.ConnCase
 
   alias DeliciousElixir.TestHelpers
-  alias DeliciousElixir.Link
+  alias DeliciousElixir.{Link, Tag, Repo}
 
   @valid_attrs %{url: "some content", title: "A"}
   @invalid_attrs %{}
@@ -87,5 +87,51 @@ defmodule DeliciousElixir.LinkControllerTest do
     response = json_response(conn, 200)
     assert length(response) == 1
     assert Enum.at(response, 0)["url"] == link.url
+  end
+
+  test "create link", %{conn: conn, user: user} do
+    data = %{
+      title: "title",
+      url: "http://tomwaits.com",
+      description: "Hello",
+    }
+
+
+    conn = conn
+           |> TestHelpers.sign_api(user)
+           |> post(link_path(conn, :create), link: data)
+
+    response = json_response(conn, 201)
+    response_link = response["data"]
+
+    assert response_link["description"] == "Hello"
+  end
+
+  test "create link with tags", %{conn: conn, user: user} do
+    data = %{
+      title: "TomWaits",
+      url: "http://tomwaits.com",
+      description: "Hello",
+      tags: ["swordfishtrombones", "downbylaw"],
+    }
+
+    conn = conn
+           |> TestHelpers.sign_api(user)
+           |> post(link_path(conn, :create), link: data)
+
+    response = json_response(conn, 201)
+    response_link = response["data"]
+
+    link_count = Link |> Repo.aggregate(:count, :id)
+    tag_count = Tag |> Repo.aggregate(:count, :id)
+
+    assert response_link["title"] == "TomWaits"
+    assert link_count == 1
+    assert tag_count == 2
+
+    link = Link.all
+           |> List.first
+           |> Repo.preload([:user, :tags])
+    assert length(link.tags) == 2
   end
 end

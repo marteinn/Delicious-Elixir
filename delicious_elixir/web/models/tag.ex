@@ -1,13 +1,9 @@
 defmodule DeliciousElixir.Tag do
   use DeliciousElixir.Web, :model
-  import Ecto.Query
   alias DeliciousElixir.Repo
 
   schema "tags" do
     field :title, :string
-
-    has_many :link_tags, DeliciousElixir.LinkTag
-    has_many :links, through: [:link_tags, :link]
 
     timestamps()
   end

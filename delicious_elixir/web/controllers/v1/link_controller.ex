@@ -1,7 +1,7 @@
 defmodule DeliciousElixir.LinkController do
   use DeliciousElixir.Web, :controller
 
-  alias DeliciousElixir.{Repo, Link, Endpoint}
+  alias DeliciousElixir.{Repo, Link, Tag, Endpoint}
   alias DeliciousElixir.{Pagination}
   alias DeliciousElixir.{LinkView}
 
@@ -36,11 +36,10 @@ defmodule DeliciousElixir.LinkController do
     current_user = Guardian.Plug.current_resource(conn)
     link_params = Map.put(link_params, "user_id", current_user.id)
 
-    changeset = Link.changeset(%Link{}, link_params)
-
+    changeset = %Link{} |> Link.changeset(link_params)
     case Repo.insert(changeset) do
       {:ok, link} ->
-        link = Repo.preload(link, [:user])
+        link = link |> Repo.preload([:user, :tags])
 
         channel = "links:" <> current_user.username
 
