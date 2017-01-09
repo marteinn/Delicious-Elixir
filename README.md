@@ -136,3 +136,4 @@ You can also override the html if you want/need to for your component by adding 
 - [Adding Edit and Update Functionality](http://phoenix.thefirehoseproject.com/7.html)
 - [Useful Ecto Validators](http://blog.danielberkompas.com/elixir/2015/05/20/useful-ecto-validators.html)
 - [Nice reference site for integrating ExAdmin and Guardian](https://github.com/elixir-lang-moscow/site/)
+- [Demo site showing how to implement many_to_many relations in ExAdmin](https://github.com/smpallen99/admin_demo/)
