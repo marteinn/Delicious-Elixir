@@ -21,7 +21,7 @@ const session = (state = initialState, action = { }) => {
         }
         case UPDATE_PROFILE_SUCCESS: {
             let { currentUser } = state;
-            currentUser = {...currentUser, ...action.user };
+            currentUser = { ...currentUser, ...action.user };
             return { ...state, currentUser };
         }
         default: {

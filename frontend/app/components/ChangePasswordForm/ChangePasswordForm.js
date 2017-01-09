@@ -8,18 +8,32 @@ class ChangePasswordForm extends React.Component {
     static propTypes = {
         errors: React.PropTypes.array,
         dispatch: React.PropTypes.func,
-        loadState: React.PropTypes.object,
+        success: React.PropTypes.bool,
+        loading: React.PropTypes.bool,
     }
 
     static defaultProps = {
         success: false,
+        loading: false,
         errors: [],
     };
 
     state = {
-        password: "",
-        newPassword: "",
-        newPassword2: "",
+        password: '',
+        newPassword: '',
+        newPassword2: '',
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { success } = nextProps;
+
+        if (success) {
+            this.setState({
+                password: '',
+                newPassword: '',
+                newPassword2: '',
+            });
+        }
     }
 
     handleSubmit = (e) => {
@@ -31,23 +45,11 @@ class ChangePasswordForm extends React.Component {
     handleFieldChange = (e) => {
         e.preventDefault();
 
-        let target = e.currentTarget;
+        const target = e.currentTarget;
 
         this.setState({
             [target.name]: target.value,
         });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const { success } = nextProps;
-
-        if (success) {
-            this.setState({
-                password: "",
-                newPassword: "",
-                newPassword2: "",
-            });
-        }
     }
 
     submitForm = () => {

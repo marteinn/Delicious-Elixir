@@ -9,15 +9,15 @@ const loadStatusReset = (category) => {
     return {
         type: LOAD_STATUS_RESET,
         category,
-    }
-}
+    };
+};
 
 const loadStatusLoading = (category) => {
     return {
         type: LOAD_STATUS_LOADING,
         category,
-    }
-}
+    };
+};
 
 const loadStatusDone = (category, success = true, errors = []) => {
     return {
@@ -25,8 +25,8 @@ const loadStatusDone = (category, success = true, errors = []) => {
         category,
         errors,
         success,
-    }
-}
+    };
+};
 
 export {
     LOAD_STATUS_LOADING,
@@ -37,4 +37,4 @@ export {
 
     loadStatusLoading,
     loadStatusDone,
-}
+};

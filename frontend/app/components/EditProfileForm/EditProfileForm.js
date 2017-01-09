@@ -20,25 +20,17 @@ class EditProfileForm extends React.Component {
         errors: [],
     };
 
-    state = {
-        firstName: "",
-        lastName: "",
-        description: "",
-        url: "",
-    }
-
     constructor(props) {
         super(props);
 
         const { user } = props;
-        console.log(user);
 
         this.state = {
             firstName: user.first_name,
             lastName: user.last_name,
             description: user.description,
             url: user.url,
-        }
+        };
     }
 
     handleSubmit = (e) => {
@@ -50,7 +42,7 @@ class EditProfileForm extends React.Component {
     handleFieldChange = (e) => {
         e.preventDefault();
 
-        let target = e.currentTarget;
+        const target = e.currentTarget;
 
         this.setState({
             [target.name]: target.value,
@@ -66,8 +58,6 @@ class EditProfileForm extends React.Component {
             description: this.state.description,
             url: this.state.url,
         };
-
-        console.log(data);
 
         dispatch(updateProfile(data));
     }
@@ -109,7 +99,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="lastName">Last name</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" onChange={this.handleFieldChange}  name="lastName" value={this.state.lastName} />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} name="lastName" value={this.state.lastName} />
                         </div>
                     </div>
 
@@ -127,7 +117,7 @@ class EditProfileForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="url">Website</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" onChange={this.handleFieldChange} name="url" value={this.state.url}/>
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} name="url" value={this.state.url} />
                         </div>
                     </div>
 

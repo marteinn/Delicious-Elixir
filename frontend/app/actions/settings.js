@@ -25,11 +25,11 @@ const updateProfile = (userData) => {
                 user: data.body.user,
             });
         }).catch((error) => {
-            const errors = errorJson.errors;
-
-            dispatch(loadStatusDone(CATEGORY_PROFILE, false, errors));
-
             error.response.json().then((errorJson) => {
+                const errors = errorJson.errors;
+
+                dispatch(loadStatusDone(CATEGORY_PROFILE, false, errors));
+
                 dispatch({
                     type: UPDATE_PROFILE_ERROR,
                     errors,
