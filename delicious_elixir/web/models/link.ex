@@ -10,7 +10,7 @@ defmodule DeliciousElixir.Link do
     field :private, :boolean, default: false
 
     belongs_to :user, DeliciousElixir.User
-    many_to_many :tags, DeliciousElixir.Tag, join_through: "links_tags"
+    many_to_many :tags, DeliciousElixir.Tag, join_through: "links_tags", on_replace: :delete
 
     timestamps()
   end
@@ -29,12 +29,25 @@ defmodule DeliciousElixir.Link do
   end
 
   defp parse_tags(params) do
-    (params["tags"] || [])
+    (params["tags"] || params[:tags] || [])
+    |> Enum.map(&String.trim/1)
+    |> Enum.reject(& &1 == "")
     |> Enum.map(&get_or_insert_tag/1)
   end
 
   defp get_or_insert_tag(title) do
-    Repo.get_by(Tag, title: title) || Repo.insert!(%Tag{title: title})
+    Repo.get_by(Tag, title: title) || maybe_insert_tag(title)
+  end
+
+  defp maybe_insert_tag(title) do
+    %Tag{}
+    |> Ecto.Changeset.change(title: title)
+    |> Ecto.Changeset.unique_constraint(:title)
+    |> Repo.insert
+    |> case do
+      {:ok, tag} -> tag
+      {:error, _} -> Repo.get_by!(Tag, title: title)
+    end
   end
 
   def validate_url(changeset, field, options \\ []) do
