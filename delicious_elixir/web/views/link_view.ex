@@ -21,7 +21,8 @@ defmodule DeliciousElixir.LinkView do
         email: link.user.email,
         username: link.user.username,
         id: link.user.id,
-      }
+      },
+      tags: link.tags |> Enum.map(& &1.title),
     }
   end
 

@@ -25,7 +25,7 @@ defmodule DeliciousElixir.LinkController do
             |> Ecto.Query.order_by(desc: :inserted_at)
             |> Pagination.paginate(page_params)
             |> Repo.all
-            |> Repo.preload([:user])
+            |> Repo.preload([:user, :tags])
 
     conn
     |> Pagination.headers(page_params)
@@ -67,7 +67,7 @@ defmodule DeliciousElixir.LinkController do
 
     case Repo.update(changeset) do
       {:ok, link} ->
-        link = Repo.preload(link, [:user])
+        link = Repo.preload(link, [:user, :tags])
 
         channel = "links:" <> current_user.username
         broadcast_data = Dict.merge(LinkView.render("show.json", link: link),
@@ -94,7 +94,7 @@ defmodule DeliciousElixir.LinkController do
     {id, _} = Integer.parse(id)
     current_user = Guardian.Plug.current_resource(conn)
 
-    link = Repo.get!(Link, id) |> Repo.preload([:user])
+    link = Repo.get!(Link, id) |> Repo.preload([:user, :tags])
     broadcast_data = Dict.merge(LinkView.render("show.json", link: link),
                                 %{}
                               )
