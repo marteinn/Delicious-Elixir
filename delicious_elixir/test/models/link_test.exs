@@ -1,4 +1,4 @@
-defmodule DeliciousElixir.UserTest do
+defmodule DeliciousElixir.LinkTest do
   use DeliciousElixir.ModelCase
 
   alias DeliciousElixir.TestHelpers
@@ -17,15 +17,6 @@ defmodule DeliciousElixir.UserTest do
       user: user,
     }
   end
-  #test "changeset with valid attributes" do
-    #changeset = User.changeset(%User{}, @valid_attrs)
-    #assert changeset.valid?
-  #end
-
-  #test "changeset with invalid attributes" do
-    #changeset = User.changeset(%User{}, @invalid_attrs)
-    #refute changeset.valid?
-  #end
 
   test "add tags to model", %{user: user} do
     data = %{
