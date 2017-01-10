@@ -62,7 +62,7 @@ defmodule DeliciousElixir.LinkController do
     {id, _} = Integer.parse(id)
     current_user = Guardian.Plug.current_resource(conn)
 
-    link = Repo.get!(Link, id)
+    link = Repo.get!(Link, id) |> Repo.preload([:user, :tags])
     changeset = Link.changeset(link, link_params)
 
     case Repo.update(changeset) do

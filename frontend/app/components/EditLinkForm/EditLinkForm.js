@@ -18,6 +18,20 @@ class EditLinkForm extends React.Component {
         errors: [],
     };
 
+    constructor(props) {
+        super(props);
+
+        const { link } = this.props;
+
+        this.state = {
+            title: link.title,
+            url: link.url,
+            description: link.description || "",
+            tags: (link.tags || []).join(", "),
+            private: link.private,
+        };
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.success) {
             nextProps.onRequestClose();
@@ -28,6 +42,16 @@ class EditLinkForm extends React.Component {
         e.preventDefault();
 
         this.submitForm();
+    }
+
+    handleFieldChange = (e) => {
+        e.preventDefault();
+
+        const target = e.currentTarget;
+
+        this.setState({
+            [target.name]: target.value,
+        });
     }
 
     handleCancelClick = e => {
@@ -51,13 +75,18 @@ class EditLinkForm extends React.Component {
 
         const data = {
             id: link.id,
-            title: this.title.value,
-            url: this.url.value,
-            description: this.description.value,
+            title: this.state.title,
+            url: this.state.url,
+            tags: this.formatTags(this.state.tags),
+            description: this.state.description,
             private: this.private.checked,
         };
 
         dispatch(editLink(data));
+    }
+
+    formatTags(value) {
+        return value.split(',').map((x) => _.trim(x));
     }
 
     render() {
@@ -74,7 +103,7 @@ class EditLinkForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="title">Title</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.title = c; }} defaultValue={link.title} name="title" />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.title} name="title" />
                         </div>
                     </div>
 
@@ -83,7 +112,16 @@ class EditLinkForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="url">Url</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.url = c; }} defaultValue={link.url} name="url" />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.url} name="url" />
+                        </div>
+                    </div>
+
+                    <div className="Form__Field">
+                        <div className="Form__LabelWrap">
+                            <label className="Form__FieldLabel" htmlFor="tags">Tags</label>
+                        </div>
+                        <div className="Form__InputWrap">
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.tags} name="tags" />
                         </div>
                     </div>
 
@@ -92,12 +130,12 @@ class EditLinkForm extends React.Component {
                             <label className="Form__FieldLabel" htmlFor="description">Comment</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" ref={(c) => { this.description = c; }} defaultValue={link.description} name="description" />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.description} name="description" />
                         </div>
                     </div>
 
                     <div className="Form__Field">
-                        <input type="checkbox" className="Form__CheckboxLock" ref={(c) => { this.private = c; }} name="private" defaultChecked={link.private} />
+                        <input type="checkbox" className="Form__CheckboxLock" ref={(c) => { this.private = c; }} defaultChecked={this.state.private} name="private" />
                         <label className="Form__CheckboxLockLabel" data-checkedLabel="Private" htmlFor="private">Public</label>
                     </div>
 

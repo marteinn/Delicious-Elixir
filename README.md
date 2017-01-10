@@ -105,7 +105,7 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Delete button on edit link modular
 - [x] Styling UserProfile header
 - [x] Settings (Change password / profile)
-- [ ] Tag support
+- [x] Tag support
 - [ ] Sign out styling
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
 - [x] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
