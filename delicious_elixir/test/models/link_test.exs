@@ -61,27 +61,27 @@ defmodule DeliciousElixir.UserTest do
     link = Repo.insert!(changeset) |> Repo.preload([:user, :tags])
 
     # Assign new data
-    data = %{data | tags: ["Russian Dance"]}
+    data = %{data | tags: ["russian-dance"]}
 
     changeset = link |> Link.changeset(data)
     assert changeset.valid?
 
     link = Repo.update!(changeset) |> Repo.preload([:user, :tags])
     assert length(link.tags) == 1
-    assert (link.tags |> List.first).title == "Russian Dance"
+    assert (link.tags |> List.first).title == "russian-dance"
 
     tag_count = Tag |> Repo.aggregate(:count, :id)
     assert tag_count == 3
 
     # Assign new data
-    data = %{data | tags: ["Russian Dance", "Blood money"]}
+    data = %{data | tags: ["russian-dance", "blood-money"]}
 
     changeset = link |> Link.changeset(data)
     assert changeset.valid?
 
     link = Repo.update!(changeset) |> Repo.preload([:user, :tags])
     assert length(link.tags) == 2
-    assert (link.tags |> List.last).title == "Blood money"
+    assert (link.tags |> List.last).title == "blood-money"
 
     tag_count = Tag |> Repo.aggregate(:count, :id)
     assert tag_count == 4
@@ -103,5 +103,20 @@ defmodule DeliciousElixir.UserTest do
 
     assert Tag |> Repo.aggregate(:count, :id) == 1
     assert length(link.tags) == 1
+  end
+
+  test "make sure tags get slugged", %{user: user} do
+    data = %{
+      title: "TomWaits",
+      url: "http://tomwaits.com",
+      description: "Hello",
+      user_id: user.id,
+      tags: ["Alice", "Bone Machine"],
+    }
+    changeset = %Link{} |> Link.changeset(data)
+    link = Repo.insert!(changeset) |> Repo.preload([:user, :tags])
+
+    assert (link.tags |> List.first).title == "alice"
+    assert (link.tags |> List.last).title == "bone-machine"
   end
 end

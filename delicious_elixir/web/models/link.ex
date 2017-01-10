@@ -32,6 +32,7 @@ defmodule DeliciousElixir.Link do
     (params["tags"] || params[:tags] || [])
     |> Enum.map(&String.trim/1)
     |> Enum.reject(& &1 == "")
+    |> Enum.map(&Slugger.slugify_downcase/1)
     |> Enum.map(&get_or_insert_tag/1)
   end
 

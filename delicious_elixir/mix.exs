@@ -42,6 +42,7 @@ defmodule DeliciousElixir.Mixfile do
       {:guardian, "~> 0.13.0"},
       {:comeonin, "~> 3.0.1"},
       {:ex_admin, "~> 0.8"},
+      {:slugger, "~> 0.1.0"},
     ]
   end
 
