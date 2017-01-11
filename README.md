@@ -14,12 +14,12 @@
 1. Make sure docker are running: `docker-machine start && eval "$(docker-machine env default)"`
 1. Create db config: `cp docker/config/db.example.env docker/config/db.env`
 1. Start db: `docker-compose up -d`
+1. Switch to frontend dir: `cd ../frontend`
+1. Install node packages: `yarn`
 1. Open pheonix app: `cd delicious_elixir`
 1. Install dependencies: `mix deps.get`
 1. Create and migrate your database: `mix ecto.create && mix ecto.migrate`
-1. Switch to frontend dir: `cd ../frontend`
-1. Install node packages: `yarn`
-1. Create superuser: `mix delicious_elixir.greeting my_username my@email.com my_passwor`
+1. Create superuser: `mix delicious_elixir.create_super_user my_username my@email.com my_passwor`
 1. Start Phoenix endpoint: `mix phoenix.server`
 1. Open the application: [http://localhost:4000](http://localhost:4000)
 1. Done!
