@@ -41,11 +41,11 @@ defmodule DeliciousElixir.LinkController do
       {:ok, link} ->
         link = link |> Repo.preload([:user, :tags])
 
-        channel = "links:" <> current_user.username
-
         broadcast_data = LinkView.render("show.json", link: link)
 
-        Endpoint.broadcast(channel, "item:created", broadcast_data)
+        Endpoint.broadcast("links:latest", "item:created", broadcast_data)
+        Endpoint.broadcast("links:#{current_user.username}",
+                           "item:created", broadcast_data)
 
         conn
         |> put_status(:created)

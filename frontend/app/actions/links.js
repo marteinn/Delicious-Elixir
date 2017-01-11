@@ -93,6 +93,31 @@ const receiveLinks = (category, data, options = { invalidate: false }) => {
     };
 };
 
+const fetchLatestLinks = () => {
+    return (dispatch, getState) => {
+        httpGet('/api/v1/links')
+        .then((data) => {
+            dispatch(receiveLinks('links:latest', data, { invalidate: true }));
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+};
+
+const fetchMoreLatestLinks = () => {
+    return (dispatch, getState) => {
+        const categoryState = getState().linksByCategory['links:latest'];
+        const url = categoryState.next;
+
+        httpGet(url)
+        .then((data) => {
+            dispatch(receiveLinks('links:latest', data));
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+};
+
 const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
         httpGet(`/api/v1/links?username=${username}&limit=20`)
@@ -118,17 +143,6 @@ const fetchMoreUserLinks = (username) => {
     };
 };
 
-const fetchLinks = (params = '', category) => {
-    return (dispatch, getState) => {
-        httpGet(`/api/v1/links${params}`)
-        .then((data) => {
-            dispatch(receiveLinks(category, data));
-        }).catch((error) => {
-            console.log(error);
-        });
-    };
-};
-
 export {
     CREATE_LINK_SUCCESS,
     CREATE_LINK_RESET,
@@ -141,9 +155,10 @@ export {
     DELETE_LINK_ERROR,
     LINKS_RECEIVED,
 
-    fetchLinks,
     fetchUserLinks,
     fetchMoreUserLinks,
+    fetchLatestLinks,
+    fetchMoreLatestLinks,
     createLink,
     editLink,
     deleteLink,

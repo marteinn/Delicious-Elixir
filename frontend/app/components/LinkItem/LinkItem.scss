@@ -19,6 +19,14 @@
     border-top: 1px solid #CCC;
     padding: 20px;
     overflow: hidden;
+    display: flex;
+
+    &__Author {
+        margin-right: 20px;
+    }
+
+    &__Content {
+    }
 
     &__Title {
         font-size: 2rem;

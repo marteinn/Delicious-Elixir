@@ -52,6 +52,13 @@ class UserDetail extends React.Component {
         dispatch(followList(socket, category));
     }
 
+    componentWillUnmount() {
+        const { dispatch, socket, username } = this.props;
+        const category = `links:${username}`;
+
+        dispatch(unFollowList(socket, category));
+    }
+
     handleRequestEdit = link => {
         const { dispatch } = this.props;
 
@@ -89,7 +96,7 @@ class UserDetail extends React.Component {
                     onRequestEdit={this.handleRequestEdit}
                     onRequestDelete={this.handleRequestDelete}
                 />
-                {links.length &&
+                {Boolean(links.length > 0) &&
                     <Waypoint onEnter={this.handleWaypointEnter} />
                 }
             </div>
