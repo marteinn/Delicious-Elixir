@@ -19,6 +19,7 @@
 1. Create and migrate your database: `mix ecto.create && mix ecto.migrate`
 1. Switch to frontend dir: `cd ../frontend`
 1. Install node packages: `yarn`
+1. Create superuser: `mix delicious_elixir.greeting my_username my@email.com my_passwor`
 1. Start Phoenix endpoint: `mix phoenix.server`
 1. Open the application: [http://localhost:4000](http://localhost:4000)
 1. Done!

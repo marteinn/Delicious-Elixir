@@ -22,7 +22,7 @@ defmodule DeliciousElixir.User do
   end
 
   @required_fields ~w(first_name last_name username email password)
-  @optional_fields ~w(encrypted_password description url)
+  @optional_fields ~w(encrypted_password description url superuser)
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
