@@ -8,7 +8,7 @@ import {
 } from '../actions/links';
 
 const initialState = {
-    errors: [],
+    errors: {},
     success: false,
     isFetching: false,
 };

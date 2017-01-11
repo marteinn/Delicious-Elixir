@@ -7,7 +7,7 @@ import MessageList from '../MessageList';
 class EditLinkForm extends React.Component {
     static propTypes = {
         link: React.PropTypes.object,
-        errors: React.PropTypes.array,
+        errors: React.PropTypes.object,
         dispatch: React.PropTypes.func,
         onRequestClose: React.PropTypes.func,
     }
@@ -15,8 +15,12 @@ class EditLinkForm extends React.Component {
     static defaultProps = {
         link: null,
         success: false,
-        errors: [],
+        errors: {},
     };
+
+    static formatTags(value) {
+        return value.split(',').map((x) => _.trim(x));
+    }
 
     constructor(props) {
         super(props);
@@ -26,8 +30,8 @@ class EditLinkForm extends React.Component {
         this.state = {
             title: link.title,
             url: link.url,
-            description: link.description || "",
-            tags: (link.tags || []).join(", "),
+            description: link.description || '',
+            tags: (link.tags || []).join(', '),
             private: link.private,
         };
     }
@@ -77,16 +81,12 @@ class EditLinkForm extends React.Component {
             id: link.id,
             title: this.state.title,
             url: this.state.url,
-            tags: this.formatTags(this.state.tags),
+            tags: EditLinkForm.formatTags(this.state.tags),
             description: this.state.description,
             private: this.private.checked,
         };
 
         dispatch(editLink(data));
-    }
-
-    formatTags(value) {
-        return value.split(',').map((x) => _.trim(x));
     }
 
     render() {

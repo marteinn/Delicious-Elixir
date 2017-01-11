@@ -17,6 +17,10 @@ class CreateLinkForm extends React.Component {
         errors: {},
     };
 
+    static formatTags(value) {
+        return value.split(',').map((x) => _.trim(x));
+    }
+
     constructor(props) {
         super(props);
 
@@ -64,16 +68,12 @@ class CreateLinkForm extends React.Component {
         const data = {
             title: this.state.title,
             url: this.state.url,
-            tags: this.formatTags(this.state.tags),
+            tags: CreateLinkForm.formatTags(this.state.tags),
             description: this.state.description,
             private: this.private.checked,
         };
 
         dispatch(createLink(data));
-    }
-
-    formatTags(value) {
-        return value.split(',').map((x) => _.trim(x));
     }
 
     render() {
