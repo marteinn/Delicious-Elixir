@@ -83,12 +83,7 @@ defmodule DeliciousElixir.LinkController do
         |> put_status(:unprocessable_entity)
         |> render("error.json", changeset: changeset)
     end
-
-    conn
-    |> put_status(:unprocessable_entity)
-    |> render("update.json", user: current_user)
   end
-
 
   def delete(conn, %{"id" => id}) do
     {id, _} = Integer.parse(id)
