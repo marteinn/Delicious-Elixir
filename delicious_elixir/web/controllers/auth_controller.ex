@@ -10,10 +10,17 @@ defmodule DeliciousElixir.AuthController do
   def create(conn, %{"login" => login}) do
     case Session.authenticate(login) do
       {:ok, user} ->
-        conn
-        |> Guardian.Plug.sign_in(user)
-        |> put_flash(:info, "Logged in")
-        |> redirect(to: "/admin")
+        case user.superuser do
+          true ->
+            conn
+            |> Guardian.Plug.sign_in(user)
+            |> put_flash(:info, "Logged in")
+            |> redirect(to: "/admin")
+          _ ->
+            conn
+            |> put_flash(:error, "Not enough permissions")
+            |> render("login.html")
+        end
       {:error, msg} ->
         conn
         |> put_flash(:error, "Wrong email or password")

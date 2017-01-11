@@ -14,6 +14,7 @@ defmodule DeliciousElixir.User do
     field :last_name, :string, default: ""
     field :description, :string, default: ""
     field :url, :string, default: ""
+    field :superuser, :boolean, default: false
 
     has_many :owned_links, DeliciousElixir.Link
 
