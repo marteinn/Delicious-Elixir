@@ -107,9 +107,11 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Styling UserProfile header
 - [x] Settings (Change password / profile)
 - [x] Tag support
-- [ ] Sign out styling
+- [x] Hide Share/Edit/Delete on items without access
+- [ ] Add tag filtering abilities on user
 - [x] Add superadmin flag (or similar) to user model
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
+- [ ] Sign out styling
 - [x] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
 - [ ] Create [heroku instance](http://www.phoenixframework.org/docs/heroku)
 - [ ] Convert app to docker container

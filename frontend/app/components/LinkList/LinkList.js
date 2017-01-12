@@ -6,6 +6,7 @@ import LinkItem from '../LinkItem/LinkItem';
 class LinkList extends React.Component {
     static defaultProps = {
         links: [],
+        editableIds: [],
         avatar: false,
     }
 
@@ -24,12 +25,19 @@ class LinkList extends React.Component {
     }
 
     render() {
-        const { links, onRequestEdit, onRequestDelete, avatar } = this.props;
+        const {
+            links,
+            avatar,
+            editableIds,
+            onRequestEdit,
+            onRequestDelete,
+        } = this.props;
         const { useLeaveTransition } = this.state;
         const items = links.map((link, index) => (
             <LinkItem
                 key={link.id}
                 link={link}
+                editable={editableIds.includes(link.id)}
                 avatar={avatar}
                 onRequestEdit={onRequestEdit}
                 onRequestDelete={onRequestDelete}
@@ -58,6 +66,7 @@ class LinkList extends React.Component {
 
 LinkList.propTypes = {
     links: React.PropTypes.array.isRequired,
+    editableIds: React.PropTypes.array.isRequired,
     avatar: React.PropTypes.bool.isRequired,
     onRequestEdit: React.PropTypes.func.isRequired,
     onRequestDelete: React.PropTypes.func.isRequired,

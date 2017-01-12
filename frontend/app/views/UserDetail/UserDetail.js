@@ -17,6 +17,7 @@ import LinkList from '../../components/LinkList';
 class UserDetail extends React.Component {
     static propTypes = {
         links: React.PropTypes.array.isRequired,
+        editableIds: React.PropTypes.array,
         user: React.PropTypes.object,
         username: React.PropTypes.string,
         isFetching: React.PropTypes.bool,
@@ -24,6 +25,10 @@ class UserDetail extends React.Component {
         socket: React.PropTypes.object,
         dispatch: React.PropTypes.func,
     };
+
+    static defaultProps = {
+        editableIds: [],
+    }
 
     componentDidMount() {
         const { dispatch, socket, username } = this.props;
@@ -86,13 +91,14 @@ class UserDetail extends React.Component {
     }
 
     render() {
-        const { username, user, links } = this.props;
+        const { username, user, links, editableIds } = this.props;
 
         return (
             <div>
                 {user !== undefined && <UserHeader user={user} />}
                 <LinkList
                     links={links}
+                    editableIds={editableIds}
                     onRequestEdit={this.handleRequestEdit}
                     onRequestDelete={this.handleRequestDelete}
                 />
@@ -111,6 +117,7 @@ const mapStateToProps = (state, ownProps) => {
 
     const { username } = ownProps.params;
     const user = state.users[username];
+    const sessionUser = state.session.currentUser;
 
     const categoryState = Object.assign({
         isFetching: false,
@@ -121,11 +128,17 @@ const mapStateToProps = (state, ownProps) => {
     let links = categoryState.ids.map((id) => state.links[id]);
     links = links.filter((item) => item);
 
+    let editableIds = links.map((item) => {
+        return sessionUser.id === item.user.id ? item.id : 0;
+    });
+    editableIds = editableIds.filter((id) => id);
+
     return {
         isFetching: categoryState.isFetching,
         isComplete: categoryState.isComplete,
         socket: state.session.socket,
         links,
+        editableIds,
         username,
         user,
     };

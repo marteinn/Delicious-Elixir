@@ -6,6 +6,15 @@ import { Link } from 'react-router';
 class LinkItem extends React.Component {
     static defaultProps = {
         avatar: false,
+        editable: false,
+    };
+
+    static propTypes = {
+        link: React.PropTypes.object.isRequired,
+        avatar: React.PropTypes.bool,
+        editable: React.PropTypes.bool,
+        onRequestEdit: React.PropTypes.func.isRequired,
+        onRequestDelete: React.PropTypes.func.isRequired,
     };
 
     handleShareClick = (e) => {
@@ -25,7 +34,7 @@ class LinkItem extends React.Component {
     }
 
     render() {
-        const { link, avatar } = this.props;
+        const { link, avatar, editable } = this.props;
         const domain = uri(link.url).domain();
         const insertedAt = link.inserted_at;
         const formattedInsertDate = new Date(insertedAt).toLocaleDateString();
@@ -52,8 +61,12 @@ class LinkItem extends React.Component {
                         </div>
                         <div className="LinkItem__Column LinkItem__Column--Right">
                             <span className="LinkItem__Action">Share</span>
-                            <a className="LinkItem__Action" href="#" onClick={this.handleShareClick}>Edit</a>
-                            <a className="LinkItem__Action" href="#" onClick={this.handleDeleteClick}>Delete</a>
+                            {editable &&
+                                <a className="LinkItem__Action" href="#" onClick={this.handleShareClick}>Edit</a>
+                            }
+                            {editable &&
+                                <a className="LinkItem__Action" href="#" onClick={this.handleDeleteClick}>Delete</a>
+                            }
                             <span className="LinkItem__Date">{formattedInsertDate}</span>
                         </div>
                     </div>
@@ -63,10 +76,5 @@ class LinkItem extends React.Component {
     }
 }
 
-LinkItem.propTypes = {
-    link: React.PropTypes.object.isRequired,
-    onRequestEdit: React.PropTypes.func.isRequired,
-    onRequestDelete: React.PropTypes.func.isRequired,
-};
 
 export default LinkItem;
