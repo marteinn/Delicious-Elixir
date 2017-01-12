@@ -58,7 +58,7 @@ class LinkList extends React.Component {
 
 LinkList.propTypes = {
     links: React.PropTypes.array.isRequired,
-    avatar: React.PropTypes.boolean.isRequired,
+    avatar: React.PropTypes.bool.isRequired,
     onRequestEdit: React.PropTypes.func.isRequired,
     onRequestDelete: React.PropTypes.func.isRequired,
 };
