@@ -7,7 +7,7 @@ defmodule DeliciousElixir.UserSocket do
   channel "links:*", DeliciousElixir.LinkChannel
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000
 
   def connect(%{"token" => jwt} = params, socket) do
     case sign_in(socket, jwt) do
