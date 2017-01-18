@@ -69,6 +69,16 @@ defmodule DeliciousElixir.Link do
     end
   end
 
+  def by_tag(query, tag) do
+    if tag == nil do
+      query
+    else
+      from l in query,
+        left_join: t in assoc(l, :tags),
+        where: t.title == ^tag
+    end
+  end
+
   def by_user(query, username) do
     if username == nil do
       query

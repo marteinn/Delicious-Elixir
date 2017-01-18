@@ -10,9 +10,11 @@ defmodule DeliciousElixir.LinkController do
   def index(conn, params) do
     user = Guardian.Plug.current_resource(conn)
     username = Map.get(params, "username", nil)
+    tag = Map.get(params, "tag", nil)
 
     links = Link
             |> Link.by_user(username)
+            |> Link.by_tag(tag)
             |> Link.public_only(username != user.username)
 
     total_count = links |> Repo.aggregate(:count, :id)

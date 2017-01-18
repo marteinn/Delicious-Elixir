@@ -44,6 +44,33 @@ defmodule DeliciousElixir.LinkControllerTest do
     assert json_response(conn, 200) == []
   end
 
+
+  test "filter links by tag", %{conn: conn, user: user, user2: user2} do
+    link = %Link{} |> Link.changeset(%{
+                                       title: "TomWaits-swordfishtrombones",
+                                       url: "http://tomwaits.com",
+                                       description: "Hello",
+                                       user_id: user.id,
+                                       tags: ["swordfishtrombones"],
+                                     }) |> Repo.insert!
+
+    link2 = %Link{} |> Link.changeset(%{
+                                       title: "TomWaits-bloodmoney",
+                                       url: "http://tomwaits.com",
+                                       description: "Hello",
+                                       user_id: user.id,
+                                       tags: ["bloodmoney"],
+                                     }) |> Repo.insert!
+
+    conn = conn
+           |> TestHelpers.sign_api(user)
+           |> get("/api/v1/links?tag=swordfishtrombones")
+
+    response = json_response(conn, 200)
+    assert length(response) == 1
+    assert Enum.at(response, 0)["url"] == link.url
+  end
+
   test "lists all user links on index", %{conn: conn, user: user, user2: user2} do
     link = Repo.insert!(%Link{
                           url: "http://user.com",
