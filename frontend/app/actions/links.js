@@ -95,7 +95,7 @@ const receiveLinks = (category, data, options = { invalidate: false }) => {
 
 const fetchLatestLinks = () => {
     return (dispatch, getState) => {
-        httpGet('/api/v1/links')
+        httpGet('/api/v1/links', { limit: 20 })
         .then((data) => {
             dispatch(receiveLinks('links:latest', data, { invalidate: true }));
         }).catch((error) => {
@@ -120,7 +120,7 @@ const fetchMoreLatestLinks = () => {
 
 const fetchUserLinks = (username) => {
     return (dispatch, getState) => {
-        httpGet(`/api/v1/links?username=${username}&limit=20`)
+        httpGet('/api/v1/links', { username, limit: 20})
         .then((data) => {
             dispatch(receiveLinks(`links:${username}`, data, { invalidate: true }));
         }).catch((error) => {

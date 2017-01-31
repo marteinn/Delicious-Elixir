@@ -36,6 +36,16 @@ const parseResponse = response => {
     });
 };
 
+const toQueryParams = (params) => {
+    return Object.keys(params)
+        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+        .join('&');
+};
+
+const appendQueryParams = (url, params) => (
+    url + (params ? '?' + toQueryParams(params) : '')
+);
+
 const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -60,8 +70,8 @@ const checkStatus = (response) => {
 };
 
 
-const httpGet = url => (
-    fetch(url, {
+const httpGet = (url, params) => (
+    fetch(appendQueryParams(url, params), {
         headers: buildHeaders(),
     })
     .then(checkStatus)
@@ -96,6 +106,7 @@ const httpDelete = url => (
     .then(checkStatus)
     //.then(parseResponse)
 );
+
 
 export {
     httpGet,
