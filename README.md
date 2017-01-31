@@ -61,6 +61,13 @@ You can also override the html if you want/need to for your component by adding 
 - Trigger debugger: `IEx.pry`
 
 
+## Heroku
+
+- Deploy to heroku
+
+    git subtree push --prefix delicious_elixir heroku master
+
+
 ## Snippets
 
 - Create model
@@ -113,8 +120,8 @@ You can also override the html if you want/need to for your component by adding 
 - [ ] Rename project to `Phenix-Delicious` (or something else?)
 - [ ] Sign out styling
 - [x] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
-- [ ] Create [heroku instance](http://www.phoenixframework.org/docs/heroku)
-- [ ] Convert app to docker container
+- [x] Create [heroku instance](http://www.phoenixframework.org/docs/heroku)
+- [ ] Convert app to [docker container](https://robots.thoughtbot.com/deploying-elixir-to-aws-elastic-beanstalk-with-docker)
 - [ ] Add avatar support
 - [ ] Bulk editing
 
