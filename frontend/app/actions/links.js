@@ -1,5 +1,7 @@
+import _ from 'lodash';
 import { push } from 'react-router-redux';
 import { httpGet, httpPost, httpPut, httpDelete } from '../utils/http';
+import { toggleList } from './currentList';
 
 const CREATE_LINK_SUCCESS = 'CREATE_LINK_SUCCESS';
 const CREATE_LINK_RESET = 'CREATE_LINK_RESET';
@@ -118,11 +120,21 @@ const fetchMoreLatestLinks = () => {
     };
 };
 
-const fetchUserLinks = (username) => {
+const fetchUserLinks = (username, params = {}) => {
+    params = _.pickBy(params);
+
     return (dispatch, getState) => {
-        httpGet('/api/v1/links', { username, limit: 20})
+        let category = `links:${username}`;
+
+        if (params.tag) {
+            category = `${category}:tags:${params.tag}`;
+        }
+
+        dispatch(toggleList(getState().session.socket, category));
+
+        httpGet('/api/v1/links', Object.assign({ username, limit: 20 }, params))
         .then((data) => {
-            dispatch(receiveLinks(`links:${username}`, data, { invalidate: true }));
+            dispatch(receiveLinks(category, data, { invalidate: true }));
         }).catch((error) => {
             console.log(error);
         });
@@ -131,12 +143,13 @@ const fetchUserLinks = (username) => {
 
 const fetchMoreUserLinks = (username) => {
     return (dispatch, getState) => {
-        const categoryState = getState().linksByCategory[`links:${username}`];
+        const category = getState().currentList.category;
+        const categoryState = getState().linksByCategory[category];
         const url = categoryState.next;
 
         httpGet(url)
         .then((data) => {
-            dispatch(receiveLinks(`links:${username}`, data));
+            dispatch(receiveLinks(category, data));
         }).catch((error) => {
             console.log(error);
         });

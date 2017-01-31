@@ -56,7 +56,7 @@ class LinkItem extends React.Component {
                         <div className="LinkItem__Column">
                             <span className="LinkItem__Saved">0</span>
                             <p className="LinkItem__Tags">
-                                {link.tags.map((x) => <a className="LinkItem__Tag" href="#" key={x}>{x}</a>)}
+                                {link.tags.map((x) => <Link to={`/users/${link.user.username}/tags/${x}`} className="LinkItem__Tag" key={x}>{x}</Link>)}
                             </p>
                         </div>
                         <div className="LinkItem__Column LinkItem__Column--Right">

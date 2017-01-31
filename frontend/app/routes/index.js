@@ -38,7 +38,9 @@ const configRoutes = store => {
             <Route path="/" component={Auth} onEnter={checkAuth}>
                 <IndexRoute component={Home} />
 
-                <Route path="/users/:username" component={UserDetail} />
+                <Route path="/users/:username" component={UserDetail}>
+                    <Route path="tags/:tag" component={UserDetail} />
+                </Route>
                 <Route path="/settings" component={Settings} />
             </Route>
         </Route>

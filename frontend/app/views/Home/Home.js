@@ -38,9 +38,6 @@ class Home extends React.Component {
         dispatch(unFollowList(socket, 'links:latest'));
     }
 
-    componentDidUpdate(prevProps) {
-    }
-
     handleRequestEdit = link => {
     }
 

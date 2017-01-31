@@ -8,8 +8,8 @@ import {
 } from '../../actions/links';
 import { fetchUser } from '../../actions/users';
 import { deleteLinkData } from '../../actions/linkData';
-import { followList, unFollowList } from '../../actions/currentList';
 import { showModal, hideModal, modalNames } from '../../actions/modals';
+import { unFollowCurrentList } from '../../actions/currentList';
 import UserHeader from '../../components/UserHeader';
 import LinkList from '../../components/LinkList';
 
@@ -20,6 +20,7 @@ class UserDetail extends React.Component {
         editableIds: React.PropTypes.array,
         user: React.PropTypes.object,
         username: React.PropTypes.string,
+        tag: React.PropTypes.string,
         isFetching: React.PropTypes.bool,
         isComplete: React.PropTypes.bool,
         socket: React.PropTypes.object,
@@ -31,37 +32,32 @@ class UserDetail extends React.Component {
     }
 
     componentDidMount() {
-        const { dispatch, socket, username } = this.props;
-        const category = `links:${username}`;
+        const { dispatch, socket, username, tag } = this.props;
 
         dispatch(fetchUser(username));
-        dispatch(fetchUserLinks(username));
-        dispatch(followList(socket, category));
+        dispatch(fetchUserLinks(username, { tag }));
     }
 
     componentDidUpdate(prevProps) {
-        const { username: prevUsername } = prevProps;
-        const { username } = this.props;
+        const { username: prevUsername, tag: prevTag } = prevProps;
+        const { username, tag } = this.props;
         const { dispatch, socket } = this.props;
         const prevCategory = `links:${prevUsername}`;
         const category = `links:${username}`;
 
-        if (prevUsername === username) {
-            return;
+        if (prevUsername !== username) {
+            dispatch(fetchUser(username));
         }
 
-        dispatch(unFollowList(socket, prevCategory));
-
-        dispatch(fetchUser(username));
-        dispatch(fetchUserLinks(username));
-        dispatch(followList(socket, category));
+        if (prevUsername !== username || prevTag !== tag) {
+            dispatch(fetchUserLinks(username, { tag }));
+        }
     }
 
     componentWillUnmount() {
-        const { dispatch, socket, username } = this.props;
-        const category = `links:${username}`;
+        const { dispatch, socket } = this.props;
 
-        dispatch(unFollowList(socket, category));
+        dispatch(unFollowCurrentList(socket));
     }
 
     handleRequestEdit = link => {
@@ -115,7 +111,7 @@ const mapStateToProps = (state, ownProps) => {
         category: undefined,
     }, state.currentList);
 
-    const { username } = ownProps.params;
+    const { username, tag } = ownProps.params;
     const user = state.users[username];
     const sessionUser = state.session.currentUser;
 
@@ -141,6 +137,7 @@ const mapStateToProps = (state, ownProps) => {
         editableIds,
         username,
         user,
+        tag,
     };
 };
 
