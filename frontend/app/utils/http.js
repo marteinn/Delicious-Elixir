@@ -38,12 +38,12 @@ const parseResponse = response => {
 
 const toQueryParams = (params) => {
     return Object.keys(params)
-        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+        .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
         .join('&');
 };
 
 const appendQueryParams = (url, params) => (
-    url + (params ? '?' + toQueryParams(params) : '')
+    url + (params ? `?${toQueryParams(params)}` : '')
 );
 
 const defaultHeaders = {
