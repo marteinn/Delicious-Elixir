@@ -38,7 +38,7 @@ config :delicious_elixir, DeliciousElixir.Repo,
   username: "postgres",
   password: "postgres",
   database: "postgres",
-  hostname: "192.168.99.100",
+  hostname: "127.0.0.1",
   port: "5436",
   pool_size: 10
 
