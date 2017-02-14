@@ -10,7 +10,7 @@ defmodule DeliciousElixir.Link do
     field :private, :boolean, default: false
 
     belongs_to :user, DeliciousElixir.User
-    many_to_many :tags, DeliciousElixir.Tag, join_through: "links_tags", on_replace: :delete
+    many_to_many :tags, DeliciousElixir.Tag, join_through: "links_tags", on_replace: :delete, on_delete: :delete_all
 
     timestamps()
   end
