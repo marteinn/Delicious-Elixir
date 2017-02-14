@@ -23,6 +23,11 @@
         color: #999;
     }
 
+    &__DescriptionUsernameLink {
+        color: inherit;
+        text-decoration: none;
+    }
+
     &__DescriptionInfo {
         margin-top: 5px;
         font-size: 1.3rem;

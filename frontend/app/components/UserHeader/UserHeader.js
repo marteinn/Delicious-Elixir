@@ -1,5 +1,6 @@
 import React from 'react';
 import uri from 'urijs';
+import { Link } from 'react-router';
 
 
 class UserHeader extends React.Component {
@@ -22,7 +23,7 @@ class UserHeader extends React.Component {
                     </div>
                     <div className="UserHeader__Description">
                         <div className="UserHeader__DescriptionTop">
-                            <h2 className="UserHeader__DescriptionUsername">{user.username}</h2>
+                            <h2 className="UserHeader__DescriptionUsername"><Link to={`/users/${user.username}`} className="UserHeader__DescriptionUsernameLink">{user.username}</Link></h2>
                             <p className="UserHeader__DescriptionInfo">{user.description}</p>
                             {url != null &&
                                 <a className="UserHeader__DescriptionUrl" href={url}>{urlLabel}</a>
