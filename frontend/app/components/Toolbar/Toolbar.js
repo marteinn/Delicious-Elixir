@@ -45,12 +45,6 @@ class Toolbar extends React.Component {
                     }
 
                     <li className="Toolbar__Item">
-                        <a href="#" className="Toolbar__Link">Network</a>
-                    </li>
-                    <li className="Toolbar__Item">
-                        <a href="#" className="Toolbar__Link">Discover</a>
-                    </li>
-                    <li className="Toolbar__Item">
                         <a href="#" onClick={this.handleCreateLinkClick} className="Toolbar__Link">Add link</a>
                     </li>
 
