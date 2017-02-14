@@ -115,14 +115,18 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Settings (Change password / profile)
 - [x] Tag support
 - [x] Hide Share/Edit/Delete on items without access
-- [ ] Add tag filtering abilities on user
+- [x] Add tag filtering abilities on user
 - [x] Add superadmin flag (or similar) to user model
-- [ ] Rename project to `Phenix-Delicious` (or something else?)
-- [ ] Sign out styling
 - [x] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
 - [x] Create [heroku instance](http://www.phoenixframework.org/docs/heroku)
+
+- [ ] Attempt to load title/description/image from url when pasting link in Add Link dialog
+- [ ] Add link creation should transfer user to Profile page
+- [ ] Sign out styling
+- [ ] Rename project to `Phenix-Delicious` (or something else?)
 - [ ] Convert app to [docker container](https://robots.thoughtbot.com/deploying-elixir-to-aws-elastic-beanstalk-with-docker)
-- [ ] Add avatar support
+- [ ] Add user avatar support
+- [ ] Release 1.0.0
 - [ ] Bulk editing
 
 ### Possible new features
