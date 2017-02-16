@@ -120,7 +120,7 @@ You can also override the html if you want/need to for your component by adding 
 - [x] Implement [tests on travis](https://docs.travis-ci.com/user/languages/elixir/)
 - [x] Create [heroku instance](http://www.phoenixframework.org/docs/heroku)
 
-- [ ] Attempt to load title/description/image from url when pasting link in Add Link dialog
+- [x] Attempt to load title/description/image from url when pasting link in Add Link dialog
 - [ ] Add link creation should transfer user to Profile page
 - [ ] Sign out styling
 - [ ] Rename project to `Phenix-Delicious` (or something else?)

@@ -12,6 +12,7 @@ defmodule DeliciousElixir.ScraperController do
     description = html
                   |> Floki.find("meta[name=description]")
                   |> Floki.attribute("content")
+                  |> List.first
 
     meta = %{
       :title => title,
