@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { createLink } from '../../actions/links';
+import { scrapeUrl } from '../../actions/scraper';
 import MessageList from '../MessageList';
 
 
@@ -37,6 +38,15 @@ class CreateLinkForm extends React.Component {
         if (nextProps.success) {
             nextProps.onRequestClose();
         }
+
+        if (nextProps.scrapeData) {
+            const { scrapeData } = nextProps;
+
+            this.setState({
+                title: this.state.title || scrapeData.title,
+                description: this.state.description || scrapeData.description,
+            });
+        }
     }
 
     handleSubmit = (e) => {
@@ -53,6 +63,21 @@ class CreateLinkForm extends React.Component {
         this.setState({
             [target.name]: target.value,
         });
+    }
+
+    handleUrlBlur = (e) => {
+        const { dispatch } = this.props;
+        const url = this.state.url;
+
+        if (!url) {
+            return;
+        }
+
+        if (!/^(ftp|http|https):\/\/[^ "]+$/.test(url)) {
+            return;
+        }
+
+        dispatch(scrapeUrl(url));
     }
 
     handleCancelClick = (e) => {
@@ -89,19 +114,19 @@ class CreateLinkForm extends React.Component {
 
                     <div className="Form__Field">
                         <div className="Form__LabelWrap">
-                            <label className="Form__FieldLabel" htmlFor="title">Title</label>
+                            <label className="Form__FieldLabel" htmlFor="url">Url</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.title} name="title" />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} onBlur={this.handleUrlBlur} value={this.state.url} name="url" />
                         </div>
                     </div>
 
                     <div className="Form__Field">
                         <div className="Form__LabelWrap">
-                            <label className="Form__FieldLabel" htmlFor="url">Url</label>
+                            <label className="Form__FieldLabel" htmlFor="title">Title</label>
                         </div>
                         <div className="Form__InputWrap">
-                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.url} name="url" />
+                            <input className="Form__FieldInput" onChange={this.handleFieldChange} value={this.state.title} name="title" />
                         </div>
                     </div>
 
@@ -142,6 +167,7 @@ class CreateLinkForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        scrapeData: state.scraper.latest,
         success: state.linkStatus.success,
         errors: state.linkStatus.errors,
     };

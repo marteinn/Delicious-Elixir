@@ -19,12 +19,13 @@ const toggleList = (socket, category) => {
         dispatch(followList(socket, category));
     };
 }
+
 const followList = (socket, category) => {
     return dispatch => {
         const channel = socket.channel(category);
 
         channel.join().receive('ok', (response) => {
-            //console.log('joined!');
+            console.log(`joined ${category}`);
         });
 
         channel.on('item:created', (msg) => {

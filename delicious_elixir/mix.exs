@@ -18,8 +18,8 @@ defmodule DeliciousElixir.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {DeliciousElixir, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
+                    :gettext, :phoenix_ecto, :postgrex, :comeonin, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -43,6 +43,8 @@ defmodule DeliciousElixir.Mixfile do
       {:comeonin, "~> 3.0.1"},
       {:ex_admin, "~> 0.8"},
       {:slugger, "~> 0.1.0"},
+      {:httpoison, "~> 0.11"},
+      {:floki, "~> 0.14.0"},
     ]
   end
 

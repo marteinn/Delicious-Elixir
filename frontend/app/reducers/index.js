@@ -9,6 +9,7 @@ import currentList from './currentList';
 import modals from './modals';
 import users from './users';
 import loadStatus from './loadStatus';
+import scraper from './scraper';
 
 const rootReducer = combineReducers({
     routing: routerReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     modals,
     users,
     loadStatus,
+    scraper,
 });
 
 export default rootReducer;
